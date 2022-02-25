@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="今天mysql数据库课堂上学到了视图的操作,在向视图中插入新的值这一操作时,突然报错了,不仅我,全班同学都出现了这个错误。 插入语句 1234567插入语句:INSERT INTO tv_commuser (uid,username,email) values (&apos;u1013&apos;,&apos;张灵灵&apos;,&apos;test@qq.com&apos;);报错:Error Code: 1423. Field of view &apos;cms">
+<meta name="keywords" content="mysql,视图,插入数据,报错">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql向视图插入值报错解决办法">
+<meta property="og:url" content="http://yoursite.com/2019/05/23/Mysql向视图插入值报错解决办法/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="今天mysql数据库课堂上学到了视图的操作,在向视图中插入新的值这一操作时,突然报错了,不仅我,全班同学都出现了这个错误。 插入语句 1234567插入语句:INSERT INTO tv_commuser (uid,username,email) values (&apos;u1013&apos;,&apos;张灵灵&apos;,&apos;test@qq.com&apos;);报错:Error Code: 1423. Field of view &apos;cms">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/05/23/Mysql向视图插入值报错解决办法/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/23/Mysql向视图插入值报错解决办法/2.png">
+<meta property="og:updated_time" content="2019-05-23T03:27:16.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql向视图插入值报错解决办法">
+<meta name="twitter:description" content="今天mysql数据库课堂上学到了视图的操作,在向视图中插入新的值这一操作时,突然报错了,不仅我,全班同学都出现了这个错误。 插入语句 1234567插入语句:INSERT INTO tv_commuser (uid,username,email) values (&apos;u1013&apos;,&apos;张灵灵&apos;,&apos;test@qq.com&apos;);报错:Error Code: 1423. Field of view &apos;cms">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/23/Mysql向视图插入值报错解决办法/1.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/05/23/Mysql向视图插入值报错解决办法/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Mysql向视图插入值报错解决办法 | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/23/Mysql向视图插入值报错解决办法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mysql向视图插入值报错解决办法
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-23 10:36:00 / Modified: 11:27:16" itemprop="dateCreated datePublished" datetime="2019-05-23T10:36:00+08:00">2019-05-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天mysql数据库课堂上学到了视图的操作,在向视图中插入新的值这一操作时,突然报错了,不仅我,全班同学都出现了这个错误。</p>
+<p>插入语句</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">插入语句:</span><br><span class="line">INSERT INTO tv_commuser (uid,username,email) values (<span class="string">'u1013'</span>,<span class="string">'张灵灵'</span>,<span class="string">'test@qq.com'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">报错:</span><br><span class="line">Error Code: <span class="number">1423.</span> Field of view <span class="string">'cms.tv_commuser1'</span> underlying table doesn<span class="string">'t have a default value</span></span><br></pre></td></tr></table></figure>
+<p>视图中不存在一个默认值？</p>
+<p>接着我打开搜索引擎搜索这个错误寻找解决办法,在这里吐槽一下百度,百度了一节课没找到什么有效解决办法,google直接找到解决办法。</p>
+<h1 id="排错"><a href="#排错" class="headerlink" title="排错"></a>排错</h1><p>首先要讲一下视图的概念:</p>
+<p>视图：一种虚拟表，不以存储数据值的形式存在，引用表中的数据，可提高数据库中数据的安全性。</p>
+<p>视图的特点:</p>
+<p><code>（1）视图的列可来自于不同的表，是表的抽象和在逻辑意义上建立的新关系。</code></p>
+<p><code>（2）视图由基本表（实表）产生的表（虚表）。</code></p>
+<p>（3）视图的建立和删除不影响基本表。</p>
+<p><code>（4）对视图内容的更新（添加、删除和修改）直接影响基本表。</code></p>
+<p>（5）当视图来自多个基本表时，不允许添加和删除数据。</p>
+<p>从以上信息我们可以得出,这个视图是虚拟的,不是实际存在的,而且可以看做视图是表的副产品,视图和表是紧密联系在一起的。</p>
+<h1 id="insert语句执行失败"><a href="#insert语句执行失败" class="headerlink" title="insert语句执行失败"></a>insert语句执行失败</h1><pre><code>根本原因就是Field of view &apos;cms.tv_commuser1&apos; underlying table doesn&apos;t have a default value
+
+插入的值中有相应的字段没有设置默认值；
+</code></pre><h1 id="既然这样，我进行了如下操作"><a href="#既然这样，我进行了如下操作" class="headerlink" title="既然这样，我进行了如下操作:"></a>既然这样，我进行了如下操作:</h1><p>修改字段结构：</p>
+<pre><code> alter table tb_user modify column  uid char(10)  default null ;
+
+ alter table tb_user modify column  username nvarchar(20) default &apos;张三&apos; ;
+
+alter table tb_user modify column  email nvarchar(50)   default &apos;test@qq.com&apos;;
+</code></pre><p>问题来了:</p>
+<p>All parts of a PRIMARY KEY must be NOT NULL;</p>
+<p>uid作为主键必须为 NOT NULL；</p>
+<h1 id="于是我进行以下的操作"><a href="#于是我进行以下的操作" class="headerlink" title="于是我进行以下的操作"></a>于是我进行以下的操作</h1><p>  重新建立一个视图,不包括uid,插入存在默认值的字段进行测试</p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO tv_commuser (username,email) values (<span class="string">'张灵灵'</span>,<span class="string">'111@qq.com'</span>);</span><br></pre></td></tr></table></figure>
+<p>  再次报错:<br>  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error Code: <span class="number">1423.</span> Field of view <span class="string">'cms.tv_commuser1'</span> underlying table doesn<span class="string">'t have a default value</span></span><br></pre></td></tr></table></figure></p>
+<p> 陷入了迷茫…….</p>
+<p>通过phpmyadmin结合mysql workbench工具查看表和视图的结构,终于发现了问题</p>
+<p><code>在往视图中插入值的时候，其实是先向表中插入值,那么除了你插入的值外,其余字段,如未插入的uid字段,将自动变成null,但uid作为主键,必须是not null,造成了这一矛盾。</code><br><img src="/2019/05/23/Mysql向视图插入值报错解决办法/1.png" alt="你想输入的替代文字"></p>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>把uid字段设置为自增，这样既保证了uid字段<code>not null</code>，又保证了uid中会有一个值。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">把原来的表和视图删除,再新建一个</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span></span><br><span class="line">create table tb_user</span><br><span class="line">(  </span><br><span class="line">uid int(<span class="number">10</span>)  not <span class="keyword">null</span>  auto_increment primary key,    <span class="comment"># 注意这里uid自增必须为int类型</span></span><br><span class="line">username nvarchar(<span class="number">20</span>)  <span class="keyword">default</span> <span class="keyword">null</span>,</span><br><span class="line">password  nvarchar(<span class="number">10</span>)  <span class="keyword">default</span> <span class="keyword">null</span>,</span><br><span class="line">email  nvarchar(<span class="number">50</span>)  <span class="keyword">default</span> <span class="keyword">null</span>,</span><br><span class="line">lever  nvarchar(<span class="number">20</span>) <span class="keyword">default</span> <span class="keyword">null</span>,</span><br><span class="line">deptcode  nvarchar(<span class="number">20</span>) <span class="keyword">default</span> <span class="keyword">null</span>,</span><br><span class="line">state  char(<span class="number">1</span>)  not <span class="keyword">null</span> <span class="keyword">default</span> <span class="number">1</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into tb_user(uid,username,password,email,lever,deptcode,state)</span><br><span class="line">values(<span class="string">'1001'</span>,<span class="string">'张小明'</span>,<span class="string">'654321'</span>,<span class="string">'xiaoming@163.com'</span>,<span class="string">'超级管理员'</span>,<span class="string">'d1001'</span>,<span class="string">'1'</span>),(<span class="string">'1002'</span>,<span class="string">'李华'</span>,<span class="string">'345678'</span>,<span class="string">'lihua@163.com'</span>,<span class="string">'普通管理员'</span>,<span class="string">'d1001'</span>,<span class="string">'1'</span>),(<span class="string">'1003'</span>,<span class="string">'李小红'</span>,<span class="string">'234567'</span>,<span class="string">'xiaohong@163.com'</span>,<span class="string">'普通管理员'</span>,<span class="string">'d1001'</span>,<span class="string">'1'</span>),(<span class="string">'1004'</span>,<span class="string">'张天浩'</span>,<span class="string">'453124'</span>,<span class="string">'tianhao@163.com'</span>,<span class="string">'普通用户'</span>,<span class="string">'d3001'</span>,<span class="string">'1'</span>),(<span class="string">'1005'</span>,<span class="string">'李洁'</span>,<span class="string">'467894'</span>,<span class="string">'lijie@163.com'</span>,<span class="string">'普通用户'</span>,<span class="string">'d5001'</span>,<span class="string">'1'</span>),(<span class="string">'1006'</span>,<span class="string">'王英'</span>,<span class="string">'654786'</span>,<span class="string">'wangying@163.com'</span>,<span class="string">'超级管理员'</span>,<span class="string">'d6001'</span>,<span class="string">'1'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span></span><br><span class="line">Create view tv_commuser  <span class="keyword">as</span></span><br><span class="line">Select  uid,username,email  from  tb_user  where  lever=<span class="string">'普通用户'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">然后uid自增不用考虑,直接插入视图中剩下的值</span><br><span class="line">INSERT INTO tv_commuser (username,email) values (<span class="string">'张灵灵'</span>,<span class="string">'111@qq.com'</span>);</span><br><span class="line"></span><br><span class="line">插入成功！！！！</span><br></pre></td></tr></table></figure></p>
+<p>到这里又出现了新的问题：</p>
+<p>通过视图插入的值直接被插入到了表中,而视图还是保持初始值,我在表中给刚才插入的数据加上lever</p>
+<p><img src="/2019/05/23/Mysql向视图插入值报错解决办法/2.png" alt="你想输入的替代文字"></p>
+<p>这时视图中出现了我插入的值,因为当时我建立这个视图的时候要求的条件是<code>lever=&#39;普通用户&#39;</code></p>
+<p>那么就以为着如果视图中没有lever字段,是无法直接向视图中插入值的。</p>
+<h1 id="更新数据测试"><a href="#更新数据测试" class="headerlink" title="更新数据测试"></a>更新数据测试</h1><p>上节课卡在插入数据之后就一直没往后实验，现在试一下更新数据操作</p>
+<p><code>UPDATE tv_commuser1 SET username=&quot;张浩&quot; WHERE username=&quot;张天浩&quot;;</code></p>
+<p>报错：</p>
+<p><code>Error Code: 1175. You are using safe update mode and you tried to update a ta table without a WHERE that uses a KEY column To disable safe mode, toggle the option in Preferences -&gt; SQL Queries and reconnect.</code></p>
+<p>一步一错。。。。。。要吐血了。。。。</p>
+<p>解决方法如下:</p>
+<p>这是因为MySql运行在safe-updates模式下，该模式会导致非主键条件下无法执行update或者delete命令。</p>
+<p>1、show variables like ‘SQL_SAFE_UPDATES’;查看开关状态。</p>
+<p>2、执行命令SET SQL_SAFE_UPDATES = 0;修改下数据库模式</p>
+<p>继续插入更新数据语句:</p>
+<p> <code>UPDATE tv_commuser1 SET username=&quot;张浩&quot; WHERE username=&quot;张天浩&quot;;</code></p>
+<p>插入成功！！！</p>
+<p>视图和表同时被修改了</p>
+<p>以后我一定把视图和表看做一家人…..</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+            <a href="/tags/视图/" rel="tag"># 视图</a>
+          
+            <a href="/tags/插入数据/" rel="tag"># 插入数据</a>
+          
+            <a href="/tags/报错/" rel="tag"># 报错</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/22/hackbar收费了-ruozhi哥推荐我用谷歌浏览器/" rel="next" title="hackbar收费了,ruozhi哥推荐我用谷歌浏览器">
+                <i class="fa fa-chevron-left"></i> hackbar收费了,ruozhi哥推荐我用谷歌浏览器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/27/2019第三届强网杯-鲲or鳗orGame-wp/" rel="prev" title="2019第三届强网杯-鲲or鳗orGame-wp">
+                2019第三届强网杯-鲲or鳗orGame-wp <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#排错"><span class="nav-number">1.</span> <span class="nav-text">排错</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#insert语句执行失败"><span class="nav-number">2.</span> <span class="nav-text">insert语句执行失败</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#既然这样，我进行了如下操作"><span class="nav-number">3.</span> <span class="nav-text">既然这样，我进行了如下操作:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#于是我进行以下的操作"><span class="nav-number">4.</span> <span class="nav-text">于是我进行以下的操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决办法"><span class="nav-number">5.</span> <span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更新数据测试"><span class="nav-number">6.</span> <span class="nav-text">更新数据测试</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/05/23/Mysql向视图插入值报错解决办法/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

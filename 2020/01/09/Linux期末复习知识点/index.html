@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="理论知识1、Linux是一种自由和开放源码的类UNIX操作系统。 2、Linux最初是由芬兰赫尔辛基技术大学计算机系学生Linus torvalds开发出来的。 3、第一次正式向外公布的时间是1991年10月5日。 4、Linux操作系统5个重要支柱：UNIX操作系统、MINIX操作系统、GNU计划、POSIX标准和Internet网络。 5、Linux的特点：抢占式多任务；多用户；设备无关性；开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux期末复习知识点">
+<meta property="og:url" content="http://yoursite.com/2020/01/09/Linux期末复习知识点/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="理论知识1、Linux是一种自由和开放源码的类UNIX操作系统。 2、Linux最初是由芬兰赫尔辛基技术大学计算机系学生Linus torvalds开发出来的。 3、第一次正式向外公布的时间是1991年10月5日。 4、Linux操作系统5个重要支柱：UNIX操作系统、MINIX操作系统、GNU计划、POSIX标准和Internet网络。 5、Linux的特点：抢占式多任务；多用户；设备无关性；开">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-01-09T06:58:01.708Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux期末复习知识点">
+<meta name="twitter:description" content="理论知识1、Linux是一种自由和开放源码的类UNIX操作系统。 2、Linux最初是由芬兰赫尔辛基技术大学计算机系学生Linus torvalds开发出来的。 3、第一次正式向外公布的时间是1991年10月5日。 4、Linux操作系统5个重要支柱：UNIX操作系统、MINIX操作系统、GNU计划、POSIX标准和Internet网络。 5、Linux的特点：抢占式多任务；多用户；设备无关性；开">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2020/01/09/Linux期末复习知识点/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Linux期末复习知识点 | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/09/Linux期末复习知识点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux期末复习知识点
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-01-09 14:08:08 / Modified: 14:58:01" itemprop="dateCreated datePublished" datetime="2020-01-09T14:08:08+08:00">2020-01-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><p>1、Linux是一种自由和开放源码的类UNIX操作系统。</p>
+<p>2、Linux最初是由芬兰赫尔辛基技术大学计算机系学生Linus torvalds开发出来的。</p>
+<p>3、第一次正式向外公布的时间是1991年10月5日。</p>
+<p>4、Linux操作系统5个重要支柱：UNIX操作系统、MINIX操作系统、GNU计划、POSIX标准和Internet网络。</p>
+<p>5、Linux的特点：抢占式多任务；多用户；设备无关性；开放性；可拓展性、可维护性与开放源代码；完善的网络功能；可靠的系统安全；良好的可移植性</p>
+<p>6、Linux系统一般由4个主要部分组成：内核、shell、文件系统与应用程序</p>
+<p>（文件系统：ext2、ext3、ext4、XFS、VFAT、IS09660、NFS、SMB）</p>
+<p>7、MS-DOS是单任务单用户的操作系统，Linux是多任务多用户的操作系统</p>
+<p>8、Linux内核版本号是：a.bb.cc[a是主版本号，取0-9之间的一个数，目前最高是3；bb是次版本号，取值为00-99之间；cc是修订版本号]</p>
+<p>9、如果次版本号是偶数，则该内核是稳定版；若是奇数，则该内核是开发版。</p>
+<p>10、Linux的发行版本（了解）：老牌的RedHat；锐意的Fedora；自由的Debian；大众的Ubuntu；简洁的Slackware；华丽的OpenSUSE</p>
+<h2 id="Shell的基本应用"><a href="#Shell的基本应用" class="headerlink" title="Shell的基本应用"></a>Shell的基本应用</h2><p>11、Shell是Linux的一个特殊程序，是内核与用户的接口，是命令语言、命令解释程序及程序设计语言的统称。Shell是一个命令语言解释器，是一个解释型的程序设计语言</p>
+<p>12、Shell有多种类型：Bourne Shell(BSH)和C Shell(CSH)</p>
+<p>13、检查系统当前运行的shell版本，可运行以下命令：#echo $SHELL</p>
+<p> 显示/bin/bash表示当前系统默认的Shell是BASH。</p>
+<p>若想启动其他类型的Shell，如TCSH，用户可以通过以下命令将其启动：#tcsh</p>
+<p>在TCSH下运行exit命令返回原来的Shell：#exit</p>
+<p>14、默认情况下，对普通用户用“$”，对超级用户用“#”</p>
+<p>15、如果一条命令花费了很长的时间运行或者在屏幕上产生了大量的输出，可以从键盘上按“Ctrl+c”快捷键发出中断信号来中断此命令</p>
+<p>16、系统的注销：已经登录的用户如果不再需要使用系统，则应该注销，退出登录状态。在字符界面下可以键入logout命令、exit命令或使用“Ctrl+D”快捷键</p>
+<p>17、系统的重启：当需要重启系统时，输入reboot或shutdown 将-r now命令即可。</p>
+<p>18、关机：在当前终端输入halt或者shutdown 将-h now命令，将立即关闭计算机</p>
+<p>19、mkdir命令：创建目录 -p一次性创建多级目录</p>
+<p>例：创建名为test的目录，并在其下创建file目录</p>
+<p>#mkdir -p test/file</p>
+<p>#ls test</p>
+<p>20、rmdir命令：从一个目录中删除一个或多个子目录项，要求目录删除之前必须为空</p>
+<p>-p 递归删除目录，当子目录删除后其父目录为空时，也一同被删除</p>
+<p>21、“cd ..”返回到系统的上一级目录</p>
+<p>22、pwd：显示当前目录的绝对路径</p>
+<p>23、cat命令</p>
+<p>例：创建文本文件f1，显示文件内容</p>
+<p>#cat &gt;f1</p>
+<p>按下“Ctrl+D”快捷键，在当前目录下保存文件f1，之后输入如下命令查看内容：#cat f1</p>
+<p>24、more命令：分屏显示文件内容</p>
+<p>继续显示按“enter”键或空格键，按“b”键可以向前反页，按“q”键可以退出该命令</p>
+<p>25、less命令：与more命令非常相似，也能分屏显示文本文件的内容，不同之处在于more命令可以查看二进制文件，而less命令只能查看ASCII码文件</p>
+<p>26、head命令：显示文件的头几行内容 -n指定显示文件的前n行，如果没有给出n值，默认设置为10</p>
+<p>27、tail命令：查看文件的尾部 +n 从第n行以后开始显示 -n从距文件尾n行处开始显示。如果省略n参数，系统默认值为10</p>
+<p>28、文件内容查询命令grep</p>
+<p>例：在文件/etc/passwd中查找“root”字符串</p>
+<p>#grep “root” /etc/passwd</p>
+<p>29、文件查找命令find</p>
+<p>格式：find[选项]文件名</p>
+<p>-name ‘字串’查找文件名与所给字符串匹配的所有文件，字串内可用通配符*、?、[]</p>
+<p>例：在根目录下查找文件名为’temp’或是匹配’install*’的所有文件</p>
+<p>#find /  -name’temp’ -o-name’install*’</p>
+<p>30、文件内容统计命令wc</p>
+<p>功能：统计给定文件中的字节数、字数、行数</p>
+<p>常用选项说明：-c 统计字节数 -l统计行数 -w统计字数</p>
+<p>31、文件的复制、移动和删除命令（简答）</p>
+<p>（1）cp命令 -b 若存在同名文件，覆盖前备份原来的文件</p>
+<p>例：将f1文件复制为f2，若f2文件已存在，则备份原来的f2文件</p>
+<p>#cat &gt;f2</p>
+<p>#cp-b f1 f2</p>
+<p>（2）mv命令</p>
+<p>功能：移动或重命名文件或目录 </p>
+<p>-b 若存在同名文件，覆盖前备份原来的文件</p>
+<p>-f 强制覆盖同名文件</p>
+<p>（3）rm命令</p>
+<p>-r或-R 按递归方式删除目录，默认只删除文件</p>
+<p>-rf 文件、目录都删除</p>
+<p>32、查看手册命令man（必考）</p>
+<p>例：显示mkdir命令的帮助信息</p>
+<p>#man mkdir</p>
+<p>屏幕显示该命令在shell手册页的第一屏信息，用户可以使用上下方向键、“PageDown”键、“PageUp”键前后翻阅帮助信息，按“q”键退出该命令</p>
+<h2 id="BASH的应用"><a href="#BASH的应用" class="headerlink" title="BASH的应用"></a>BASH的应用</h2><p>33、使用命令历史记录的方式是用shell的内部命令history来显示和编辑历史命令。</p>
+<p>格式一：history [n]</p>
+<p>例：显示最近执行过的3个历史命令</p>
+<p>#history 3</p>
+<p>1 ls -a</p>
+<p>2 cd /home/user01</p>
+<p>3 mkdir test</p>
+<p>格式二：history [-r|w|a|n] [文件名]</p>
+<p>-r 读出命令历史列表文件的内容，并且将它们当作当前的命令历史列表</p>
+<p>-w 将当前的命令历史记录写入文件，并覆盖文件原来的内容</p>
+<p>-a 将当前的命令历史记录追加到文件尾部</p>
+<p>-n[文件名] 读取文件中的内容，并加入到当前历史命令列表中。如果没有指定文件名，history命令将用变量histfile的值来代替</p>
+<h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><p>（1）“*”通配符：可以匹配任意数目的字符</p>
+<p>例：显示当前目录下以“f”开头的所有文件：# ls f*</p>
+<p>（2）“？”通配符：在相应位置上匹配任意单个字符</p>
+<p>（3）“[]”通配符：可以匹配括号中给出的字符或者字符范围。“[]”中的字符范围可以是几个字符的列表，也可以用“-”给定一个取值范围，还可以用“！”表示不在指定字符范围内的其他字符。</p>
+<p>35、/^ 以…开头  /$ 以…结尾</p>
+<p>36、输入重定向：&lt;  输出重定向：&gt; 如果想保留该文件的原内容，将新的重定向信息追加在一个文件的尾部，则使用“&gt;&gt;”作为输出重定向符号</p>
+<p>37、管道：管道可以将第1个命令的输出通过管道传给第2个命令，作为第2个命令的输入，第2个命令的输出通过管道传给第3个命令，作为第3个命令的输入，以此类推，最后一个命令的输出才会显示在屏幕上。管道所使用的符合是“|”。</p>
+<p>例：假设当前目录下有文件f1，且其内容为“this is file f1”，统计文件中含有“file”单词的行数：#cat f1 | grep”file” | wc-1</p>
+<p>38、文本编辑器Vim的3种模式（简答）：命令模式、插入模式、末行模式</p>
+<p>三种模式的转换：不管用户处于何种模式，只要按一下“esc”键，即可进入Vim命令模式；</p>
+<p>在命令模式下，按下“i”“o”“a”或“Insert”键可以切换到插入模式下；在命令模式下用户按“：”键即进入末行模式</p>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>1、添加用户</p>
+<p>（1）useradd命令</p>
+<p>功能：添加用户账号或更新创建用户的默认信息</p>
+<p>-G组群列表 设置新用户到其他的组中（附属组），该组在指定前必须存在</p>
+<p>例1：按照默认值新建用户user1：#useradd user1</p>
+<p>例2：增加用户user1，附属组设置为root组：#useradd-G root user1</p>
+<p>（2）Passwd命令</p>
+<p>功能：设置或修改用户的口令、以及口令的属性</p>
+<p>例：在系统中添加用户user1，为了让该用户使用系统，需为用户设置口令：#passwd use</p>
+<p>例：删除用户user1的口令：#passwd -d user1</p>
+<p>例：锁定用户user1的口令：#passwd -l user1</p>
+<p>例：解除用户账号user1的锁定：#passwd -u user1</p>
+<p>2、删除用户</p>
+<p>例：删除用户账号user1及其主目录：#userdel -r user1</p>
+<p>3、修改用户信息</p>
+<p>例：改变用户账号名，将user1改为user2：#usermod -l user2 user1</p>
+<p>例：将用户student的属组改为work，并把student的ID改为5500：</p>
+<p>#usermod -g work -u 5500 student</p>
+<h2 id="组管理"><a href="#组管理" class="headerlink" title="组管理"></a>组管理</h2><p>1、创建用户组</p>
+<p>例：添加组账号，GID从1000开始：#groupadd mygroup</p>
+<p>例：建立组的同时指定组的GID为5600：#groupadd -g 5600 test</p>
+<p>用户组的密码可以通过gpasswd命令来实现。gpasswd的用法如下：</p>
+<p>gpasswd 用户组名</p>
+<p>例：#gpasswd mylinux</p>
+<p>2、删除用户组</p>
+<p>例：删除mygroup组群：#groupdel mygroup</p>
+<p>3、修改用户组信息</p>
+<p>例：将组mylinux1的名称改为mylinux2：#groupmod -n mylinux2 mylinux1</p>
+<p>例：将mylinux1的GID改为566，同时把组名改为mylinux2：</p>
+<p>#groupmod -g 566 -n mylinux2 mylinux1</p>
+<h2 id="磁盘与文件管理系统"><a href="#磁盘与文件管理系统" class="headerlink" title="磁盘与文件管理系统"></a>磁盘与文件管理系统</h2><p>1、创建主分区（添加一个100MB的主分区）：#fdisk /dev/sdb</p>
+<p>2、在RHEL7中，分区创建完成，不会立刻生效，需要系统重新启动才可以生效，如果不想启动系统，可以使用“partx -a /dev/sdb”命令生效：#partx -a /dev/sdb</p>
+<p>3、在/dev/sda5上建立一个ext4分区：#mkfs -t ext4 /dev/sdb5</p>
+<p>4、挂载：#mkdir /mnt/usb</p>
+<p>#mount /dev/sdb1 /mnt/usb</p>
+<p>5、</p>
+<h2 id="压缩和解压命令"><a href="#压缩和解压命令" class="headerlink" title="压缩和解压命令"></a>压缩和解压命令</h2><p>tar -cjvf/-czvf 压缩</p>
+<p>tar -cxvf 解压</p>
+<p>例：</p>
+<p>（1）将当前目录所有文件打包成mydata.tar，扩展名需在命令中加上：#tar -cvf mydata.tar</p>
+<p>（2）将整个/home目录下的文件全部打包成为/usr/backup/home.tar，根据需要，分别执行下列命令：</p>
+<p>仅打包，不压缩：</p>
+<p>#tar -cvf /usr/backup/home.tar /home</p>
+<p>打包后，用gzip命令压缩：</p>
+<p>#tar -zcvf /usr/backup/home.tar.gz /home</p>
+<p>打包后，用bzip2命令压缩：</p>
+<p>#tar-jcvf /usr/backup/home.tar.bz2 /home</p>
+<p>（3）查看 /usr/backup/home.tar.gz文件内有哪些文件，由于使用gzip压缩，所以要查看该tar file内的文件时，就要加上参数z：#tar -ztvf /usr/backup/home.tar.gz</p>
+<p>（4）将 /usr/backup/home.tar.gz文件解压缩到 /usr/local/src下：</p>
+<p>#tar -zxvf /usr/backup/home.tar.gz -C /usr/local/src/</p>
+<p>（5）只将在/tmp下的/usr/backup/home.tar.gz home/root解压缩：</p>
+<p>#cd /tmp</p>
+<p>#tar -zxvf /usr/backup/home.tar.gz home/root</p>
+<p>（6）将/home/内的所有文件been下来，并且保存其权限：</p>
+<p>#tar -zxvpf /usr/backup/home.tar.gz /home</p>
+<p>（7）在/home当中，备份2011/03/12之后创建的文件：</p>
+<p>#tar -N “2011/03/12’’ -zcvf home.tar.gz /home</p>
+<p>（8）备份/home、/etc，但不包括/home/abc：</p>
+<p>#tar –exclude /home/abc -zcvf myfile.tar.gz /home/* /etc</p>
+<p>（9）在打包/home之后又新建一个用户user3，现也要将其打包加入/usr/backup/home.tar.gz：</p>
+<p>#tar -zcvrf /usr/backup/home.tar.gz /home/user3</p>
+<h2 id="Chown"><a href="#Chown" class="headerlink" title="Chown"></a>Chown</h2><p>功能：改变文件或目录的拥有者</p>
+<p>例：</p>
+<p>（1）将hello.sh文件的所有者由root更改为student：#chown student hello.sh</p>
+<p>（2）将hello.sh的所有者和所属组群改为student用户和student组群：#chown student:student hello.sh</p>
+<h2 id="Umount"><a href="#Umount" class="headerlink" title="Umount"></a>Umount</h2><p>功能：umount命令用来卸载文件系统，该命令与mount执行相反的操作。如果不使用文件系统，不能直接将硬件设备去除，因此需要先执行umount命令</p>
+<p>常用项：</p>
+<p>-V 显示程序版本</p>
+<p>-h 显示帮助信息</p>
+<p>-n 卸载时的信息不写入/etc/fstab</p>
+<p>-f 强行卸载文件系统</p>
+<p>-a 卸载/etc/fstab文件中的所有文件系统</p>
+<h2 id="交换内存"><a href="#交换内存" class="headerlink" title="交换内存"></a>交换内存</h2><p>交换内存的种类：</p>
+<p>交换内存依照空间的单位被分成分区类型的交换内存与文件类型的交换内存两类</p>
+<p>（1）配置交换内存空间</p>
+<p>分区创建成功后，要保存分区表，重启系统生效。如果不想重启，需要使用“partx -a /dev/sdb”命令。</p>
+<p>（2）制作交换内存文件系统</p>
+<p>下面这个事例是在/dev/sdb5这个分区上建立swapfs文件系统，以便可以作为交换内存</p>
+<p>#mkswap /dev/sdb5（格式化成一个交换内存的文件系统）</p>
+<p>（3）启用交换内存</p>
+<p>#swapon -a /dev/sdb5 一次性加载</p>
+<p>想要查看系统的交换内存空间，可以使用“swap -s”命令</p>
+<p>如果想要系统下次重启，自动挂载交换分区，需要在/etc/fstab文件中添加一行。</p>
+<p>/dev/sdb5 swap swap defaults 0 0</p>
+<p>（4）关闭交换内存</p>
+<p>swapoff /dev/sdb5</p>
+<h2 id="逻辑卷"><a href="#逻辑卷" class="headerlink" title="逻辑卷"></a>逻辑卷</h2><p>1、查看 fdisk -l /dev/sdb</p>
+<p>2、开始分区 fdisk /dev/sdb</p>
+<p>3、加载分区 partx -a /dev/sdb</p>
+<p>4、对分区格式化</p>
+<p>格式化之前创建物理卷（1）pvcreate /dev/sdb6</p>
+<p>把物理卷放进一个卷组（2）vgcreate -s 8M vg0 /dev/sdb6（vg0是卷组名，根据考试题目）</p>
+<p>（3）Lvcreate -L 200M -n lv0 vg0 （-l后加个数，-L后加大小）</p>
+<p>以上三小步后开始格式化</p>
+<p>mkfs -t ext4 /dev/sdb/lv0（ext4根据题目要求）</p>
+<p>5、一次性挂载</p>
+<p>先建一个目录（会告诉你挂载到哪） mkdir /mnt/data</p>
+<p>mount /dev/vg0/lv0 /mnt/data （把/dev..挂载到/mnt..）</p>
+<p>6、永久挂载 vim /etc/fstab</p>
+<p>/dev/vg0/lv0 /mnt/data ext4 defaults 0 0</p>
+<p>7、mount -a</p>
+<p>#lvextend -L 300M /dev/vg0/lv0 将这个逻辑卷直接扩大到300M的大小</p>
+<p>卸载一个分区 umount /dev/sdb5</p>
+<p>​       umount /mnt/data（目录）</p>
+<p>周期性计划任务</p>
+<p>crontab命令</p>
+<p>-e（edit） 创建并编辑crontab配置文件，编辑结束时，文件被自动安装</p>
+<p>Minute：0~59</p>
+<p>Hour：0~23</p>
+<p>Day-of-month：01~31</p>
+<p>Month-of-year：01~12</p>
+<p>Day-of-week：0~6,0为星期天</p>
+<p>*root用户设置cron调度，要求每周一的8:00查看/etc/passwd文件</p>
+<p>#crontab -e</p>
+<p>启动vi编辑器输入下面内容：</p>
+<p>00 08 <em> </em> 1 /bin/ls /etc/paawd   （<em> 如果未指定字段内容，使用</em>将字段分开）</p>
+<p>存盘退出后，/var/spool/cron目录中就会生成一个名为root的文件，系统将根据用户设置的时间执行指定命令。</p>
+<h2 id="YUM"><a href="#YUM" class="headerlink" title="YUM"></a>YUM</h2><p>一、YUM源配置（PPT）</p>
+<p>二、YUM源安装服务</p>
+<p>1、Yum install -y 服务名称</p>
+<p>2、启动服务</p>
+<p>3、永久启动</p>
+<p>4、停止服务</p>
+<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>1、安装SSH服务  yum install -y openssh</p>
+<p>2、启动服务命令  systemctl start sshd</p>
+<p>3、永久启动服务  systemctl enable sshd</p>
+<p>Apache</p>
+<p>1、安装Apache服务  yum install -y httpd</p>
+<p>2、启动Apache服务器 systemctl start httpd</p>
+<p>3、停止Apache服务器 systemctl stop httpd</p>
+<p>​           systemctl status httpd</p>
+<p>4、永久启动Apache服务器 systemctl start httpd</p>
+<p>​             systemctl enable httpd</p>
+<h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h2><p>yum install -y vsftpd</p>
+<p>systemctl start vsftpd（启动）</p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>1、安装unbound  yum install -y unbound</p>
+<p>2、启动DNS服务  systemctl start unbound</p>
+<p>​         systemctl enable unbound</p>
+<h2 id="网络基础知识"><a href="#网络基础知识" class="headerlink" title="网络基础知识"></a>网络基础知识</h2><p>查看Linux的IP  ifconfig/ip address</p>
+<p>查看当前计算机的主机名 #hostname</p>
+<p>修改计算机的主机名 #hostnamectl set-hostname &lt;desktop.example.com&gt;</p>
+<p>/etc/sysconfig/network-scripts目录</p>
+<p>vim /etc/sysconfig/network-scripts/网卡名称</p>
+<p>区别：（安全子系统）</p>
+<p>vim /etc/sysconfig/selinux</p>
+<p>DELINUX=enforcing（强制模式）/permissive（允许模式）/disabled（不允许模式）</p>
+<p>防火墙启动与关闭</p>
+<p>启动防火墙：systemctl start firewalld</p>
+<p>查询防火墙：</p>
+<p>systemctl status firewalld</p>
+<p>开机启动防火墙：</p>
+<p>systemctl enable firewalld</p>
+<p>停止防火墙：</p>
+<p>systemctl stop firewalld</p>
+<p>开机关闭防火墙：</p>
+<p>systemctl disable firewalld</p>
+<p>修改root密码</p>
+<p>按“e”键。进入内核参数修改模式。</p>
+<p>在“linux16”这一段的最后，输入空格，然后输入“rd.break”，注意命令之间的空格，然后按“ctrl+x”</p>
+<p>mount -o rw,remount  /sysroot</p>
+<p> chroot  /sysroot</p>
+<p>passwd root</p>
+<p>touch  /.autorelabel</p>
+<p>ls  -la</p>
+<p>exit</p>
+<p>exit</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/26/i春秋网络内生安全试验场CTF夺旗赛-第四季-部分wp/" rel="next" title="i春秋网络内生安全试验场CTF夺旗赛(第四季) WEB wp">
+                <i class="fa fa-chevron-left"></i> i春秋网络内生安全试验场CTF夺旗赛(第四季) WEB wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/09/应用文写作期末复习知识点/" rel="prev" title="应用文写作期末复习知识点">
+                应用文写作期末复习知识点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论知识"><span class="nav-number">1.</span> <span class="nav-text">理论知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell的基本应用"><span class="nav-number">2.</span> <span class="nav-text">Shell的基本应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BASH的应用"><span class="nav-number">3.</span> <span class="nav-text">BASH的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通配符"><span class="nav-number">4.</span> <span class="nav-text">通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户管理"><span class="nav-number">5.</span> <span class="nav-text">用户管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组管理"><span class="nav-number">6.</span> <span class="nav-text">组管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘与文件管理系统"><span class="nav-number">7.</span> <span class="nav-text">磁盘与文件管理系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩和解压命令"><span class="nav-number">8.</span> <span class="nav-text">压缩和解压命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chown"><span class="nav-number">9.</span> <span class="nav-text">Chown</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Umount"><span class="nav-number">10.</span> <span class="nav-text">Umount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交换内存"><span class="nav-number">11.</span> <span class="nav-text">交换内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑卷"><span class="nav-number">12.</span> <span class="nav-text">逻辑卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YUM"><span class="nav-number">13.</span> <span class="nav-text">YUM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH"><span class="nav-number">14.</span> <span class="nav-text">SSH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FTP"><span class="nav-number">15.</span> <span class="nav-text">FTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS"><span class="nav-number">16.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络基础知识"><span class="nav-number">17.</span> <span class="nav-text">网络基础知识</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/01/09/Linux期末复习知识点/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

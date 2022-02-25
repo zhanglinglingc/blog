@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="组合拳高效社工定位骗子 文章首发于星盟安全公众号  注：文章内容仅供参考学习，任何人不得用于非法测试。请遵守国家法律，做一个守法的良好公民。  前段时间遇到个骗子冒充我的好友与我聊天的事件，而且最近类似事件越发频繁，举一例  事后朋友叙述，骗子与我聊完之后，删了骗过的好友，立马下线了。 接下来我讲讲解一下我是如何获得骗子的ip地址和较为精准的定位的 组合拳一、利用腾讯分享API伪装官方分享链接我们">
+<meta name="keywords" content="社工,定位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组合拳高效社工定位骗子">
+<meta property="og:url" content="http://yoursite.com/2020/04/21/组合拳高效社工定位骗子/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="组合拳高效社工定位骗子 文章首发于星盟安全公众号  注：文章内容仅供参考学习，任何人不得用于非法测试。请遵守国家法律，做一个守法的良好公民。  前段时间遇到个骗子冒充我的好友与我聊天的事件，而且最近类似事件越发频繁，举一例  事后朋友叙述，骗子与我聊完之后，删了骗过的好友，立马下线了。 接下来我讲讲解一下我是如何获得骗子的ip地址和较为精准的定位的 组合拳一、利用腾讯分享API伪装官方分享链接我们">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://images.5666888.xyz//qq_pic_merged_1586762983958.jpg">
+<meta property="og:image" content="http://images.5666888.xyz//20200413153431.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200413154232.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200413154303.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200413154344.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200413154435.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200413154646.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200413154757.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200413160618.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200413160848.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20200413160905942.png">
+<meta property="og:image" content="http://images.5666888.xyz//image-20200413161644324.png">
+<meta property="og:updated_time" content="2020-04-21T09:59:46.119Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="组合拳高效社工定位骗子">
+<meta name="twitter:description" content="组合拳高效社工定位骗子 文章首发于星盟安全公众号  注：文章内容仅供参考学习，任何人不得用于非法测试。请遵守国家法律，做一个守法的良好公民。  前段时间遇到个骗子冒充我的好友与我聊天的事件，而且最近类似事件越发频繁，举一例  事后朋友叙述，骗子与我聊完之后，删了骗过的好友，立马下线了。 接下来我讲讲解一下我是如何获得骗子的ip地址和较为精准的定位的 组合拳一、利用腾讯分享API伪装官方分享链接我们">
+<meta name="twitter:image" content="http://images.5666888.xyz//qq_pic_merged_1586762983958.jpg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2020/04/21/组合拳高效社工定位骗子/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>组合拳高效社工定位骗子 | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/21/组合拳高效社工定位骗子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">组合拳高效社工定位骗子
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-04-21 17:57:00 / Modified: 17:59:46" itemprop="dateCreated datePublished" datetime="2020-04-21T17:57:00+08:00">2020-04-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="组合拳高效社工定位骗子"><a href="#组合拳高效社工定位骗子" class="headerlink" title="组合拳高效社工定位骗子"></a>组合拳高效社工定位骗子</h1><p> <strong>文章首发于星盟安全公众号</strong></p>
+<p> <strong>注：文章内容仅供参考学习，任何人不得用于非法测试。请遵守国家法律，做一个守法的良好公民。</strong> </p>
+<p>前段时间遇到个骗子冒充我的好友与我聊天的事件，而且最近类似事件越发频繁，举一例</p>
+<p><img src="http://images.5666888.xyz//qq_pic_merged_1586762983958.jpg" alt></p>
+<p>事后朋友叙述，骗子与我聊完之后，删了骗过的好友，立马下线了。</p>
+<p>接下来我讲讲解一下我是如何获得骗子的ip地址和较为精准的定位的</p>
+<h2 id="组合拳"><a href="#组合拳" class="headerlink" title="组合拳"></a>组合拳</h2><h3 id="一、利用腾讯分享API伪装官方分享链接"><a href="#一、利用腾讯分享API伪装官方分享链接" class="headerlink" title="一、利用腾讯分享API伪装官方分享链接"></a>一、利用腾讯分享API伪装官方分享链接</h3><p>我们随便打开一个可以把内容分享到qq的网站，也就是这个位置</p>
+<p><img src="http://images.5666888.xyz//20200413153431.png" alt></p>
+<p><img src="http://images.5666888.xyz//20200413154232.png" alt></p>
+<p>我们把链接提取出来然后url解码看一看</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//connect.qq.com/widget/shareqq/index.html?url=https://www.bilibili.com/video/BV1PE411E7Sz/?share_medium=web&amp;share_source=qq&amp;bbid=A533A03D-0BE4-48C9-A8F3-F0D2813B96E0155815infoc&amp;ts=1586763318534&amp;desc=2020-2-29-知世-公开课-路由器PWN UP主：星盟安全团队&amp;title=2020-2-29-知世-公开课-路由器PWN&amp;summary=星盟安全骨干知世的公开课分享，目前从事于iot安全方向&amp;pics=http://i1.hdslb.com/bfs/archive/afd09848b97ad9ebbcaf3f172ad655e7cd0693dd.jpg&amp;flash=&amp;site=&amp;style=201&amp;width=32&amp;height=32</span></span><br></pre></td></tr></table></figure>
+<p>其中的url参数是该视频地址  desc参数是该视频描述 title参数是视频的题目 summary参数也是视频描述</p>
+<p>pics参数是分享的时候显示的照片</p>
+<p>我们手动改一下参数试试</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//connect.qq.com/widget/shareqq/index.html?url=https://www.baidu.com?share_medium=web&amp;share_source=qq&amp;bbid=A533A03D-0BE4-48C9-A8F3-F0D2813B96E0155815infoc&amp;ts=1586763318534&amp;desc=百度一下&amp;title=百度一下&amp;summary=百度一下你就知道&amp;pics=https://www.baidu.com/img/baidu_jgylogo3.gif&amp;flash=&amp;site=&amp;style=201&amp;width=32&amp;height=32</span></span><br></pre></td></tr></table></figure>
+<p>然后把链接重新复制到浏览器 变成了我们想要的样子 </p>
+<p><img src="http://images.5666888.xyz//20200413154303.png" alt></p>
+<p>试一下能不能分享出去 发现是可以分享出去的</p>
+<p><img src="http://images.5666888.xyz//20200413154344.png" alt></p>
+<p>且收到的效果较为官方化 不容易让人起疑心</p>
+<p><img src="http://images.5666888.xyz//20200413154435.png" alt></p>
+<h3 id="二、使用短链接强制跳转出浏览器"><a href="#二、使用短链接强制跳转出浏览器" class="headerlink" title="二、使用短链接强制跳转出浏览器"></a>二、使用短链接强制跳转出浏览器</h3><p>在网络上找一个可以把链接缩短的网址 并且可以强制跳转出内置浏览器</p>
+<p><img src="http://images.5666888.xyz//20200413154646.png" alt></p>
+<p>我们获得了一个短链接 在聊天中点一下就可以自动跳转到手机默认浏览器</p>
+<p><img src="http://images.5666888.xyz//20200413154757.png" alt></p>
+<h3 id="三、找一个IP查询接口"><a href="#三、找一个IP查询接口" class="headerlink" title="三、找一个IP查询接口"></a>三、找一个IP查询接口</h3><p><a href="http://ip.ws.126.net/ipquery?ip=" target="_blank" rel="noopener">http://ip.ws.126.net/ipquery?ip=</a></p>
+<p><a href="http://pv.sohu.com/cityjson?ie=utf-8" target="_blank" rel="noopener">http://pv.sohu.com/cityjson?ie=utf-8</a></p>
+<p>这两个目前还都可以使用 是126和souhu的</p>
+<p><img src="http://images.5666888.xyz//20200413160618.png" alt></p>
+<h3 id="四、利用取自网络的一套IP探针源码"><a href="#四、利用取自网络的一套IP探针源码" class="headerlink" title="四、利用取自网络的一套IP探针源码"></a>四、利用取自网络的一套IP探针源码</h3><p>核心如下（非本人编写 来源已经写在文章末尾）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$data = DB::get_row(<span class="string">"SELECT url,sj,title FROM ip_config WHERE Id = 1"</span>);<span class="comment">//查询数据库内容</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getIP</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">global</span> $ip;</span><br><span class="line"><span class="keyword">if</span> (getenv(<span class="string">"HTTP_CLIENT_IP"</span>))</span><br><span class="line">	$ip = getenv(<span class="string">"HTTP_CLIENT_IP"</span>);</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(getenv(<span class="string">"HTTP_X_FORWARDED_FOR"</span>))</span><br><span class="line">	$ip = getenv(<span class="string">"HTTP_X_FORWARDED_FOR"</span>);</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(getenv(<span class="string">"REMOTE_ADDR"</span>))</span><br><span class="line">	$ip = getenv(<span class="string">"REMOTE_ADDR"</span>);</span><br><span class="line"><span class="keyword">else</span> $ip = <span class="string">"NULL"</span>;</span><br><span class="line"><span class="keyword">return</span> $ip;</span><br><span class="line">&#125;</span><br><span class="line">$ip = getIP();<span class="comment">//通过getip函数获取查看页面的用户ip</span></span><br><span class="line">$sj = date(<span class="string">'Y-m-d h:i:s'</span>);</span><br><span class="line">$r = file_get_contents($data[<span class="string">'sj'</span>].$ip);  <span class="comment">//这里取出的是ip查询接口 然后直接连接上ip 进行查询城市</span></span><br><span class="line">$src = <span class="string">'&lt;li class="list-group-item"&gt;&lt;/li&gt;&lt;li class="list-group-item"&gt;'</span>.$r.<span class="string">'&lt;/li&gt;&lt;li class="list-group-item"&gt;&lt;/li&gt;&lt;li class="list-group-item"&gt;'</span>.$_SERVER[<span class="string">'HTTP_USER_AGENT'</span>].<span class="string">'&lt;/li&gt;'</span>; <span class="comment">//获取用户useragent赋值给变量src</span></span><br><span class="line">DB::query(<span class="string">"INSERT INTO ip_list (ip, info,`time`) VALUES ('$ip', '$src','$sj')"</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;title&gt;'</span>.$data[<span class="string">'title'</span>].<span class="string">'&lt;/title&gt;'</span>;<span class="comment">//数据库内自定义题目</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;iframe src="'</span>.$data[<span class="string">'url'</span>].<span class="string">'" width="100%" height="100%" frameborder="0"&gt;&lt;/iframe&gt;'</span>; <span class="comment">//前端展现给一个自定义的url界面</span></span><br></pre></td></tr></table></figure>
+<p>当用户访问该页面 ip地址时会被记录 经过查询之后 一起写进数据库内</p>
+<p>该源码内也带了后台，可以方便修改数据库里的数据和查收结果</p>
+<p><img src="http://images.5666888.xyz//20200413160848.png" alt></p>
+<p><img src="http://images.5666888.xyz//image-20200413160905942.png" alt></p>
+<h3 id="五、把获取到的ip地址去更精确的网站查询"><a href="#五、把获取到的ip地址去更精确的网站查询" class="headerlink" title="五、把获取到的ip地址去更精确的网站查询"></a>五、把获取到的ip地址去更精确的网站查询</h3><p><a href="https://www.opengps.cn/Data/IP/LocHighAcc.aspx" target="_blank" rel="noopener">https://www.opengps.cn/Data/IP/LocHighAcc.aspx</a></p>
+<p><a href="https://chaipip.com/ip.php" target="_blank" rel="noopener">https://chaipip.com/ip.php</a></p>
+<p>这两个url是网络上的比较精准的免费的ip查询地址，当然会有更精准的查询，大家可以自行摸索</p>
+<p><img src="http://images.5666888.xyz//image-20200413161644324.png" alt></p>
+<h2 id="技巧组合"><a href="#技巧组合" class="headerlink" title="技巧组合"></a>技巧组合</h2><p>1.在vps上搭建起获取ip的源码</p>
+<p>2.把url放到短链接生成器上生成一个短链（保证一点击就会自动跳转至浏览器，不会被各种情况拦截）</p>
+<p>3.把得到的短链接放到腾讯分享API上 （自己编写诱人的内容与预览图）</p>
+<p>4.把捕捉到的地址去查询</p>
+<p>参考：</p>
+<p>IP探针源码来源网络：<a href="https://www.enboo.cn/wangzhanyuanma/qiyegongsi/18057.html" target="_blank" rel="noopener">https://www.enboo.cn/wangzhanyuanma/qiyegongsi/18057.html</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/社工/" rel="tag"># 社工</a>
+          
+            <a href="/tags/定位/" rel="tag"># 定位</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/09/应用文写作期末复习知识点/" rel="next" title="应用文写作期末复习知识点">
+                <i class="fa fa-chevron-left"></i> 应用文写作期末复习知识点
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/26/靶机渗透记录—CH4INRULZ-v1-0-1/" rel="prev" title="靶机渗透记录—CH4INRULZ_v1.0.1">
+                靶机渗透记录—CH4INRULZ_v1.0.1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#组合拳高效社工定位骗子"><span class="nav-number">1.</span> <span class="nav-text">组合拳高效社工定位骗子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组合拳"><span class="nav-number">1.1.</span> <span class="nav-text">组合拳</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、利用腾讯分享API伪装官方分享链接"><span class="nav-number">1.1.1.</span> <span class="nav-text">一、利用腾讯分享API伪装官方分享链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、使用短链接强制跳转出浏览器"><span class="nav-number">1.1.2.</span> <span class="nav-text">二、使用短链接强制跳转出浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、找一个IP查询接口"><span class="nav-number">1.1.3.</span> <span class="nav-text">三、找一个IP查询接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、利用取自网络的一套IP探针源码"><span class="nav-number">1.1.4.</span> <span class="nav-text">四、利用取自网络的一套IP探针源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、把获取到的ip地址去更精确的网站查询"><span class="nav-number">1.1.5.</span> <span class="nav-text">五、把获取到的ip地址去更精确的网站查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧组合"><span class="nav-number">1.2.</span> <span class="nav-text">技巧组合</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/04/21/组合拳高效社工定位骗子/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题本教程仅供大家学习交流使用，禁止任何商业行为。如果你喜欢威联通系统，请购买正版系统使用。 本篇文章的知识建立在老骥伏枥师傅和ybml师傅以及threebugs师傅提供的知识与工具基础上  本次测试选用I440FX模型 无需直通网卡和硬盘 第一步：创建虚拟机添加虚拟机 类型选择Linux 设置如图所示 引导盘在资源包   取消勾选“创建后启">
+<meta name="keywords" content="nas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题">
+<meta property="og:url" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题本教程仅供大家学习交流使用，禁止任何商业行为。如果你喜欢威联通系统，请购买正版系统使用。 本篇文章的知识建立在老骥伏枥师傅和ybml师傅以及threebugs师傅提供的知识与工具基础上  本次测试选用I440FX模型 无需直通网卡和硬盘 第一步：创建虚拟机添加虚拟机 类型选择Linux 设置如图所示 引导盘在资源包   取消勾选“创建后启">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217142609844.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217142927570.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143012435.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143100266.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143445344.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143508870.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143537456.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143600449.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217144403693.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217144030344.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217144201972.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217144745675.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217144917661.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217145005975.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217145339763.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217145837086.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217150313612.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217150757071.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217151442742.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217151536275.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217151626003.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217151709144.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217151728990.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217152546659.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217152855800.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217153225681.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217153352077.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217153631088.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217154116917.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217155958443.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217160454258.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217160534092.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217160714504.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217170357472.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217170611462.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217170736684.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217170956433.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217172218825.png">
+<meta property="og:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217175029478.png">
+<meta property="og:updated_time" content="2022-02-25T15:07:45.391Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题">
+<meta name="twitter:description" content="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题本教程仅供大家学习交流使用，禁止任何商业行为。如果你喜欢威联通系统，请购买正版系统使用。 本篇文章的知识建立在老骥伏枥师傅和ybml师傅以及threebugs师傅提供的知识与工具基础上  本次测试选用I440FX模型 无需直通网卡和硬盘 第一步：创建虚拟机添加虚拟机 类型选择Linux 设置如图所示 引导盘在资源包   取消勾选“创建后启">
+<meta name="twitter:image" content="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217142609844.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题 | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2022-02-25 22:56:00 / Modified: 23:07:45" itemprop="dateCreated datePublished" datetime="2022-02-25T22:56:00+08:00">2022-02-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题"><a href="#UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题" class="headerlink" title="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></a>UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题</h1><p><strong>本教程仅供大家学习交流使用，禁止任何商业行为。如果你喜欢威联通系统，请购买正版系统使用。</strong></p>
+<p>本篇文章的知识建立在老骥伏枥师傅和ybml师傅以及threebugs师傅提供的知识与工具基础上 </p>
+<p>本次测试选用I440FX模型 无需直通网卡和硬盘</p>
+<h2 id="第一步：创建虚拟机"><a href="#第一步：创建虚拟机" class="headerlink" title="第一步：创建虚拟机"></a>第一步：创建虚拟机</h2><p>添加虚拟机 类型选择Linux</p>
+<p>设置如图所示 引导盘在资源包</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217142609844.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217142927570.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>取消勾选“创建后启动虚拟机“</p>
+<p>然后点击创建</p>
+<p>然后进入xml视图 修改网卡模型为<strong>e1000e</strong></p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143012435.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143100266.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>然后点击更新 启动虚拟机</p>
+<h2 id="第二步：修复网卡"><a href="#第二步：修复网卡" class="headerlink" title="第二步：修复网卡"></a>第二步：修复网卡</h2><p>打开vnc 自动加载引导后会出现这个画面</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143445344.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>输入用户名：admin  密码：admin</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143508870.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>然后等待进入这个画面</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143537456.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>输入ifconfig查看ip地址</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217143600449.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>得知ip地址后</p>
+<p>用ssh连接工具进入shell </p>
+<p>ssh 用户名：tc  密码：admin</p>
+<p>输入以下命令来更改文件权限</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217144403693.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>然后连接sftp（或者vi编辑器更改）</p>
+<p>进入/home/tc/patch</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217144030344.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>编辑laojifuli_patch文件</p>
+<p>加入以下内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#insmod virtio module</span></span><br><span class="line">[ -f /lib/modules/misc/virtio.ko ] &amp;&amp; /sbin/insmod /lib/modules/misc/virtio.ko 2&gt;&gt;/dev/null</span><br><span class="line">[ -f /lib/modules/misc/virtio_ring.ko ] &amp;&amp; /sbin/insmod /lib/modules/misc/virtio_ring.ko 2&gt;&gt;/dev/null</span><br><span class="line">[ -f /lib/modules/misc/virtio_rng.ko ] &amp;&amp; /sbin/insmod /lib/modules/misc/virtio_rng.ko 2&gt;&gt;/dev/null</span><br><span class="line">[ -f /lib/modules/misc/virtio_blk.ko ] &amp;&amp; /sbin/insmod /lib/modules/misc/virtio_blk.ko 2&gt;&gt;/dev/null</span><br><span class="line">[ -f /lib/modules/misc/virtio_net.ko ] &amp;&amp; /sbin/insmod /lib/modules/misc/virtio_net.ko 2&gt;&gt;/dev/null</span><br><span class="line">[ -f /lib/modules/misc/virtio_mmio.ko ] &amp;&amp; /sbin/insmod /lib/modules/misc/virtio_mmio.ko 2&gt;&gt;/dev/null</span><br><span class="line">[ -f /lib/modules/misc/virtio_console.ko ] &amp;&amp; /sbin/insmod /lib/modules/misc/virtio_console.ko 2&gt;&gt;/dev/null</span><br><span class="line">[ -f /lib/modules/misc/virtio_scsi.ko ] &amp;&amp; /sbin/insmod /lib/modules/misc/virtio_scsi.ko 2&gt;&gt;/dev/null</span><br><span class="line">[ -f /lib/modules/misc/virtio_balloon.ko ] &amp;&amp; /sbin/insmod /lib/modules/misc/virtio_balloon.ko 2&gt;&gt;/dev/null</span><br><span class="line">[ -f /lib/modules/misc/virtio_crypto.ko ] &amp;&amp; /sbin/insmod /lib/modules/misc/virtio_crypto.ko 2&gt;&gt;/dev/null</span><br><span class="line">[ -f /lib/modules/misc/virtio_pci.ko ] &amp;&amp; /sbin/insmod /lib/modules/misc/virtio_pci.ko 2&gt;&gt;/dev/null</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217144201972.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>然后保存</p>
+<h2 id="第三步：制作引导盘"><a href="#第三步：制作引导盘" class="headerlink" title="第三步：制作引导盘"></a>第三步：制作引导盘</h2><p>在sftp里将固件传入/home/tc 固件在资源包</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217144745675.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>然后进入shell  使用命令解压</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217144917661.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>等待屏幕出现Get qnap firmware successful.即成功解压</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217145005975.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>然后使用lspci得到硬件信息</p>
+<p>和lspci -vtnn命令得到硬件总线地址信息</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217145339763.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217145837086.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>记住这三个关键的地址 </p>
+<h2 id="第四步：修改model文件"><a href="#第四步：修改model文件" class="headerlink" title="第四步：修改model文件"></a>第四步：修改model文件</h2><p>model文件在资源包里</p>
+<p>因为是虚拟机 usb可以不用修改 </p>
+<p>主要是更改引导盘地址和虚拟网卡地址</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217150313612.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217150757071.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>更改完这几个字段之后 </p>
+<p>进入/home/tc/patch/etc文件夹编辑model.conf</p>
+<p>将我们刚才更改的I440FX model文件替换掉原来的内容</p>
+<p>（不直接替换文件的原因是避免引起不必要的权限问题）</p>
+<h2 id="第五步：生成固件"><a href="#第五步：生成固件" class="headerlink" title="第五步：生成固件"></a>第五步：生成固件</h2><p>回到shell执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_qnap_boot</span><br></pre></td></tr></table></figure>
+<p>这里让选择引导盘 输入1然后回车</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217151442742.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>出现Create [/dev/sda] boot disk successful!说明制作成功</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217151536275.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<h2 id="第六步：修改虚拟机"><a href="#第六步：修改虚拟机" class="headerlink" title="第六步：修改虚拟机"></a>第六步：修改虚拟机</h2><p>回到unraid 强制停止虚拟机</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217151626003.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>然后编辑虚拟机</p>
+<p>将引导盘删除</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217151709144.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>变成这样即可 然后点击更新</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217151728990.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>Networdk Model选择virtio 点击更新 </p>
+<p>因为我们修复网卡时是让virtio驱动加载 所以<strong>不能再改为e1000e</strong> 否则还是无法获取ip地址</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217152546659.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>启动虚拟机后 打开VNC远程窗口等待几分钟</p>
+<p>可以看到已经成功获取ip地址</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217152855800.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<h2 id="第七步：添加数据盘"><a href="#第七步：添加数据盘" class="headerlink" title="第七步：添加数据盘"></a>第七步：添加数据盘</h2><p>在浏览器中输入刚才获取的ip地址查看是否可以访问（这里不知为何Qfinder Pro找不到设备）</p>
+<p>点击启动智能安装</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217153225681.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>到了这里就该添加数据盘了 没有数据盘没办法继续进行</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217153352077.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>回到unraid强制停止虚拟机 编辑虚拟机</p>
+<p>点击添加磁盘</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217153631088.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217154116917.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>然后点击更新 启动虚拟机 在此界面按↓选择第三项</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217155958443.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217160454258.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217160534092.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>又来了控制台界面 此时再次连接ssh </p>
+<p>输入patch_extract</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217160714504.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>然后输入lspci查看我们查看SATA控制器的地址</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217170357472.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>进入/home/tc/patch/etc编辑model.conf文件  如下部分 改为SATA控制器的地址 注意四个地址保持一致</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217170611462.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>编辑完之后保存 在shell里输入 patch_install</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217170736684.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>然后输入 sudo reboot（重启）</p>
+<p>打开vnc远程窗口 等待出现ip地址后浏览器访问</p>
+<p>点击启动智能按照  点击跳过 即可看到 NAS配置界面</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217170956433.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>之后的设置按部就班 然后等待初始化磁盘</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217172218825.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>虚拟磁盘我创建了两个 但是进系统就识别了一个  创建好卷后  测试一下内网传输速度  千兆下不是很稳定 峰值是78MB/秒左右  环境不同测试结果不同</p>
+<p><img src="/2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/image-20220217175029478.png" alt="UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题"></p>
+<p>再次声明：<strong>本教程仅供大家学习交流使用，禁止任何商业行为。如果你喜欢威联通系统，请购买正版系统使用。</strong></p>
+<p>版权声明：本人发布的所有资源或软件均来自网络，与本人没有任何关系，只能作为私下交流、学习、研究之用，版权归原作者及原软件公司所有。</p>
+<p>本人发布的所有资源或软件请在下载后24小时内自行删除。如果您喜欢这个资源或软件，请联系原作者或原软件公司购买正版。与本人无关！</p>
+<p>本文如有侵权，请私信告之，本文会尽快删除。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nas/" rel="tag"># nas</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/29/CTFSHOW-web入门-ssrf/" rel="next" title="CTFSHOW-web入门-ssrf">
+                <i class="fa fa-chevron-left"></i> CTFSHOW-web入门-ssrf
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题"><span class="nav-number">1.</span> <span class="nav-text">UNRAID虚拟机安装威联通 I440FX模型 解决网卡问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步：创建虚拟机"><span class="nav-number">1.1.</span> <span class="nav-text">第一步：创建虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：修复网卡"><span class="nav-number">1.2.</span> <span class="nav-text">第二步：修复网卡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：制作引导盘"><span class="nav-number">1.3.</span> <span class="nav-text">第三步：制作引导盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步：修改model文件"><span class="nav-number">1.4.</span> <span class="nav-text">第四步：修改model文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五步：生成固件"><span class="nav-number">1.5.</span> <span class="nav-text">第五步：生成固件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六步：修改虚拟机"><span class="nav-number">1.6.</span> <span class="nav-text">第六步：修改虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七步：添加数据盘"><span class="nav-number">1.7.</span> <span class="nav-text">第七步：添加数据盘</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2022/02/25/UNRAID虚拟机安装威联通-I440FX模型-解决网卡问题/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

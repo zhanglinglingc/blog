@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="什么是蜜罐？蜜罐技术本质上是一种对攻击方进行欺骗的技术，通过布置一些作为诱饵的主机、网络服务或者信息，诱使攻击方对它们实施攻击，从而可以对攻击行为进行捕获和分析，了解攻击方所使用的工具与方法，推测攻击意图和动机，能够让防御方清晰地了解他们所面对的安全威胁，并通过技术和管理手段来增强实际系统的安全防护能力。 蜜罐好比是情报收集系统。蜜罐好像是故意让人攻击的目标，引诱黑客前来攻击。所以攻击者入侵后，你">
+<meta name="keywords" content="蜜罐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过HFish初识蜜罐技术">
+<meta property="og:url" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/index.html">
+<meta property="og:site_name" content="张灵灵的笔记">
+<meta property="og:description" content="什么是蜜罐？蜜罐技术本质上是一种对攻击方进行欺骗的技术，通过布置一些作为诱饵的主机、网络服务或者信息，诱使攻击方对它们实施攻击，从而可以对攻击行为进行捕获和分析，了解攻击方所使用的工具与方法，推测攻击意图和动机，能够让防御方清晰地了解他们所面对的安全威胁，并通过技术和管理手段来增强实际系统的安全防护能力。 蜜罐好比是情报收集系统。蜜罐好像是故意让人攻击的目标，引诱黑客前来攻击。所以攻击者入侵后，你">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572486132043.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572487020531.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572486405625.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572486465559.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572487768568.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572487989375.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572488468626.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572488250463.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572488376431.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572488573550.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572488583430.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572488627550.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572488685403.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572488951368.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572488961952.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572489479194.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572491128961.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572491573234.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572491588971.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572491636705.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572491685965.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572492713353.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572492197268.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572492230679.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572493014191.png">
+<meta property="og:updated_time" content="2019-12-16T01:31:55.141Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过HFish初识蜜罐技术">
+<meta name="twitter:description" content="什么是蜜罐？蜜罐技术本质上是一种对攻击方进行欺骗的技术，通过布置一些作为诱饵的主机、网络服务或者信息，诱使攻击方对它们实施攻击，从而可以对攻击行为进行捕获和分析，了解攻击方所使用的工具与方法，推测攻击意图和动机，能够让防御方清晰地了解他们所面对的安全威胁，并通过技术和管理手段来增强实际系统的安全防护能力。 蜜罐好比是情报收集系统。蜜罐好像是故意让人攻击的目标，引诱黑客前来攻击。所以攻击者入侵后，你">
+<meta name="twitter:image" content="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/1572486132043.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>通过HFish初识蜜罐技术 | 张灵灵的笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张灵灵的笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-users"></i> <br>tools</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/通过HFish初识蜜罐技术/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张灵灵的笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">通过HFish初识蜜罐技术
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-11-01 08:18:00" itemprop="dateCreated datePublished" datetime="2019-11-01T08:18:00+08:00">2019-11-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-12-16 09:31:55" itemprop="dateModified" datetime="2019-12-16T09:31:55+08:00">2019-12-16</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="什么是蜜罐？"><a href="#什么是蜜罐？" class="headerlink" title="什么是蜜罐？"></a>什么是蜜罐？</h1><p>蜜罐技术本质上是一种对攻击方进行欺骗的技术，通过布置一些作为诱饵的主机、网络服务或者信息，诱使攻击方对它们实施攻击，从而可以对攻击行为进行捕获和分析，了解攻击方所使用的工具与方法，推测攻击意图和动机，能够让防御方清晰地了解他们所面对的安全威胁，并通过技术和管理手段来增强实际系统的安全防护能力。</p>
+<p>蜜<a href="https://baike.baidu.com/item/罐" target="_blank" rel="noopener">罐</a>好比是情报收集系统。<a href="https://baike.baidu.com/item/蜜/79956" target="_blank" rel="noopener">蜜</a>罐好像是故意让人攻击的目标，引诱<a href="https://baike.baidu.com/item/黑客/118396" target="_blank" rel="noopener">黑客</a>前来攻击。所以攻击者入侵后，你就可以知道他是如何得逞的，随时了解针对服务器发动的最新的攻击和漏洞。还可以通过<a href="https://baike.baidu.com/item/窃听/1624599" target="_blank" rel="noopener">窃听</a>黑客之间的联系，收集黑客所用的种种工具，并且掌握他们的社交网络。</p>
+<h1 id="蜜罐分类"><a href="#蜜罐分类" class="headerlink" title="蜜罐分类"></a>蜜罐分类</h1><h2 id="实系统蜜罐"><a href="#实系统蜜罐" class="headerlink" title="实系统蜜罐"></a><strong>实系统蜜罐</strong></h2><p>实系统蜜罐是最真实的蜜罐，它运行着真实的系统，并且带着真实可入侵的漏洞，属于最危险的漏洞，但是它记录下的入侵信息往往是最真实的。这种蜜罐安装的系统一般都是最初的，没有任何SP补丁，或者打了低版本SP补丁，根据管理员需要，也可能补上了一些漏洞，只要值得研究的漏洞还存在即可。然后把蜜罐连接上网络，根据目前的网络扫描频繁度来看，这样的蜜罐很快就能吸引到目标并接受攻击，系统运行着的记录程序会记下入侵者的一举一动，但同时它也是最危险的，因为入侵者每一个入侵都会引起系统真实的反应，例如被<a href="https://baike.baidu.com/item/溢出" target="_blank" rel="noopener">溢出</a>、<a href="https://baike.baidu.com/item/渗透/9457427" target="_blank" rel="noopener">渗透</a>、夺取权限等。</p>
+<h2 id="伪系统蜜罐"><a href="#伪系统蜜罐" class="headerlink" title="伪系统蜜罐"></a><strong>伪系统蜜罐</strong></h2><p>什么叫伪系统呢？不要误解成“假的系统”，它也是建立在真实系统基础上的，但是它最大的特点就是“平台与漏洞非对称性”。</p>
+<p>大家应该都知道，世界上操作系统不是只有Windows一家而已，在这个领域，还有<a href="https://baike.baidu.com/item/Linux" target="_blank" rel="noopener">Linux</a>、<a href="https://baike.baidu.com/item/Unix" target="_blank" rel="noopener">Unix</a>、OS2、<a href="https://baike.baidu.com/item/BeOS" target="_blank" rel="noopener">BeOS</a>等，它们的核心不同，因此会产生的漏洞缺陷也就不尽相同，简单的说，就是很少有能同时攻击几种系统的漏洞代码，也许你用LSASS溢出漏洞能拿到Windows的权限，但是用同样的手法去溢出Linux只能徒劳。根据这种特性，就产生了“伪系统蜜罐”，它利用一些工具程序强大的模仿能力，伪造出不属于自己平台的“漏洞”，入侵这样的“漏洞”，只能是在一个程序框架里打转，即使成功“渗透”，也仍然是程序制造的梦境——系统本来就没有让这种漏洞成立的条件，谈何“渗透”？实现一个“伪系统”并不困难，Windows平台下的一些<a href="https://baike.baidu.com/item/虚拟机" target="_blank" rel="noopener">虚拟机</a>程序、Linux自身的脚本功能加上第三方工具就能轻松实现，甚至在Linux/Unix下还能实时由管理员产生一些根本不存在的“漏洞”，让入侵者自以为得逞的在里面瞎忙。实现跟踪记录也很容易，只要在后台开着相应的记录程序即可。</p>
+<p>这种蜜罐的好处在于，它可以最大程度防止被入侵者破坏，也能模拟不存在的漏洞，甚至可以让一些Windows<a href="https://baike.baidu.com/item/蠕虫" target="_blank" rel="noopener">蠕虫</a>攻击Linux——只要你模拟出符合条件的Windows特征！但是它也存在坏处，因为一个聪明的入侵者只要经过几个回合就会识破伪装，另者，编写脚本不是很简便的事情，除非那个管理员很有耐心或者十分悠闲。</p>
+<p>​    </p>
+<p>以上部分摘选自百度百科,简化一下</p>
+<p><strong>蜜罐定义</strong> ： 诱使攻击方攻击，从而对攻击方进行各种分析。</p>
+<p><strong>蜜罐类型</strong> ：  1.漏洞百出的真实系统</p>
+<p>​                      2.模拟不属于自己系统(比如说服务器是linux,模拟一个windows服务器特征。)</p>
+<p>很显然第一种实系统蜜罐的优势是能够在真实的情况下记录下入侵者的一举一动,但是由于与真实系统密切联系,入侵者每一个入侵都会引起系统真实的反应,万一真实系统被溢出或者渗透等,是非常危险的。</p>
+<p>伪系统蜜罐就像是让入侵者进入了一个迷宫,但是入侵者还不知道自己在其中,他会自以为是的在里面瞎忙活,自己的记录也会被跟踪,虽然这种蜜罐相等安全,但是蜜罐对于有效的攻击行为确无法捕捉。</p>
+<h1 id="蜜罐作用"><a href="#蜜罐作用" class="headerlink" title="蜜罐作用"></a>蜜罐作用</h1><p><strong>作用</strong> ：</p>
+<ol>
+<li>迷惑入侵者，保护服务器</li>
+<li>诱捕网络罪犯</li>
+<li>数据收集</li>
+<li>……</li>
+</ol>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><h2 id="法律问题"><a href="#法律问题" class="headerlink" title="法律问题"></a>法律问题</h2><p><strong>法律问题</strong> : 出乎意料的是，监控蜜罐也要承担相应的法律后果，譬如说，有可能违反《反窃听法》。虽然目前没有判例法，但熟悉这方面法律的人士大多数认为，双方同意的标语是出路所在。也就是说，给每个蜜罐打上这样的标语：“使用该系统的任何人同意自己的行为受到监控，并透露给其他人，包括执法人员。”</p>
+<h1 id="蜜罐部署"><a href="#蜜罐部署" class="headerlink" title="蜜罐部署"></a>蜜罐部署</h1><p>为了更好的了解蜜罐,我从github搭建一个开源的蜜罐项目。</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572486132043.png" alt="通过HFish初识蜜罐技术"></p>
+<p>看到了好多功能呀,而且蜜罐还有很大的拓展性。</p>
+<p>部署方式有单机部署,集群部署,Docker部署等方式,这里我选择在虚拟机里用docker部署。</p>
+<h2 id="在虚拟机用docker搭建"><a href="#在虚拟机用docker搭建" class="headerlink" title="在虚拟机用docker搭建"></a>在虚拟机用docker搭建</h2><p>ubuntu系统做测试</p>
+<p>一、首先把镜像pull下来</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull imdevops/hfish</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572487020531.png" alt="通过HFish初识蜜罐技术"></p>
+<p>二、一键部署</p>
+<p>然后我选择单节点部署,账号密码默认都是admin，在虚拟机就先不修改了。</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572486405625.png" alt="通过HFish初识蜜罐技术"></p>
+<p>这是官方文档给出的端口说明,这里就体现了docker搭建的好处,如果在服务器上测试的时候占用21，22端口会很麻烦,在docker里可以直接做不同的端口映射。</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572486465559.png" alt="通过HFish初识蜜罐技术"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name hfish -p 21:21 -p 22:22 -p 23:23 -p 3306:3306 -p 6379:6379  -p 9000:9000 -p 9001:9001 -p 11211:11211 imdevops/hfish:latest</span><br></pre></td></tr></table></figure>
+<p>如果需要更改密码可以在执行docker命令的时候在docker run后面加入<code>-e USERNAME=  -e PASSWORD=</code> 传入环境变量进行修改。</p>
+<p><code>这里我们开启FTP、SSH、Telent、Mysql、Redis、Web、蜜罐后台 对应端口分别是21 22  23  3306  6379   9000   9001</code></p>
+<p>11211端口是Memcache 端口,用来提升网站访问速度</p>
+<p>我这个虚拟机没有用所以可以用21 22  等端口,大家如果搭建的话要注意端口冲突。</p>
+<p>docker ps可以查看端口映射的规则</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572487768568.png" alt="通过HFish初识蜜罐技术"></p>
+<p>使用过程中如果想对服务配置等进行修改,再用docker起一个shell</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 容器名 sh</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572487989375.png" alt="通过HFish初识蜜罐技术"></p>
+<h1 id="初探蜜罐"><a href="#初探蜜罐" class="headerlink" title="初探蜜罐"></a>初探蜜罐</h1><p>开启的端口中,只有9001是属于我们的后台管理,其他的都是蜜罐,一开始我还对着蜜罐输入admin </p>
+<p>都被记录下来了2333333</p>
+<p><strong>先去后台看一下</strong></p>
+<p>访问 ip:9001 输入账号密码admin</p>
+<p>可视化简明,可以看到上方列表还有其他功能,这里暂时不研究.</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572488468626.png" alt="通过HFish初识蜜罐技术"></p>
+<h2 id="web钓鱼"><a href="#web钓鱼" class="headerlink" title="web钓鱼"></a>web钓鱼</h2><p>源码只有一个wordpress的静态界面,赤裸裸的欺骗啊</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572488250463.png" alt="通过HFish初识蜜罐技术"></p>
+<p>我把title改成星盟安全团队</p>
+<p>主机访问一下虚拟机的web蜜罐</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572488376431.png" alt="通过HFish初识蜜罐技术"></p>
+<p>随便输入账号密码</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572488573550.png" alt="通过HFish初识蜜罐技术"></p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572488583430.png" alt="通过HFish初识蜜罐技术"></p>
+<p>弹出错误提示，去看一下后台捕捉到没有</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572488627550.png" alt="通过HFish初识蜜罐技术"></p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572488685403.png" alt="通过HFish初识蜜罐技术"></p>
+<p>攻击信息一目了然</p>
+<p>看一下index.html调用了x.js   登录行为直接是一个js的欺骗</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572488951368.png" alt="通过HFish初识蜜罐技术"></p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572488961952.png" alt="通过HFish初识蜜罐技术"></p>
+<p>打开burp测试一下，如果攻击者不往静态的方向思考,可能会在这里绕一段时间。把index.html改成index.php就更具有迷惑性了。</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572489479194.png" alt="通过HFish初识蜜罐技术"></p>
+<p>自带的web页面只有一个登录钓鱼  </p>
+<p>如果想要收集信息,可以接入自己的api,官方文档也有说明</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572491128961.png" alt="通过HFish初识蜜罐技术"></p>
+<p>当然这个项目是支持自定义web蜜罐的,我就先不去深入研究了。有兴趣的小伙伴可以去尝试一下。</p>
+<h2 id="FTP与ssh钓鱼"><a href="#FTP与ssh钓鱼" class="headerlink" title="FTP与ssh钓鱼"></a>FTP与ssh钓鱼</h2><p>尝试连接ssh</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572491573234.png" alt="通过HFish初识蜜罐技术"></p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572491588971.png" alt="通过HFish初识蜜罐技术"></p>
+<p>连接ftp </p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572491636705.png" alt="通过HFish初识蜜罐技术"></p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572491685965.png" alt="通过HFish初识蜜罐技术"></p>
+<h2 id="Telent钓鱼"><a href="#Telent钓鱼" class="headerlink" title="Telent钓鱼"></a>Telent钓鱼</h2><p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572492713353.png" alt="通过HFish初识蜜罐技术"></p>
+<p>telent可以直接连接上,并且攻击者在shell中输入的命令都会被记录,可能在攻击者沾沾自喜的时候,已经暴漏了越来越多的行为。</p>
+<h2 id="mysql服务钓鱼"><a href="#mysql服务钓鱼" class="headerlink" title="mysql服务钓鱼"></a>mysql服务钓鱼</h2><p>在kali系统爆破一下mysql</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra -L /home/ling/user.txt -P /home/ling/pass.txt 192.168.226.129 mysql</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572492197268.png" alt="通过HFish初识蜜罐技术"></p>
+<p>有些尴尬,爆破成功了,去后台看一下</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572492230679.png" alt="通过HFish初识蜜罐技术"></p>
+<p>后台也检测到了连接,连接也没用,反正是假的。反而会暴漏攻击者的行为意向等</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>测试了 web、ftp、ssh、 telent、 mysql服务</p>
+<p>攻击者的登录行为都可以被捕捉到</p>
+<p>而且以下信息都会被记录</p>
+<p><img src="/2019/11/01/通过HFish初识蜜罐技术/1572493014191.png" alt="通过HFish初识蜜罐技术"></p>
+<p>其中mysql可以让攻击者使用弱口令登录,从进一步分析攻击者行为。</p>
+<p>telent服务可以直连,并记录攻击者的操作行为。</p>
+<p>后台管理仪表盘中如果攻击者多的话才会体现视图优势,做测试看上去空荡荡的。</p>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>1.集群部署</p>
+<p>2.邮件报警</p>
+<p>3.自定义web蜜罐</p>
+<p>4.接入API收集信息</p>
+<p>5.黑白名单限制</p>
+<p>通过一个开源项目去简单的了解蜜罐技术,感觉自己的思路开拓了很多,在部署蜜罐的时候站在攻击者的角度去考虑问题,可能会得到很多奇妙的想法。</p>
+<p>由于我刚开始去了解蜜罐技术,文章中有很多不足之处,敬请谅解。</p>
+<p>项目地址: HFish(<a href="https://github.com/hacklcx/HFish" target="_blank" rel="noopener">https://github.com/hacklcx/HFish</a>)</p>
+<p>参考：  <a href="https://baike.baidu.com/item/%E8%9C%9C%E7%BD%90%E6%8A%80%E6%9C%AF/9165942?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/%E8%9C%9C%E7%BD%90%E6%8A%80%E6%9C%AF/9165942?fr=aladdin</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/蜜罐/" rel="tag"># 蜜罐</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/24/两道CTF入门题目/" rel="next" title="两道CTF入门题目">
+                <i class="fa fa-chevron-left"></i> 两道CTF入门题目
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/12/2019-11-09-赛后总结/" rel="prev" title="2019.11.09 赛后总结">
+                2019.11.09 赛后总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NzA3MC8yMzU3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description">夏天,那个夏天,还有那个夏天,即使经历无数次夏天,我还是说不出口。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ak6666.top/" title="http://blog.ak6666.top/" rel="noopener" target="_blank">阿凯</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=536976917&auto=1&height=32"></iframe>
+
+
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是蜜罐？"><span class="nav-number">1.</span> <span class="nav-text">什么是蜜罐？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#蜜罐分类"><span class="nav-number">2.</span> <span class="nav-text">蜜罐分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实系统蜜罐"><span class="nav-number">2.1.</span> <span class="nav-text">实系统蜜罐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪系统蜜罐"><span class="nav-number">2.2.</span> <span class="nav-text">伪系统蜜罐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#蜜罐作用"><span class="nav-number">3.</span> <span class="nav-text">蜜罐作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#法律问题"><span class="nav-number">4.1.</span> <span class="nav-text">法律问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#蜜罐部署"><span class="nav-number">5.</span> <span class="nav-text">蜜罐部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在虚拟机用docker搭建"><span class="nav-number">5.1.</span> <span class="nav-text">在虚拟机用docker搭建</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初探蜜罐"><span class="nav-number">6.</span> <span class="nav-text">初探蜜罐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#web钓鱼"><span class="nav-number">6.1.</span> <span class="nav-text">web钓鱼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FTP与ssh钓鱼"><span class="nav-number">6.2.</span> <span class="nav-text">FTP与ssh钓鱼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Telent钓鱼"><span class="nav-number">6.3.</span> <span class="nav-text">Telent钓鱼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql服务钓鱼"><span class="nav-number">6.4.</span> <span class="nav-text">mysql服务钓鱼</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展"><span class="nav-number">7.1.</span> <span class="nav-text">拓展</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div> 
+   
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    <br>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/11/01/通过HFish初识蜜罐技术/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>
